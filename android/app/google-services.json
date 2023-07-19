@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "152742107512",
+    "project_id": "uro-app-f3690",
+    "storage_bucket": "uro-app-f3690.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:152742107512:android:d4c44ba1a0b94b59a1d08d",
+        "android_client_info": {
+          "package_name": "com.example.uroapplication"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "152742107512-hgtg0lqua1ikvd0p2s6a0obuugi1too1.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC0Zx36N6Vz7L0c_lqu-uIc2stzFJCrQRs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "152742107512-hgtg0lqua1ikvd0p2s6a0obuugi1too1.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
