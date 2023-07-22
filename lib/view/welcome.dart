@@ -4,6 +4,8 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 
+import 'admin/dashboard.dart';
+
 class GlassmorphismContainer extends StatefulWidget {
   @override
   State<GlassmorphismContainer> createState() => _GlassmorphismContainerState();
@@ -112,19 +114,27 @@ class _GlassmorphismContainerState extends State<GlassmorphismContainer> {
                                     )
                                   ],
                                 ),
-                                Column(
-                                  children: [
-                                    Image(
-                                      image: AssetImage(
-                                        "assets/images/admin.png",
+                                InkWell(
+                                  onTap: () {
+                                    Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                            builder: (ctx) => Dashboard()));
+                                  },
+                                  child: Column(
+                                    children: [
+                                      Image(
+                                        image: AssetImage(
+                                          "assets/images/admin.png",
+                                        ),
+                                        height: screenHeight / 6,
                                       ),
-                                      height: screenHeight / 6,
-                                    ),
-                                    Text("Admin",
-                                        style: TextStyle(
-                                            fontSize: 22,
-                                            fontWeight: FontWeight.bold))
-                                  ],
+                                      Text("Admin",
+                                          style: TextStyle(
+                                              fontSize: 22,
+                                              fontWeight: FontWeight.bold))
+                                    ],
+                                  ),
                                 )
                               ],
                             )
