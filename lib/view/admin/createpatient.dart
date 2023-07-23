@@ -19,11 +19,33 @@ class _NewSignupScreenState extends State<NewSignupScreen> {
 
   final TextEditingController _emailController = TextEditingController();
 
-  final TextEditingController _name = TextEditingController();
+  final TextEditingController _fname = TextEditingController();
+
+  final TextEditingController _lname = TextEditingController();
+  final TextEditingController _phone = TextEditingController();
+  final TextEditingController _dob = TextEditingController();
 
   final TextEditingController _passwordController = TextEditingController();
 
   final RegisterViewModel _registerVM = RegisterViewModel();
+  DateTime? _selectedDate;
+  bool _isDataSaved = false;
+
+  Future<void> _pickDate() async {
+    DateTime? pickedDate = await showDatePicker(
+      context: context,
+      initialDate: DateTime.now(),
+      firstDate: DateTime(1900),
+      lastDate: DateTime.now(),
+    );
+
+    if (pickedDate != null && pickedDate != _selectedDate) {
+      setState(() {
+        _selectedDate = pickedDate;
+        _dob.text = _selectedDate!.toLocal().toString().split(' ')[0];
+      });
+    }
+  }
 
   String errMsg = "";
   bool _isSigningUp = false;
@@ -98,11 +120,10 @@ class _NewSignupScreenState extends State<NewSignupScreen> {
                     SizedBox(
                       height: height / 13,
                     ),
-                    Image.asset('assets/images/2.png',
-                        height: 200, width: 200, fit: BoxFit.cover),
                     SizedBox(
                       height: 30,
                     ),
+
                     Column(
                       children: [
                         Card(
@@ -115,7 +136,41 @@ class _NewSignupScreenState extends State<NewSignupScreen> {
                               if (value.length < 3) {}
                               return null;
                             },
-                            controller: _name,
+                            controller: _lname,
+                            keyboardType: TextInputType.name,
+                            decoration: InputDecoration(
+                                errorStyle: TextStyle(color: Colors.black),
+                                contentPadding: EdgeInsets.symmetric(
+                                    vertical: 0, horizontal: 20),
+                                fillColor: Colors.white,
+                                hintText: "Last Name",
+                                hintStyle: TextStyle(color: Colors.black),
+                                alignLabelWithHint: true,
+                                enabledBorder: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(15),
+                                  borderSide: BorderSide(color: Colors.white),
+                                ),
+                                focusedBorder: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(15),
+                                  borderSide: BorderSide(color: Colors.black),
+                                ),
+                                filled: true),
+                          ),
+                        ),
+                        SizedBox(
+                          height: height / 64,
+                        ),
+                        Card(
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(15)),
+                          elevation: 10,
+                          child: TextFormField(
+                            validator: (value) {
+                              if (value!.isEmpty) {}
+                              if (value.length < 3) {}
+                              return null;
+                            },
+                            controller: _fname,
                             keyboardType: TextInputType.name,
                             decoration: InputDecoration(
                                 errorStyle: TextStyle(color: Colors.black),
@@ -220,14 +275,55 @@ class _NewSignupScreenState extends State<NewSignupScreen> {
                                 filled: true),
                           ),
                         ),
+                        SizedBox(
+                          height: height / 64,
+                        ),
+                        InkWell(
+                          onTap: () {
+                            _pickDate;
+                          },
+                          child: Card(
+                            elevation: 10,
+                            shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(15)),
+                            child: TextFormField(
+                              readOnly: true,
+                              controller: _dob,
+                              keyboardType: TextInputType.emailAddress,
+                              decoration: InputDecoration(
+                                  errorStyle: TextStyle(color: Colors.black),
+                                  contentPadding: EdgeInsets.symmetric(
+                                      vertical: 0, horizontal: 20),
+                                  fillColor: Colors.white,
+                                  hintText: "Date of Borth",
+                                  suffixIcon: IconButton(
+                                      onPressed: _pickDate,
+                                      icon: Icon(CupertinoIcons.calendar)),
+                                  hintStyle: TextStyle(color: Colors.black),
+                                  alignLabelWithHint: true,
+                                  enabledBorder: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(50),
+                                    borderSide: BorderSide(color: Colors.white),
+                                  ),
+                                  focusedBorder: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(50),
+                                    borderSide: BorderSide(color: Colors.white),
+                                  ),
+                                  filled: true),
+                            ),
+                          ),
+                        ),
+                        SizedBox(
+                          height: height / 64,
+                        ),
                       ],
                     ).pSymmetric(h: 20),
                     SizedBox(
                       height: height / 10,
                     ),
+
                     InkWell(
-                      splashColor: Colors.black,
-                      onTap: _isSigningUp
+                      onTap: _isDataSaved
                           ? null
                           : () async {
                               if (_formKey.currentState!.validate()) {
@@ -235,7 +331,6 @@ class _NewSignupScreenState extends State<NewSignupScreen> {
                                     _passwordController.text.isEmpty) {
                                   showSnackbar(
                                       context, "Please fill all fields");
-
                                   return;
                                 }
                                 setState(() {
@@ -245,19 +340,34 @@ class _NewSignupScreenState extends State<NewSignupScreen> {
                                 // call Firebase function to sign up user
                                 bool isRegistered = false;
                                 isRegistered = await _registerVM.register(
-                                    _emailController.text.trim(),
-                                    _passwordController.text.trim(),
-                                    _name.text.trim());
+                                  _emailController.text.trim(),
+                                  _passwordController.text.trim(),
+                                  _fname.text.trim(),
+                                  _lname.text.trim(),
+                                  _dob.text.trim(),
+                                );
+
                                 if (isRegistered) {
                                   var userId =
                                       FirebaseAuth.instance.currentUser!.uid;
                                   await FirebaseFirestore.instance
-                                      .collection("UsersData")
+                                      .collection("Patients")
                                       .doc(userId)
                                       .set({
-                                    "First Name": _name.text.trim(),
+                                    "First Name": _fname.text.trim(),
+                                    "Last Name": _lname.text.trim(),
                                     "Email": _emailController.text.trim(),
+                                    "DOB": _dob.text.trim(),
                                   });
+
+                                  // Update the state to indicate data is saved
+                                  setState(() {
+                                    _isDataSaved = true;
+                                    _isSigningUp = false;
+                                  });
+
+                                  // Show a Snackbar to indicate data is saved
+                                  showSnackbar(context, "Data Saved!");
                                 } else {
                                   setState(() {
                                     _isSigningUp = false;

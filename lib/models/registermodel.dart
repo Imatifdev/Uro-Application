@@ -11,6 +11,8 @@ class RegisterViewModel extends ChangeNotifier {
     String email,
     String password,
     String fName,
+    String lName,
+    String dob,
   ) async {
     bool isRegistered = false;
 
