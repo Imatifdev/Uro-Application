@@ -9,14 +9,9 @@ class QuizScreen extends StatefulWidget {
 
 class _QuizScreenState extends State<QuizScreen> {
   final PageController _pageController = PageController();
-  bool page1AnsPicked = false;
-  bool page2AnsPicked = false;
-  bool page3AnsPicked = false;
-  bool page4AnsPicked = false;
-  bool page5AnsPicked = false;
-  bool page6AnsPicked = false;
-  bool page7AnsPicked = false;
-  int currentPage = 1;
+  List<int?> selectedAnswers = List.filled(7, null);
+  List<bool> answered = List.filled(7, false);
+  int currentPage = 0; // Changed to start from 0
   List<String> questions = [
     "Over the past month, how often have you had the sensation of not emptying your bladder completely after you finish urinating?",
     "Over the past month, how often have you had to urinate again less than two hours after you finished urinating?",
@@ -37,482 +32,211 @@ class _QuizScreenState extends State<QuizScreen> {
   ];
 
   List<List<String>> answers = [
-    [
-      "Not at all",
-      "Less than 1 time in 5 days",
-      "Less than half the time",
-      "About half the time",
-      "More than half the time",
-      "Almost always"
-    ],
-    [
-      "Not at all",
-      "Less than 1 time in 5 days",
-      "Less than half the time",
-      "About half the time",
-      "More than half the time",
-      "Almost always"
-    ],
-    [
-      "Not at all",
-      "Less than 1 time in 5 days",
-      "Less than half the time",
-      "About half the time",
-      "More than half the time",
-      "Almost always"
-    ],
-    [
-      "Not at all",
-      "Less than 1 time in 5 days",
-      "Less than half the time",
-      "About half the time",
-      "More than half the time",
-      "Almost always"
-    ],
-    [
-      "Not at all",
-      "Less than 1 time in 5 days",
-      "Less than half the time",
-      "About half the time",
-      "More than half the time",
-      "Almost always"
-    ],
-    [
-      "Not at all",
-      "Less than 1 time in 5 days",
-      "Less than half the time",
-      "About half the time",
-      "More than half the time",
-      "Almost always"
-    ],
+    ["Not at all", "Less than 1 time in 5 days", "Less than half the time", "About half the time", "More than half the time", "Almost always"],
+    ["Not at all", "Less than 1 time in 5 days", "Less than half the time", "About half the time", "More than half the time", "Almost always"],
+    ["Not at all", "Less than 1 time in 5 days", "Less than half the time", "About half the time", "More than half the time", "Almost always"],
+    ["Not at all", "Less than 1 time in 5 days", "Less than half the time", "About half the time", "More than half the time", "Almost always"],
+    ["Not at all", "Less than 1 time in 5 days", "Less than half the time", "About half the time", "More than half the time", "Almost always"],
+    ["Not at all", "Less than 1 time in 5 days", "Less than half the time", "About half the time", "More than half the time", "Almost always"],
     ["None", "1 Time", "2 Times", "3 Times", "4 Times", "5 Times or more"]
   ];
 
   @override
-  void initState() {
-    super.initState();
-  }
-
-  @override
   Widget build(BuildContext context) {
-    Size size = MediaQuery.of(context).size;
-    final screenWidth = MediaQuery.of(context).size.width;
-    final screenHeight = MediaQuery.of(context).size.height;
-    final textScaleFactor = MediaQuery.of(context).textScaleFactor;
-
-    // Adjust font size based on screen width and text scale factor
-    final fontSize = screenWidth * 0.14 * textScaleFactor;
-    final questionsize = screenWidth * 0.045 * textScaleFactor;
-    final answersize = screenWidth * 0.14 * textScaleFactor;
-    final subheading = screenWidth * 0.05 * textScaleFactor;
-
     return Scaffold(
       backgroundColor: Colors.deepPurple,
       body: SafeArea(
-          child: SizedBox(
-        width: size.width,
-        child: Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              SizedBox(
-                height: size.height / 50,
-              ),
-
-              SizedBox(
-                height: 100,
-                child: ListView(
-                  scrollDirection: Axis.horizontal,
+        child: LayoutBuilder(
+          builder: (context, constraints) {
+            return SizedBox(
+              width: constraints.maxWidth,
+              height: constraints.maxHeight,
+              child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    CircleAvatar(
-                      radius: size.aspectRatio * 53,
-                      backgroundColor: Colors.white,
-                      child: CircleAvatar(
-                        radius: size.aspectRatio * 50,
-                        backgroundColor: !page1AnsPicked
-                            ? Colors.deepPurple
-                            : Colors.deepPurple.shade100,
-                        child: page1AnsPicked
-                            ? const Icon(Icons.check)
-                            : const Text(
-                                "1",
-                                style: TextStyle(color: Colors.white),
-                              ),
-                      ),
+                    SizedBox(height: constraints.maxHeight * 0.01),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      children: [
+                        for (int i = 0; i < 7; i++)
+                          buildCircleAvatar(constraints, i),
+                      ],
                     ),
-                    CircleAvatar(
-                      radius: size.aspectRatio * 53,
-                      backgroundColor: Colors.white,
-                      child: CircleAvatar(
-                        radius: size.aspectRatio * 50,
-                        backgroundColor: !page2AnsPicked
-                            ? Colors.deepPurple
-                            : Colors.deepPurple.shade100,
-                        child: page2AnsPicked
-                            ? const Icon(Icons.check)
-                            : const Text(
-                                "2",
-                                style: TextStyle(color: Colors.white),
-                              ),
-                      ),
-                    ),
-                    CircleAvatar(
-                      radius: size.aspectRatio * 53,
-                      backgroundColor: Colors.white,
-                      child: CircleAvatar(
-                        radius: size.aspectRatio * 50,
-                        backgroundColor: !page3AnsPicked
-                            ? Colors.deepPurple
-                            : Colors.deepPurple.shade300,
-                        child: page3AnsPicked
-                            ? const Icon(Icons.check)
-                            : const Text(
-                                "3",
-                                style: TextStyle(color: Colors.white),
-                              ),
-                      ),
-                    ),
-                    CircleAvatar(
-                      radius: size.aspectRatio * 53,
-                      backgroundColor: Colors.white,
-                      child: CircleAvatar(
-                        radius: size.aspectRatio * 50,
-                        backgroundColor: !page4AnsPicked
-                            ? Colors.deepPurple
-                            : Colors.deepPurple.shade100,
-                        child: page4AnsPicked
-                            ? const Icon(Icons.check)
-                            : const Text(
-                                "4",
-                                style: TextStyle(color: Colors.white),
-                              ),
-                      ),
-                    ),
-                    CircleAvatar(
-                      radius: size.aspectRatio * 53,
-                      backgroundColor: Colors.white,
-                      child: CircleAvatar(
-                        radius: size.aspectRatio * 50,
-                        backgroundColor: !page5AnsPicked
-                            ? Colors.deepPurple
-                            : Colors.deepPurple.shade100,
-                        child: page5AnsPicked
-                            ? const Icon(Icons.check)
-                            : const Text(
-                                "5",
-                                style: TextStyle(color: Colors.white),
-                              ),
-                      ),
-                    ),
-                    CircleAvatar(
-                      radius: size.aspectRatio * 53,
-                      backgroundColor: Colors.white,
-                      child: CircleAvatar(
-                        radius: size.aspectRatio * 50,
-                        backgroundColor: !page6AnsPicked
-                            ? Colors.deepPurple
-                            : Colors.deepPurple.shade100,
-                        child: page6AnsPicked
-                            ? const Icon(Icons.check)
-                            : const Text(
-                                "6",
-                                style: TextStyle(color: Colors.white),
-                              ),
-                      ),
-                    ),
-                    CircleAvatar(
-                      radius: size.aspectRatio * 53,
-                      backgroundColor: Colors.white,
-                      child: CircleAvatar(
-                        radius: size.aspectRatio * 50,
-                        backgroundColor: !page7AnsPicked
-                            ? Colors.deepPurple
-                            : Colors.deepPurple.shade100,
-                        child: page7AnsPicked
-                            ? const Icon(Icons.check)
-                            : const Text(
-                                "7",
-                                style: TextStyle(color: Colors.white),
-                              ),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              SizedBox(
-                height: size.height / 1.9,
-                child: PageView.builder(
-                    controller: _pageController,
-                    itemCount: questions.length,
-                    itemBuilder: (context, index) => Card(
+                    SizedBox(
+                      height: constraints.maxHeight * 0.6,
+                      child: PageView.builder(
+                        controller: _pageController,
+                        itemCount: questions.length,
+                        onPageChanged: (index) {
+                          setState(() {
+                            currentPage = index;
+                          });
+                        },
+                        itemBuilder: (context, index) => Card(
                           color: Colors.deepPurple.shade100,
                           child: Padding(
                             padding: const EdgeInsets.all(8.0),
                             child: Column(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
-                                Text(
-                                  headings[index],
-                                  style: const TextStyle(fontSize: 20),
-                                ),
+                                Text(headings[index], style: const TextStyle(fontSize: 20)),
                                 Column(
                                   children: [
                                     Align(
-                                        alignment: Alignment.centerLeft,
-                                        child: Text(
-                                          "Question No ${index + 1}/7",
-                                          style: const TextStyle(
-                                              fontSize: 18,
-                                              fontWeight: FontWeight.bold),
-                                        )),
-                                    Text(
-                                      questions[index],
-                                      style: TextStyle(fontSize: questionsize),
+                                      alignment: Alignment.centerLeft,
+                                      child: Text("Question No ${index + 1}/7", style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
                                     ),
+                                    Text(questions[index], style: const TextStyle(fontSize: 18)),
                                   ],
                                 ),
                                 Column(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
+                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                   children: [
-                                    InkWell(
-                                      onTap: () {
-                                        setState(() {
-                                          if (currentPage == 1) {
-                                            page1AnsPicked = !page1AnsPicked;
-                                          }
-                                        });
-                                      },
-                                      child: Container(
-                                        width: size.width - 80,
-                                        height: size.height / 15,
-                                        decoration: BoxDecoration(
-                                            color: page1AnsPicked
-                                                ? Colors.deepPurple
-                                                : Colors.white,
-                                            border: Border.all(
-                                                color: Theme.of(context)
-                                                    .primaryColor),
-                                            borderRadius:
-                                                BorderRadius.circular(25)),
-                                        child: Center(
+                                    for (int i = 0; i < answers[index].length; i++)
+                                      InkWell(
+                                        onTap: () {
+                                          setState(() {
+                                            selectedAnswers[currentPage] = i; // Updated to currentPage instead of currentPage - 1
+                                            answered[currentPage] = true; // Updated to currentPage instead of currentPage - 1
+                                          });
+                                        },
+                                        child: Container(
+                                          width: constraints.maxWidth * 0.8,
+                                          height: constraints.maxHeight * 0.06,
+                                          decoration: BoxDecoration(
+                                            color: selectedAnswers[currentPage] == i ? Colors.deepPurple : Colors.white,
+                                            border: Border.all(color: Theme.of(context).primaryColor),
+                                            borderRadius: BorderRadius.circular(15),
+                                          ),
+                                          child: Center(
                                             child: Text(
-                                          answers[index][0],
-                                          style: TextStyle(
-                                              color: page1AnsPicked
-                                                  ? Colors.white
-                                                  : Colors.deepPurple),
-                                        )),
+                                              answers[index][i],
+                                              style: TextStyle(color: selectedAnswers[currentPage] == i ? Colors.white : Colors.deepPurple),
+                                            ),
+                                          ),
+                                        ),
                                       ),
-                                    ),
-                                    InkWell(
-                                      onTap: () {
-                                        setState(() {
-                                          if (currentPage == 1) {
-                                            page1AnsPicked = !page1AnsPicked;
-                                          }
-                                        });
-                                      },
-                                      child: Container(
-                                        width: size.width - 80,
-                                        height: size.height / 15,
-                                        decoration: BoxDecoration(
-                                            color: page1AnsPicked
-                                                ? Colors.deepPurple
-                                                : Colors.white,
-                                            border: Border.all(
-                                                color: Theme.of(context)
-                                                    .primaryColor),
-                                            borderRadius:
-                                                BorderRadius.circular(25)),
-                                        child: Center(
-                                            child: Text(
-                                          answers[index][1],
-                                          style: TextStyle(
-                                              color: page1AnsPicked
-                                                  ? Colors.white
-                                                  : Colors.deepPurple),
-                                        )),
-                                      ),
-                                    ),
-                                    InkWell(
-                                      onTap: () {
-                                        setState(() {
-                                          if (currentPage == 1) {
-                                            page1AnsPicked = !page1AnsPicked;
-                                          }
-                                        });
-                                      },
-                                      child: Container(
-                                        width: size.width - 80,
-                                        height: size.height / 15,
-                                        decoration: BoxDecoration(
-                                            color: page1AnsPicked
-                                                ? Colors.deepPurple
-                                                : Colors.white,
-                                            border: Border.all(
-                                                color: Theme.of(context)
-                                                    .primaryColor),
-                                            borderRadius:
-                                                BorderRadius.circular(25)),
-                                        child: Center(
-                                            child: Text(
-                                          answers[index][2],
-                                          style: TextStyle(
-                                              color: page1AnsPicked
-                                                  ? Colors.white
-                                                  : Colors.deepPurple),
-                                        )),
-                                      ),
-                                    ),
-                                    InkWell(
-                                      onTap: () {
-                                        setState(() {
-                                          if (currentPage == 1) {
-                                            page1AnsPicked = !page1AnsPicked;
-                                          }
-                                        });
-                                      },
-                                      child: Container(
-                                        width: size.width - 80,
-                                        height: size.height / 15,
-                                        decoration: BoxDecoration(
-                                            color: page1AnsPicked
-                                                ? Colors.deepPurple
-                                                : Colors.white,
-                                            border: Border.all(
-                                                color: Theme.of(context)
-                                                    .primaryColor),
-                                            borderRadius:
-                                                BorderRadius.circular(25)),
-                                        child: Center(
-                                            child: Text(
-                                          answers[index][3],
-                                          style: TextStyle(
-                                              color: page1AnsPicked
-                                                  ? Colors.white
-                                                  : Colors.deepPurple),
-                                        )),
-                                      ),
-                                    ),
-                                    InkWell(
-                                      onTap: () {
-                                        setState(() {
-                                          if (currentPage == 1) {
-                                            page1AnsPicked = !page1AnsPicked;
-                                          }
-                                        });
-                                      },
-                                      child: Container(
-                                        width: size.width - 80,
-                                        height: size.height / 15,
-                                        decoration: BoxDecoration(
-                                            color: page1AnsPicked
-                                                ? Colors.deepPurple
-                                                : Colors.white,
-                                            border: Border.all(
-                                                color: Theme.of(context)
-                                                    .primaryColor),
-                                            borderRadius:
-                                                BorderRadius.circular(25)),
-                                        child: Center(
-                                            child: Text(
-                                          answers[index][4],
-                                          style: TextStyle(
-                                              color: page1AnsPicked
-                                                  ? Colors.white
-                                                  : Colors.deepPurple),
-                                        )),
-                                      ),
-                                    ),
-                                    InkWell(
-                                      onTap: () {
-                                        setState(() {
-                                          if (currentPage == 1) {
-                                            page1AnsPicked = !page1AnsPicked;
-                                          }
-                                        });
-                                      },
-                                      child: Container(
-                                        width: size.width - 80,
-                                        height: size.height / 15,
-                                        decoration: BoxDecoration(
-                                            color: page1AnsPicked
-                                                ? Colors.deepPurple
-                                                : Colors.white,
-                                            border: Border.all(
-                                                color: Theme.of(context)
-                                                    .primaryColor),
-                                            borderRadius:
-                                                BorderRadius.circular(25)),
-                                        child: Center(
-                                            child: Text(
-                                          answers[index][5],
-                                          style: TextStyle(
-                                              color: page1AnsPicked
-                                                  ? Colors.white
-                                                  : Colors.deepPurple),
-                                        )),
-                                      ),
-                                    ),
                                   ],
                                 ),
                               ],
                             ),
                           ),
-                        )),
+                        ),
+                      ),
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        buildBackButton(constraints),
+                        buildSubmitButton(constraints), // Submit button added here
+                        buildForwardButton(constraints),
+                      ],
+                    )
+                  ],
+                ),
               ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  CircleAvatar(
-                      radius: size.aspectRatio * 70,
-                      child: IconButton(
-                          onPressed: () {
-                            _pageController.previousPage(
-                                duration: const Duration(seconds: 2),
-                                curve: Curves.decelerate);
-                            setState(() {
-                              if (currentPage != 1) {
-                                currentPage--;
-                              }
-                            });
-                            print(currentPage);
-                          },
-                          icon: Icon(
-                            Icons.arrow_back_ios_new,
-                            size: size.aspectRatio * 70,
-                          ))),
-                  CircleAvatar(
-                    radius: size.aspectRatio * 70,
-                    child: IconButton(
-                        onPressed: () {
-                          _pageController.nextPage(
-                              duration: const Duration(seconds: 2),
-                              curve: Curves.decelerate);
-                          setState(() {
-                            if (currentPage != 7) {
-                              currentPage++;
-                            }
-                          });
-                          print(currentPage);
-                        },
-                        icon: Icon(
-                          Icons.arrow_forward_ios_sharp,
-                          size: size.aspectRatio * 70,
-                        )),
-                  )
-                ],
-              )
-              // SizedBox(
-              //   height: size.height/35,
-              // )
-            ],
-          ),
+            );
+          },
         ),
-      )),
+      ),
+    );
+  }
+
+  bool isAllQuestionsAnswered() {
+    for (int? answer in selectedAnswers) {
+      if (answer == null) {
+        return false;
+      }
+    }
+    return true;
+  }
+
+  ElevatedButton buildSubmitButton(BoxConstraints constraints) {
+    return ElevatedButton(
+      onPressed: isAllQuestionsAnswered()
+          ? () {
+              // Implement submit logic here
+              // For demonstration, we'll just print the selected answers
+              print("Selected Answers: $selectedAnswers");
+            }
+          : null,
+      style: ButtonStyle(
+        backgroundColor: MaterialStateProperty.resolveWith<Color?>(
+          (Set<MaterialState> states) {
+            if (states.contains(MaterialState.disabled)) {
+              return Colors.grey; // Disabled color
+            }
+            return Colors.deepPurple.shade100; // Enabled color
+          },
+        ),
+      ),
+      child: const  Padding(
+      padding: EdgeInsets.symmetric(vertical: 20, horizontal: 20), // Add padding here
+      child: Text("Submit"),
+    ),
+    );
+  }
+
+  InkWell buildCircleAvatar(BoxConstraints constraints, int index) {
+    return InkWell(
+      onTap: () {
+        setState(() {
+          currentPage = index;
+          _pageController.animateToPage(
+            currentPage,
+            duration: const Duration(seconds: 2),
+            curve: Curves.decelerate,
+          );
+        });
+      },
+      child: CircleAvatar(
+        radius: constraints.maxWidth * 0.06,
+        backgroundColor: Colors.white,
+        child: CircleAvatar(
+          radius: constraints.maxWidth * 0.05,
+          backgroundColor: answered[index] ? Colors.deepPurple.shade100 : Colors.deepPurple,
+          child: answered[index]
+              ? const Icon(Icons.check, color: Colors.white)
+              : Text((index + 1).toString(), style: const TextStyle(color: Colors.white)),
+        ),
+      ),
+    );
+  }
+
+  CircleAvatar buildBackButton(BoxConstraints constraints) {
+    return CircleAvatar(
+      radius: constraints.maxWidth * 0.1,
+      child: IconButton(
+        onPressed: () {
+          if (currentPage > 0) { // Changed to 0 since the first page is 0
+            setState(() {
+              currentPage--;
+            });
+            _pageController.previousPage(duration: const Duration(seconds: 2), curve: Curves.decelerate);
+          }
+        },
+        icon: Icon(Icons.arrow_back_ios_new, size: constraints.maxWidth * 0.1),
+      ),
+    );
+  }
+
+  CircleAvatar buildForwardButton(BoxConstraints constraints) {
+    return CircleAvatar(
+      radius: constraints.maxWidth * 0.1,
+      child: IconButton(
+        onPressed: () {
+          if (currentPage < 6) { // Changed to 6 since the last page is 6 (index 6)
+            setState(() {
+              currentPage++;
+            });
+            _pageController.nextPage(duration: const Duration(seconds: 2), curve: Curves.decelerate);
+          }
+        },
+        icon: Icon(Icons.arrow_forward_ios_sharp, size: constraints.maxWidth * 0.1),
+      ),
     );
   }
 }
