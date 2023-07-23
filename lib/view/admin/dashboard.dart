@@ -3,6 +3,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:uroapplication/view/admin/createpatient.dart';
+import 'package:uroapplication/view/admin/searchpatient.dart';
 
 import '../../controller/mycolors.dart';
 
@@ -216,68 +217,76 @@ class _DashboardState extends State<Dashboard> {
                     SizedBox(
                       width: 30,
                     ),
-                    Container(
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(20),
-                        boxShadow: [
-                          BoxShadow(
-                            color: Colors.white.withOpacity(0.2),
-                            blurRadius: 5,
-                            spreadRadius: 2,
-                          ),
-                        ],
-                      ),
-                      width: screenWidth / 1.6,
-                      height: screenHeight / 5,
-                      child: Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Image(
-                                height: screenHeight / 10,
-                                width: screenWidth * 0.2,
-                                image: AssetImage('assets/images/search.png'),
-                              ),
-                              Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Text(
-                                    "Search Patient",
-                                    style: TextStyle(
-                                        color: subtitle,
-                                        fontSize: 24,
-                                        fontWeight: FontWeight.bold),
-                                  ),
-                                  Row(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
-                                    children: [
-                                      Text(
-                                        "Record",
-                                        style: TextStyle(
-                                            color: subtitle,
-                                            fontSize: 32,
-                                            fontWeight: FontWeight.bold),
-                                      ),
-                                      Container(
-                                        height: 30,
-                                        width: 30,
-                                        decoration: BoxDecoration(
-                                            borderRadius:
-                                                BorderRadius.circular(10),
-                                            color:
-                                                Colors.white.withOpacity(0.8)),
-                                        child: Center(
-                                            child: Icon(
-                                                CupertinoIcons.right_chevron)),
-                                      )
-                                    ],
-                                  )
-                                ],
-                              ),
-                            ]),
+                    InkWell(
+                      onTap: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (ctx) => SearchScreen()));
+                      },
+                      child: Container(
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(20),
+                          boxShadow: [
+                            BoxShadow(
+                              color: Colors.white.withOpacity(0.2),
+                              blurRadius: 5,
+                              spreadRadius: 2,
+                            ),
+                          ],
+                        ),
+                        width: screenWidth / 1.6,
+                        height: screenHeight / 5,
+                        child: Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Image(
+                                  height: screenHeight / 10,
+                                  width: screenWidth * 0.2,
+                                  image: AssetImage('assets/images/search.png'),
+                                ),
+                                Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text(
+                                      "Search Patient",
+                                      style: TextStyle(
+                                          color: subtitle,
+                                          fontSize: 24,
+                                          fontWeight: FontWeight.bold),
+                                    ),
+                                    Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        Text(
+                                          "Record",
+                                          style: TextStyle(
+                                              color: subtitle,
+                                              fontSize: 32,
+                                              fontWeight: FontWeight.bold),
+                                        ),
+                                        Container(
+                                          height: 30,
+                                          width: 30,
+                                          decoration: BoxDecoration(
+                                              borderRadius:
+                                                  BorderRadius.circular(10),
+                                              color: Colors.white
+                                                  .withOpacity(0.8)),
+                                          child: Center(
+                                              child: Icon(CupertinoIcons
+                                                  .right_chevron)),
+                                        )
+                                      ],
+                                    )
+                                  ],
+                                ),
+                              ]),
+                        ),
                       ),
                     ),
                     SizedBox(

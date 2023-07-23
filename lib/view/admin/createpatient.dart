@@ -316,6 +316,36 @@ class _NewSignupScreenState extends State<NewSignupScreen> {
                         SizedBox(
                           height: height / 64,
                         ),
+                        Card(
+                          elevation: 10,
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(15)),
+                          child: TextFormField(
+                            readOnly: true,
+                            controller: _phone,
+                            keyboardType: TextInputType.emailAddress,
+                            decoration: InputDecoration(
+                                errorStyle: TextStyle(color: Colors.black),
+                                contentPadding: EdgeInsets.symmetric(
+                                    vertical: 0, horizontal: 20),
+                                fillColor: Colors.white,
+                                hintText: "Phone Num",
+                                suffixIcon: IconButton(
+                                    onPressed: _pickDate,
+                                    icon: Icon(CupertinoIcons.calendar)),
+                                hintStyle: TextStyle(color: Colors.black),
+                                alignLabelWithHint: true,
+                                enabledBorder: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(50),
+                                  borderSide: BorderSide(color: Colors.white),
+                                ),
+                                focusedBorder: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(50),
+                                  borderSide: BorderSide(color: Colors.white),
+                                ),
+                                filled: true),
+                          ),
+                        ),
                       ],
                     ).pSymmetric(h: 20),
                     SizedBox(
@@ -340,12 +370,12 @@ class _NewSignupScreenState extends State<NewSignupScreen> {
                                 // call Firebase function to sign up user
                                 bool isRegistered = false;
                                 isRegistered = await _registerVM.register(
-                                  _emailController.text.trim(),
-                                  _passwordController.text.trim(),
-                                  _fname.text.trim(),
-                                  _lname.text.trim(),
-                                  _dob.text.trim(),
-                                );
+                                    _emailController.text.trim(),
+                                    _passwordController.text.trim(),
+                                    _fname.text.trim(),
+                                    _lname.text.trim(),
+                                    _dob.text.trim(),
+                                    _phone.text.trim());
 
                                 if (isRegistered) {
                                   var userId =
@@ -358,6 +388,7 @@ class _NewSignupScreenState extends State<NewSignupScreen> {
                                     "Last Name": _lname.text.trim(),
                                     "Email": _emailController.text.trim(),
                                     "DOB": _dob.text.trim(),
+                                    "Phone": _phone.text.trim()
                                   });
 
                                   // Update the state to indicate data is saved

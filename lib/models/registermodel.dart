@@ -7,13 +7,8 @@ class RegisterViewModel extends ChangeNotifier {
   String message = "";
   //var userId = FirebaseAuth.instance.currentUser!.uid;
 
-  Future<bool> register(
-    String email,
-    String password,
-    String fName,
-    String lName,
-    String dob,
-  ) async {
+  Future<bool> register(String email, String password, String fName,
+      String lName, String dob, String phone) async {
     bool isRegistered = false;
 
     try {
