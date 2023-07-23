@@ -103,8 +103,8 @@ class _QuizScreenState extends State<QuizScreen> {
                                       InkWell(
                                         onTap: () {
                                           setState(() {
-                                            selectedAnswers[currentPage] = i; // Updated to currentPage instead of currentPage - 1
-                                            answered[currentPage] = true; // Updated to currentPage instead of currentPage - 1
+                                            selectedAnswers[currentPage] = i; 
+                                            answered[currentPage] = true; 
                                           });
                                         },
                                         child: Container(
@@ -189,14 +189,14 @@ class _QuizScreenState extends State<QuizScreen> {
         backgroundColor: MaterialStateProperty.resolveWith<Color?>(
           (Set<MaterialState> states) {
             if (states.contains(MaterialState.disabled)) {
-              return Colors.grey; // Disabled color
+              return Colors.grey;
             }
-            return Colors.deepPurple.shade100; // Enabled color
+            return Colors.deepPurple.shade100;
           },
         ),
       ),
       child: const  Padding(
-      padding: EdgeInsets.symmetric(vertical: 20, horizontal: 20), // Add padding here
+      padding: EdgeInsets.symmetric(vertical: 20, horizontal: 20),
       child: Text("Submit"),
     ),
     );
@@ -233,7 +233,7 @@ class _QuizScreenState extends State<QuizScreen> {
       radius: constraints.maxWidth * 0.1,
       child: IconButton(
         onPressed: () {
-          if (currentPage > 0) { // Changed to 0 since the first page is 0
+          if (currentPage > 0) {
             setState(() {
               currentPage--;
             });
@@ -250,7 +250,7 @@ class _QuizScreenState extends State<QuizScreen> {
       radius: constraints.maxWidth * 0.1,
       child: IconButton(
         onPressed: () {
-          if (currentPage < 6) { // Changed to 6 since the last page is 6 (index 6)
+          if (currentPage < 6) {
             setState(() {
               currentPage++;
             });
