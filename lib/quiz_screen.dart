@@ -1,6 +1,8 @@
-// ignore_for_file: avoid_print
+// ignore_for_file: avoid_print, depend_on_referenced_packages
 
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 class QuizScreen extends StatefulWidget {
   const QuizScreen({super.key});
@@ -147,6 +149,25 @@ class _QuizScreenState extends State<QuizScreen> {
     );
   }
 
+  Future<void> saveUserAnswersToFirestore() async {
+    try {
+      final CollectionReference usersCollection = FirebaseFirestore.instance.collection('users');
+      final user = FirebaseAuth.instance.currentUser;
+
+      if (user != null) {
+        final userData = {
+          'userId': user.uid,
+          'selectedAnswers': selectedAnswers,
+        };
+
+        await usersCollection.doc(user.uid).set(userData);
+        print("User answers saved to Firestore successfully!");
+      }
+    } catch (e) {
+      print("Error saving user answers to Firestore: $e");
+    }
+  }
+
   bool isAllQuestionsAnswered() {
     for (int? answer in selectedAnswers) {
       if (answer == null) {
@@ -159,10 +180,9 @@ class _QuizScreenState extends State<QuizScreen> {
   ElevatedButton buildSubmitButton(BoxConstraints constraints) {
     return ElevatedButton(
       onPressed: isAllQuestionsAnswered()
-          ? () {
-              // Implement submit logic here
-              // For demonstration, we'll just print the selected answers
-              print("Selected Answers: $selectedAnswers");
+          ? () async{
+            print("Selected Answers: $selectedAnswers");
+            await saveUserAnswersToFirestore();
             }
           : null,
       style: ButtonStyle(
