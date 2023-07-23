@@ -1,3 +1,5 @@
+// ignore_for_file: avoid_print, prefer_const_constructors
+
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
@@ -85,8 +87,9 @@ class _ForgitPasswordState extends State<ForgitPassword> {
                             MaterialPageRoute(
                                 builder: (context) => LoginScreen()));
                         showSnackbar(context, "Details Send to your email");
-                      } else
+                      } else {
                         showSnackbar(context, "Please a valid email address");
+                      }
                     },
                     color1: Colors.red,
                     color2: Colors.red,

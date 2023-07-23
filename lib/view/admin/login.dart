@@ -11,6 +11,8 @@ import 'createpatient.dart';
 import 'forgotpass.dart';
 
 class LoginScreen extends StatefulWidget {
+  const LoginScreen({super.key});
+
   @override
   State<LoginScreen> createState() => _LoginScreenState();
 }
@@ -72,7 +74,7 @@ class _LoginScreenState extends State<LoginScreen> {
 
     var height = MediaQuery.of(context).size.height;
 
-    var width = MediaQuery.of(context).size.width;
+    //var width = MediaQuery.of(context).size.width;
     return GestureDetector(
       onTap: () {
         FocusScope.of(context).unfocus();

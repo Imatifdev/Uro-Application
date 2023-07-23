@@ -1,8 +1,12 @@
+// ignore_for_file: unused_local_variable, depend_on_referenced_packages, library_private_types_in_public_api, prefer_interpolation_to_compose_strings
+
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class SearchScreen extends StatefulWidget {
+  const SearchScreen({super.key});
+
   @override
   _SearchScreenState createState() => _SearchScreenState();
 }
@@ -32,7 +36,7 @@ class _SearchScreenState extends State<SearchScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Search Data'),
+        title: const Text('Search Data'),
       ),
       body: Column(
         children: [
@@ -41,7 +45,7 @@ class _SearchScreenState extends State<SearchScreen> {
             child: TextField(
               controller: _searchController,
               onChanged: _performSearch,
-              decoration: InputDecoration(
+              decoration: const InputDecoration(
                 labelText: 'Search',
                 prefixIcon: Icon(Icons.search),
               ),
@@ -52,7 +56,7 @@ class _SearchScreenState extends State<SearchScreen> {
               future: _searchResults,
               builder: (context, snapshot) {
                 if (snapshot.connectionState == ConnectionState.waiting) {
-                  return Center(child: CircularProgressIndicator());
+                  return const Center(child: CircularProgressIndicator());
                 } else if (snapshot.hasError) {
                   return Center(child: Text('Error: ${snapshot.error}'));
                 } else {
@@ -87,13 +91,13 @@ class _SearchScreenState extends State<SearchScreen> {
 class DisplayRecordPage extends StatelessWidget {
   final DocumentSnapshot record;
 
-  DisplayRecordPage(this.record);
+  const DisplayRecordPage(this.record, {super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Record Details'),
+        title: const Text('Record Details'),
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),

@@ -1,3 +1,5 @@
+// ignore_for_file: avoid_print
+
 import 'package:flutter/material.dart';
 
 class QuizScreen extends StatefulWidget {
@@ -131,7 +133,7 @@ class _QuizScreenState extends State<QuizScreen> {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         buildBackButton(constraints),
-                        buildSubmitButton(constraints), // Submit button added here
+                        buildSubmitButton(constraints),
                         buildForwardButton(constraints),
                       ],
                     )

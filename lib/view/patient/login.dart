@@ -9,7 +9,7 @@ class HomeScreen extends StatelessWidget {
     final screenWidth = MediaQuery.of(context).size.width;
 
     // Define responsive sizes based on the screen size
-    double logoHeight = screenHeight * 0.12;
+    //double logoHeight = screenHeight * 0.12;
     double titleFontSize = screenWidth * 0.1;
     double buttonHeight = screenHeight * 0.073;
     double buttonWidth = screenWidth * 0.49;

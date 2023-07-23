@@ -7,6 +7,8 @@ import 'package:flutter/material.dart';
 import 'admin/dashboard.dart';
 
 class GlassmorphismContainer extends StatefulWidget {
+  const GlassmorphismContainer({super.key});
+
   @override
   State<GlassmorphismContainer> createState() => _GlassmorphismContainerState();
 }
@@ -16,21 +18,21 @@ class _GlassmorphismContainerState extends State<GlassmorphismContainer> {
   Widget build(BuildContext context) {
     final screenWidth = MediaQuery.of(context).size.width;
     final screenHeight = MediaQuery.of(context).size.height;
-    final textScaleFactor = MediaQuery.of(context).textScaleFactor;
+    //final textScaleFactor = MediaQuery.of(context).textScaleFactor;
 
     // Adjust font size based on screen width and text scale factor
-    final fontSize = screenWidth * 0.04 * textScaleFactor;
+    //final fontSize = screenWidth * 0.04 * textScaleFactor;
 
     // Adjust container size based on screen width and height
     final containerWidth = screenWidth * 0.8;
     final containerHeight = screenHeight * 0.5;
-    bool _isExpanded = false;
+    // bool isExpanded = false;
 
-    void _toggleExpand() {
-      setState(() {
-        _isExpanded = !_isExpanded;
-      });
-    }
+    // void _toggleExpand() {
+    //   setState(() {
+    //     isExpanded = !isExpanded;
+    //   });
+    // }
 
     return Scaffold(
       backgroundColor: Colors.grey.shade100,

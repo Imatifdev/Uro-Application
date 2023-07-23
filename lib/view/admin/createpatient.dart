@@ -1,4 +1,4 @@
-// ignore_for_file: prefer_const_constructors, depend_on_referenced_packages, unused_element, no_leading_underscores_for_local_identifiers, avoid_print, sort_child_properties_last, use_build_context_synchronously
+// ignore_for_file: prefer_const_constructors, depend_on_referenced_packages, unused_element, no_leading_underscores_for_local_identifiers, avoid_print, sort_child_properties_last, use_build_context_synchronously, use_key_in_widget_constructors
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -94,15 +94,15 @@ class _NewSignupScreenState extends State<NewSignupScreen> {
     void _submitForm() {
       if (_formKey.currentState!.validate()) {
         // Perform login or further actions
-        String email = _emailController.text;
-        String password = _passwordController.text;
+        // String email = _emailController.text;
+        // String password = _passwordController.text;
 
         // Process the login credentials
       }
     }
 
     var height = MediaQuery.of(context).size.height;
-    var width = MediaQuery.of(context).size.width;
+    //var width = MediaQuery.of(context).size.width;
     return GestureDetector(
       onTap: () {
         FocusScope.of(context).unfocus();
@@ -112,7 +112,7 @@ class _NewSignupScreenState extends State<NewSignupScreen> {
         body: SingleChildScrollView(
           child: Form(
             key: _formKey,
-            child: Container(
+            child: SizedBox(
               height: height,
               child: SingleChildScrollView(
                 child: Column(
