@@ -155,7 +155,7 @@ class _DashboardState extends State<Dashboard> {
               splashColor: Colors.black,
               onTap: () {
                 Navigator.push(context,
-                    MaterialPageRoute(builder: (ctx) => NewSignupScreen()));
+                    MaterialPageRoute(builder: (ctx) => SearchScreen()));
               },
               child: Container(
                 decoration: BoxDecoration(
