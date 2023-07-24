@@ -23,346 +23,271 @@ class _DashboardState extends State<Dashboard> {
 
     // Adjust font size based on screen width and text scale factor
     final fontSize = screenWidth * 0.14 * textScaleFactor;
-    final subheading = screenWidth * 0.05 * textScaleFactor;
-
+    final subheading = screenWidth * 0.07 * textScaleFactor;
+    final heading = screenWidth * 0.09 * textScaleFactor;
     return Scaffold(
-      body: Container(
-        decoration: BoxDecoration(
-          gradient: LinearGradient(
-            begin: Alignment.topCenter,
-            end: Alignment.bottomCenter,
-            colors: [Color(0xFF3626af), Color.fromARGB(255, 133, 92, 231)],
-          ),
+        body: Container(
+      decoration: BoxDecoration(
+        gradient: LinearGradient(
+          begin: Alignment.topCenter,
+          end: Alignment.bottomCenter,
+          colors: [blue, darkblue],
         ),
-        child: Padding(
-          padding: EdgeInsets.symmetric(horizontal: 10),
-          child: Column(
+      ),
+      child: Padding(
+        padding: EdgeInsets.symmetric(horizontal: 10),
+        child: Column(children: [
+          SizedBox(
+            height: screenHeight / 60,
+          ),
+          SizedBox(
+            height: screenHeight / 100,
+          ),
+          SizedBox(
+            height: screenHeight / 5,
+            width: 300,
+            child: Image.asset('assets/images/logo.png'),
+          ),
+          Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisAlignment: MainAxisAlignment.start,
             children: [
-              SizedBox(
-                height: screenHeight / 60,
-              ),
-              Column(
-                children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Row(
-                        children: [
-                          Text(
-                            "Uro",
-                            style: TextStyle(
-                                fontSize: fontSize,
-                                color: title,
-                                fontWeight: FontWeight.bold),
-                          ),
-                          Text(
-                            "Care",
-                            style: TextStyle(
-                                fontSize: fontSize,
-                                color: Colors.pink,
-                                fontWeight: FontWeight.bold),
-                          ),
-                        ],
-                      ),
-                      Image.asset(
-                        'assets/images/health.png',
-                        height: 50,
-                        width: 50,
-                      )
-                    ],
-                  ),
-                ],
+              Icon(
+                Icons.dashboard,
+                size: 40,
+                color: Colors.grey,
               ),
               SizedBox(
-                height: screenHeight / 100,
-              ),
-              Container(
-                height: screenHeight / 19,
-                width: screenWidth,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(20),
-                  color: Colors.grey.withOpacity(0.7),
-                ),
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(
-                    horizontal: 10,
-                  ),
-                  child: Center(
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Text(
-                          "Search Patient ",
-                          style:
-                              TextStyle(color: subtitle, fontSize: subheading),
-                        ),
-                        Icon(Icons.search)
-                      ],
-                    ),
-                  ),
-                ),
-              ),
-              SizedBox(
-                height: screenHeight / 50,
+                width: screenWidth * 0.03,
               ),
               Row(
                 children: [
-                  Icon(
-                    Icons.dashboard,
-                    size: 40,
-                    color: Colors.grey,
+                  Text(
+                    "Hello, ",
+                    style: TextStyle(
+                        color: subtitle,
+                        fontSize: 28,
+                        fontWeight: FontWeight.bold),
                   ),
-                  SizedBox(
-                    width: screenWidth * 0.03,
-                  ),
-                  Row(
-                    children: [
-                      Text(
-                        "Hello, ",
-                        style: TextStyle(
-                            color: subtitle,
-                            fontSize: 28,
-                            fontWeight: FontWeight.bold),
-                      ),
-                      Text(
-                        "Admin Name",
-                        style: TextStyle(color: subtitle, fontSize: 24),
-                      ),
-                    ],
+                  Text(
+                    "Admin Name",
+                    style: TextStyle(color: subtitle, fontSize: 24),
                   ),
                 ],
               ),
-              SizedBox(
-                height: screenHeight / 60,
-              ),
-              SizedBox(
-                height: screenHeight / 3,
-                child: ListView(
-                  scrollDirection: Axis.horizontal,
-                  children: [
-                    InkWell(
-                      splashColor: Colors.black,
-                      onTap: () {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (ctx) => NewSignupScreen()));
-                      },
-                      child: Container(
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(20),
-                          boxShadow: [
-                            BoxShadow(
-                              color: Colors.white.withOpacity(0.2),
-                              blurRadius: 5,
-                              spreadRadius: 2,
-                            ),
-                          ],
-                        ),
-                        width: screenWidth / 1.6,
-                        height: screenHeight / 5,
-                        child: Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Image(
-                                height: screenHeight / 10,
-                                width: screenWidth * 0.2,
-                                image: AssetImage('assets/images/newuser.png'),
-                              ),
-                              Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Text(
-                                    "Create New ",
-                                    style: TextStyle(
-                                        color: subtitle,
-                                        fontSize: 24,
-                                        fontWeight: FontWeight.bold),
-                                  ),
-                                  Row(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
-                                    children: [
-                                      Text(
-                                        "Patient",
-                                        style: TextStyle(
-                                            color: subtitle,
-                                            fontSize: 32,
-                                            fontWeight: FontWeight.bold),
-                                      ),
-                                      Container(
-                                        height: 30,
-                                        width: 30,
-                                        decoration: BoxDecoration(
-                                            borderRadius:
-                                                BorderRadius.circular(10),
-                                            color:
-                                                Colors.white.withOpacity(0.8)),
-                                        child: Center(
-                                            child: Icon(
-                                                CupertinoIcons.right_chevron)),
-                                      )
-                                    ],
-                                  )
-                                ],
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
-                    ),
-                    SizedBox(
-                      width: 30,
-                    ),
-                    InkWell(
-                      onTap: () {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (ctx) => SearchScreen()));
-                      },
-                      child: Container(
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(20),
-                          boxShadow: [
-                            BoxShadow(
-                              color: Colors.white.withOpacity(0.2),
-                              blurRadius: 5,
-                              spreadRadius: 2,
-                            ),
-                          ],
-                        ),
-                        width: screenWidth / 1.6,
-                        height: screenHeight / 5,
-                        child: Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Image(
-                                  height: screenHeight / 10,
-                                  width: screenWidth * 0.2,
-                                  image: AssetImage('assets/images/search.png'),
-                                ),
-                                Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Text(
-                                      "Search Patient",
-                                      style: TextStyle(
-                                          color: subtitle,
-                                          fontSize: 24,
-                                          fontWeight: FontWeight.bold),
-                                    ),
-                                    Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceBetween,
-                                      children: [
-                                        Text(
-                                          "Record",
-                                          style: TextStyle(
-                                              color: subtitle,
-                                              fontSize: 32,
-                                              fontWeight: FontWeight.bold),
-                                        ),
-                                        Container(
-                                          height: 30,
-                                          width: 30,
-                                          decoration: BoxDecoration(
-                                              borderRadius:
-                                                  BorderRadius.circular(10),
-                                              color: Colors.white
-                                                  .withOpacity(0.8)),
-                                          child: Center(
-                                              child: Icon(CupertinoIcons
-                                                  .right_chevron)),
-                                        )
-                                      ],
-                                    )
-                                  ],
-                                ),
-                              ]),
-                        ),
-                      ),
-                    ),
-                    SizedBox(
-                      width: 30,
-                    ),
-                    Container(
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(20),
-                        boxShadow: [
-                          BoxShadow(
-                            color: Colors.white.withOpacity(0.2),
-                            blurRadius: 5,
-                            spreadRadius: 2,
-                          ),
-                        ],
-                      ),
-                      width: screenWidth / 1.6,
-                      height: screenHeight / 5,
-                      child: Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Image(
-                                height: screenHeight / 10,
-                                width: screenWidth * 0.2,
-                                image: AssetImage('assets/images/exp.png'),
-                              ),
-                              Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Text(
-                                    "Export Patient",
-                                    style: TextStyle(
-                                        color: subtitle,
-                                        fontSize: 24,
-                                        fontWeight: FontWeight.bold),
-                                  ),
-                                  Row(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
-                                    children: [
-                                      Text(
-                                        "Data",
-                                        style: TextStyle(
-                                            color: subtitle,
-                                            fontSize: 32,
-                                            fontWeight: FontWeight.bold),
-                                      ),
-                                      Container(
-                                        height: 30,
-                                        width: 30,
-                                        decoration: BoxDecoration(
-                                            borderRadius:
-                                                BorderRadius.circular(10),
-                                            color:
-                                                Colors.white.withOpacity(0.8)),
-                                        child: Center(
-                                            child: Icon(
-                                                CupertinoIcons.right_chevron)),
-                                      )
-                                    ],
-                                  )
-                                ],
-                              ),
-                            ]),
-                      ),
-                    )
-                  ],
-                ),
-              )
             ],
           ),
-        ),
+          SizedBox(
+            height: screenHeight / 60,
+          ),
+          Column(children: [
+            InkWell(
+              splashColor: Colors.black,
+              onTap: () {
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (ctx) => NewSignupScreen()));
+              },
+              child: Container(
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(20),
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.white.withOpacity(0.2),
+                      blurRadius: 5,
+                      spreadRadius: 2,
+                    ),
+                  ],
+                ),
+                width: screenWidth * 1 - 30,
+                height: screenHeight / 5,
+                child: Padding(
+                  padding: const EdgeInsets.all(15),
+                  child: Row(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.only(top: 20),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              "Create New ",
+                              style: TextStyle(
+                                  color: subtitle,
+                                  fontSize: subheading,
+                                  fontWeight: FontWeight.bold),
+                            ),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Text(
+                                  "Patient",
+                                  style: TextStyle(
+                                      color: subtitle,
+                                      fontSize: heading,
+                                      fontWeight: FontWeight.bold),
+                                ),
+                              ],
+                            )
+                          ],
+                        ),
+                      ),
+                      Center(
+                        child: Image(
+                          height: screenHeight / 10,
+                          width: screenWidth * 0.2,
+                          image: AssetImage('assets/images/newuser.png'),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 10),
+              child: Divider(
+                thickness: 0.5,
+              ),
+            ),
+            InkWell(
+              splashColor: Colors.black,
+              onTap: () {
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (ctx) => NewSignupScreen()));
+              },
+              child: Container(
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(20),
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.white.withOpacity(0.2),
+                      blurRadius: 5,
+                      spreadRadius: 2,
+                    ),
+                  ],
+                ),
+                width: screenWidth * 1 - 30,
+                height: screenHeight / 5,
+                child: Padding(
+                  padding: const EdgeInsets.all(15),
+                  child: Row(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.only(top: 20),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              "Search a Patient  ",
+                              style: TextStyle(
+                                  color: subtitle,
+                                  fontSize: subheading,
+                                  fontWeight: FontWeight.bold),
+                            ),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Text(
+                                  "Record",
+                                  style: TextStyle(
+                                      color: subtitle,
+                                      fontSize: heading,
+                                      fontWeight: FontWeight.bold),
+                                ),
+                              ],
+                            )
+                          ],
+                        ),
+                      ),
+                      Center(
+                        child: Image(
+                          height: screenHeight / 10,
+                          width: screenWidth * 0.2,
+                          image: AssetImage('assets/images/search.png'),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 10),
+              child: Divider(
+                thickness: 0.5,
+              ),
+            ),
+            InkWell(
+              splashColor: Colors.black,
+              onTap: () {
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (ctx) => NewSignupScreen()));
+              },
+              child: Container(
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(20),
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.white.withOpacity(0.2),
+                      blurRadius: 5,
+                      spreadRadius: 2,
+                    ),
+                  ],
+                ),
+                width: screenWidth * 1 - 30,
+                height: screenHeight / 5,
+                child: Padding(
+                  padding: const EdgeInsets.all(15),
+                  child: Row(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.only(top: 20),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              "Export Data",
+                              style: TextStyle(
+                                  color: subtitle,
+                                  fontSize: subheading,
+                                  fontWeight: FontWeight.bold),
+                            ),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Text(
+                                  "Patient",
+                                  style: TextStyle(
+                                      color: subtitle,
+                                      fontSize: heading,
+                                      fontWeight: FontWeight.bold),
+                                ),
+                              ],
+                            )
+                          ],
+                        ),
+                      ),
+                      Center(
+                        child: Image(
+                          height: screenHeight / 10,
+                          width: screenWidth * 0.2,
+                          image: AssetImage('assets/images/exp.png'),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ),
+          ]),
+        ]),
       ),
-    );
+    ));
   }
 }
