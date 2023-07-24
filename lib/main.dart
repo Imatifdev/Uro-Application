@@ -1,10 +1,11 @@
+// ignore_for_file: depend_on_referenced_packages
+
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:uroapplication/quiz_screen.dart';
-import 'package:uroapplication/view/welcome.dart';
 
 import 'firebase_options.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -16,16 +17,16 @@ void main() async {
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
         debugShowCheckedModeBanner: false,
         title: 'Uro App',
         theme: ThemeData(
+          fontFamily: GoogleFonts.poppins().fontFamily,
           colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
           useMaterial3: true,
         ),
-        home: QuizScreen());
+        home: const QuizScreen());
   }
 }
