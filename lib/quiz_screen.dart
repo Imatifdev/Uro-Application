@@ -3,6 +3,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:uroapplication/result_screen.dart';
 
 class QuizScreen extends StatefulWidget {
   const QuizScreen({super.key});
@@ -234,6 +235,7 @@ class _QuizScreenState extends State<QuizScreen> {
 
         await usersCollection.doc(user.uid).set(userData);
         print("User answers saved to Firestore successfully!");
+        Navigator.of(context).push(MaterialPageRoute(builder: (context) => ResultScreen(answers: selectedAnswers),) );
       }
     } catch (e) {
       print("Error saving user answers to Firestore: $e");
