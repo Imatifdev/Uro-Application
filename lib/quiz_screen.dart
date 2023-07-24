@@ -15,7 +15,23 @@ class _QuizScreenState extends State<QuizScreen> {
   final PageController _pageController = PageController();
   List<int?> selectedAnswers = List.filled(7, null);
   List<bool> answered = List.filled(7, false);
-  int currentPage = 0; // Changed to start from 0
+  int currentPage = 0;
+
+  SizedBox buildHeadingText(String text, double fontSize, bool bold) {
+    return SizedBox(
+      width: 500,
+      child: Text(
+        text,
+        softWrap: true,
+        style: TextStyle(
+          fontSize: fontSize, 
+          fontWeight: 
+          bold? FontWeight.bold:FontWeight.normal
+          ),
+      ),
+    );
+  }
+
   List<String> questions = [
     "Over the past month, how often have you had the sensation of not emptying your bladder completely after you finish urinating?",
     "Over the past month, how often have you had to urinate again less than two hours after you finished urinating?",
@@ -128,28 +144,30 @@ class _QuizScreenState extends State<QuizScreen> {
                             child: Column(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
-                                Text(headings[index],
-                                    style: const TextStyle(fontSize: 20)),
+                                FittedBox(
+                                  fit: BoxFit.scaleDown,
+                                  child: buildHeadingText(headings[index], 20, false),
+                                ),
                                 Column(
                                   children: [
                                     Align(
                                       alignment: Alignment.centerLeft,
-                                      child: Text("Question No ${index + 1}/7",
-                                          style: const TextStyle(
-                                              fontSize: 18,
-                                              fontWeight: FontWeight.bold)),
+                                      child: FittedBox(
+                                        fit: BoxFit.scaleDown,
+                                        child: buildHeadingText("Question No ${index + 1}/7", 18, true),
+                                      ),
                                     ),
-                                    Text(questions[index],
-                                        style: const TextStyle(fontSize: 18)),
+                                    FittedBox(
+                                      fit: BoxFit.scaleDown ,
+                                      child: 
+                                      buildHeadingText(questions[index], 18, false),
+                                    ),
                                   ],
                                 ),
                                 Column(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
+                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                   children: [
-                                    for (int i = 0;
-                                        i < answers[index].length;
-                                        i++)
+                                    for (int i = 0; i < answers[index].length; i++)
                                       InkWell(
                                         onTap: () {
                                           setState(() {
@@ -161,26 +179,17 @@ class _QuizScreenState extends State<QuizScreen> {
                                           width: constraints.maxWidth * 0.8,
                                           height: constraints.maxHeight * 0.06,
                                           decoration: BoxDecoration(
-                                            color:
-                                                selectedAnswers[currentPage] ==
-                                                        i
-                                                    ? Colors.deepPurple
-                                                    : Colors.white,
-                                            border: Border.all(
-                                                color: Theme.of(context)
-                                                    .primaryColor),
-                                            borderRadius:
-                                                BorderRadius.circular(15),
+                                            color: selectedAnswers[currentPage] == i ? Colors.deepPurple : Colors.white,
+                                            border: Border.all(color: Theme.of(context).primaryColor),
+                                            borderRadius: BorderRadius.circular(15),
                                           ),
                                           child: Center(
-                                            child: Text(
-                                              answers[index][i],
-                                              style: TextStyle(
-                                                  color: selectedAnswers[
-                                                              currentPage] ==
-                                                          i
-                                                      ? Colors.white
-                                                      : Colors.deepPurple),
+                                            child: FittedBox(
+                                              fit: BoxFit.scaleDown,
+                                              child: Text(
+                                                answers[index][i],
+                                                style: TextStyle(color: selectedAnswers[currentPage] == i ? Colors.white : Colors.deepPurple),
+                                              ),
                                             ),
                                           ),
                                         ),
