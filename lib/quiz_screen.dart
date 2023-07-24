@@ -36,12 +36,54 @@ class _QuizScreenState extends State<QuizScreen> {
   ];
 
   List<List<String>> answers = [
-    ["Not at all", "Less than 1 time in 5 days", "Less than half the time", "About half the time", "More than half the time", "Almost always"],
-    ["Not at all", "Less than 1 time in 5 days", "Less than half the time", "About half the time", "More than half the time", "Almost always"],
-    ["Not at all", "Less than 1 time in 5 days", "Less than half the time", "About half the time", "More than half the time", "Almost always"],
-    ["Not at all", "Less than 1 time in 5 days", "Less than half the time", "About half the time", "More than half the time", "Almost always"],
-    ["Not at all", "Less than 1 time in 5 days", "Less than half the time", "About half the time", "More than half the time", "Almost always"],
-    ["Not at all", "Less than 1 time in 5 days", "Less than half the time", "About half the time", "More than half the time", "Almost always"],
+    [
+      "Not at all",
+      "Less than 1 time in 5 days",
+      "Less than half the time",
+      "About half the time",
+      "More than half the time",
+      "Almost always"
+    ],
+    [
+      "Not at all",
+      "Less than 1 time in 5 days",
+      "Less than half the time",
+      "About half the time",
+      "More than half the time",
+      "Almost always"
+    ],
+    [
+      "Not at all",
+      "Less than 1 time in 5 days",
+      "Less than half the time",
+      "About half the time",
+      "More than half the time",
+      "Almost always"
+    ],
+    [
+      "Not at all",
+      "Less than 1 time in 5 days",
+      "Less than half the time",
+      "About half the time",
+      "More than half the time",
+      "Almost always"
+    ],
+    [
+      "Not at all",
+      "Less than 1 time in 5 days",
+      "Less than half the time",
+      "About half the time",
+      "More than half the time",
+      "Almost always"
+    ],
+    [
+      "Not at all",
+      "Less than 1 time in 5 days",
+      "Less than half the time",
+      "About half the time",
+      "More than half the time",
+      "Almost always"
+    ],
     ["None", "1 Time", "2 Times", "3 Times", "4 Times", "5 Times or more"]
   ];
 
@@ -70,7 +112,7 @@ class _QuizScreenState extends State<QuizScreen> {
                       ],
                     ),
                     SizedBox(
-                      height: constraints.maxHeight * 0.6,
+                      height: constraints.maxHeight * 0.7,
                       child: PageView.builder(
                         controller: _pageController,
                         itemCount: questions.length,
@@ -86,39 +128,59 @@ class _QuizScreenState extends State<QuizScreen> {
                             child: Column(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
-                                Text(headings[index], style: const TextStyle(fontSize: 20)),
+                                Text(headings[index],
+                                    style: const TextStyle(fontSize: 20)),
                                 Column(
                                   children: [
                                     Align(
                                       alignment: Alignment.centerLeft,
-                                      child: Text("Question No ${index + 1}/7", style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+                                      child: Text("Question No ${index + 1}/7",
+                                          style: const TextStyle(
+                                              fontSize: 18,
+                                              fontWeight: FontWeight.bold)),
                                     ),
-                                    Text(questions[index], style: const TextStyle(fontSize: 18)),
+                                    Text(questions[index],
+                                        style: const TextStyle(fontSize: 18)),
                                   ],
                                 ),
                                 Column(
-                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
                                   children: [
-                                    for (int i = 0; i < answers[index].length; i++)
+                                    for (int i = 0;
+                                        i < answers[index].length;
+                                        i++)
                                       InkWell(
                                         onTap: () {
                                           setState(() {
-                                            selectedAnswers[currentPage] = i; 
-                                            answered[currentPage] = true; 
+                                            selectedAnswers[currentPage] = i;
+                                            answered[currentPage] = true;
                                           });
                                         },
                                         child: Container(
                                           width: constraints.maxWidth * 0.8,
                                           height: constraints.maxHeight * 0.06,
                                           decoration: BoxDecoration(
-                                            color: selectedAnswers[currentPage] == i ? Colors.deepPurple : Colors.white,
-                                            border: Border.all(color: Theme.of(context).primaryColor),
-                                            borderRadius: BorderRadius.circular(15),
+                                            color:
+                                                selectedAnswers[currentPage] ==
+                                                        i
+                                                    ? Colors.deepPurple
+                                                    : Colors.white,
+                                            border: Border.all(
+                                                color: Theme.of(context)
+                                                    .primaryColor),
+                                            borderRadius:
+                                                BorderRadius.circular(15),
                                           ),
                                           child: Center(
                                             child: Text(
                                               answers[index][i],
-                                              style: TextStyle(color: selectedAnswers[currentPage] == i ? Colors.white : Colors.deepPurple),
+                                              style: TextStyle(
+                                                  color: selectedAnswers[
+                                                              currentPage] ==
+                                                          i
+                                                      ? Colors.white
+                                                      : Colors.deepPurple),
                                             ),
                                           ),
                                         ),
@@ -151,7 +213,8 @@ class _QuizScreenState extends State<QuizScreen> {
 
   Future<void> saveUserAnswersToFirestore() async {
     try {
-      final CollectionReference usersCollection = FirebaseFirestore.instance.collection('users');
+      final CollectionReference usersCollection =
+          FirebaseFirestore.instance.collection('users');
       final user = FirebaseAuth.instance.currentUser;
 
       if (user != null) {
@@ -180,9 +243,9 @@ class _QuizScreenState extends State<QuizScreen> {
   ElevatedButton buildSubmitButton(BoxConstraints constraints) {
     return ElevatedButton(
       onPressed: isAllQuestionsAnswered()
-          ? () async{
-            print("Selected Answers: $selectedAnswers");
-            await saveUserAnswersToFirestore();
+          ? () async {
+              print("Selected Answers: $selectedAnswers");
+              await saveUserAnswersToFirestore();
             }
           : null,
       style: ButtonStyle(
@@ -195,10 +258,10 @@ class _QuizScreenState extends State<QuizScreen> {
           },
         ),
       ),
-      child: const  Padding(
-      padding: EdgeInsets.symmetric(vertical: 20, horizontal: 20),
-      child: Text("Submit"),
-    ),
+      child: const Padding(
+        padding: EdgeInsets.symmetric(vertical: 20, horizontal: 20),
+        child: Text("Submit"),
+      ),
     );
   }
 
@@ -219,10 +282,12 @@ class _QuizScreenState extends State<QuizScreen> {
         backgroundColor: Colors.white,
         child: CircleAvatar(
           radius: constraints.maxWidth * 0.05,
-          backgroundColor: answered[index] ? Colors.deepPurple.shade100 : Colors.deepPurple,
+          backgroundColor:
+              answered[index] ? Colors.deepPurple.shade100 : Colors.deepPurple,
           child: answered[index]
               ? const Icon(Icons.check, color: Colors.white)
-              : Text((index + 1).toString(), style: const TextStyle(color: Colors.white)),
+              : Text((index + 1).toString(),
+                  style: const TextStyle(color: Colors.white)),
         ),
       ),
     );
@@ -237,7 +302,8 @@ class _QuizScreenState extends State<QuizScreen> {
             setState(() {
               currentPage--;
             });
-            _pageController.previousPage(duration: const Duration(seconds: 2), curve: Curves.decelerate);
+            _pageController.previousPage(
+                duration: const Duration(seconds: 2), curve: Curves.decelerate);
           }
         },
         icon: Icon(Icons.arrow_back_ios_new, size: constraints.maxWidth * 0.1),
@@ -254,10 +320,12 @@ class _QuizScreenState extends State<QuizScreen> {
             setState(() {
               currentPage++;
             });
-            _pageController.nextPage(duration: const Duration(seconds: 2), curve: Curves.decelerate);
+            _pageController.nextPage(
+                duration: const Duration(seconds: 2), curve: Curves.decelerate);
           }
         },
-        icon: Icon(Icons.arrow_forward_ios_sharp, size: constraints.maxWidth * 0.1),
+        icon: Icon(Icons.arrow_forward_ios_sharp,
+            size: constraints.maxWidth * 0.1),
       ),
     );
   }
