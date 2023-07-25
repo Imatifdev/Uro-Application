@@ -3,16 +3,12 @@
 import 'package:flutter/material.dart';
 import 'package:uroapplication/view/admin/createpatient.dart';
 import 'package:uroapplication/view/admin/searchpatient.dart';
-<<<<<<< Updated upstream
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:path_provider/path_provider.dart';
 import 'dart:io';
 import 'package:open_file/open_file.dart';
 import 'package:syncfusion_flutter_xlsio/xlsio.dart' hide Column hide Row;
-=======
-import 'package:google_fonts/google_fonts.dart';
->>>>>>> Stashed changes
 import '../../controller/mycolors.dart';
 
 class Dashboard extends StatefulWidget {
@@ -24,33 +20,36 @@ class Dashboard extends StatefulWidget {
 
 class _DashboardState extends State<Dashboard> {
   final String userId = FirebaseAuth.instance.currentUser!.uid;
-  openExcel()async{
-    
-    final DocumentSnapshot snapshot =
-      await FirebaseFirestore.instance.collection("Patients").doc(userId).get();
+  openExcel() async {
+    final DocumentSnapshot snapshot = await FirebaseFirestore.instance
+        .collection("Patients")
+        .doc(userId)
+        .get();
     // Create the Excel workbook
-  final workbook = Workbook();
-  final sheet = workbook.worksheets[0];
+    final workbook = Workbook();
+    final sheet = workbook.worksheets[0];
 
-  // Add the patient data to the Excel sheet
-  final Map<String, dynamic> patientData = snapshot.data() as Map<String, dynamic>;
-  int rowIndex = 1; // Start from 2nd row as the 1st row will be used for headers
-  patientData.forEach((key, value) {
-    sheet.getRangeByName('A$rowIndex').setText(key);
-    sheet.getRangeByName('B$rowIndex').setText(value.toString());
-    rowIndex++;
-  });
+    // Add the patient data to the Excel sheet
+    final Map<String, dynamic> patientData =
+        snapshot.data() as Map<String, dynamic>;
+    int rowIndex =
+        1; // Start from 2nd row as the 1st row will be used for headers
+    patientData.forEach((key, value) {
+      sheet.getRangeByName('A$rowIndex').setText(key);
+      sheet.getRangeByName('B$rowIndex').setText(value.toString());
+      rowIndex++;
+    });
 
-  // Save the Excel sheet to a file
-  final List<int> bytes = workbook.saveAsStream();
+    // Save the Excel sheet to a file
+    final List<int> bytes = workbook.saveAsStream();
     workbook.dispose();
 
     final directory = await getApplicationSupportDirectory();
     final file = File('${directory.path}/Output.xlsx');
     await file.writeAsBytes(bytes, flush: true);
-    OpenFile.open(file.path); 
-
+    OpenFile.open(file.path);
   }
+
   @override
   Widget build(BuildContext context) {
     final screenWidth = MediaQuery.of(context).size.width;
@@ -241,7 +240,7 @@ class _DashboardState extends State<Dashboard> {
                         child: Image(
                           height: screenHeight / 6,
                           width: screenWidth * 0.25,
-                          image: AssetImage('assets/images/search.png'),
+                          image: AssetImage('assets/images/searchnew.png'),
                         ),
                       ),
                     ],
@@ -310,7 +309,7 @@ class _DashboardState extends State<Dashboard> {
                         child: Image(
                           height: screenHeight / 5,
                           width: screenWidth * 0.3,
-                          image: AssetImage('assets/images/exp.png'),
+                          image: AssetImage('assets/images/export.png'),
                         ),
                       ),
                     ],

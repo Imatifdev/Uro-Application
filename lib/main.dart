@@ -25,11 +25,10 @@ class MyApp extends StatelessWidget {
         debugShowCheckedModeBanner: false,
         title: 'Uro App',
         theme: ThemeData(
-          textTheme: TextTheme(
-              bodyText2: TextStyle(
-            fontFamily:
-                'MinionVariableConcept-Roman', // Specify the font family here
-          )),
+          fontFamily:
+              'MinionVariableConcept-Roman', // Specify the font family here
+
+          textTheme: TextTheme(),
           colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
           useMaterial3: true,
         ),
