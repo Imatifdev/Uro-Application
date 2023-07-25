@@ -3,12 +3,16 @@
 import 'package:flutter/material.dart';
 import 'package:uroapplication/view/admin/createpatient.dart';
 import 'package:uroapplication/view/admin/searchpatient.dart';
+<<<<<<< Updated upstream
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:path_provider/path_provider.dart';
 import 'dart:io';
 import 'package:open_file/open_file.dart';
 import 'package:syncfusion_flutter_xlsio/xlsio.dart' hide Column hide Row;
+=======
+import 'package:google_fonts/google_fonts.dart';
+>>>>>>> Stashed changes
 import '../../controller/mycolors.dart';
 
 class Dashboard extends StatefulWidget {
@@ -56,14 +60,14 @@ class _DashboardState extends State<Dashboard> {
     // Adjust font size based on screen width and text scale factor
     //final fontSize = screenWidth * 0.14 * textScaleFactor;
     final subheading = screenWidth * 0.07 * textScaleFactor;
-    final heading = screenWidth * 0.09 * textScaleFactor;
+    final heading = screenWidth * 0.08 * textScaleFactor;
     return Scaffold(
         body: Container(
       decoration: BoxDecoration(
         gradient: LinearGradient(
           begin: Alignment.topCenter,
           end: Alignment.bottomCenter,
-          colors: [blue, darkblue],
+          colors: [skyblue, darkblue],
         ),
       ),
       child: Padding(
@@ -85,9 +89,9 @@ class _DashboardState extends State<Dashboard> {
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
               Icon(
-                Icons.dashboard,
+                Icons.admin_panel_settings,
                 size: 40,
-                color: Colors.grey,
+                color: Colors.white,
               ),
               SizedBox(
                 width: screenWidth * 0.03,
@@ -99,11 +103,11 @@ class _DashboardState extends State<Dashboard> {
                     style: TextStyle(
                         color: subtitle,
                         fontSize: 28,
-                        fontWeight: FontWeight.bold),
+                        fontWeight: FontWeight.normal),
                   ),
                   Text(
                     "Admin Name",
-                    style: TextStyle(color: subtitle, fontSize: 24),
+                    style: TextStyle(color: subtitle, fontSize: 28),
                   ),
                 ],
               ),
@@ -165,12 +169,10 @@ class _DashboardState extends State<Dashboard> {
                           ],
                         ),
                       ),
-                      Center(
-                        child: Image(
-                          height: screenHeight / 10,
-                          width: screenWidth * 0.2,
-                          image: AssetImage('assets/images/newuser.png'),
-                        ),
+                      Image(
+                        height: screenHeight / 5,
+                        width: screenWidth * 0.3,
+                        image: AssetImage('assets/images/newuser.png'),
                       ),
                     ],
                   ),
@@ -237,8 +239,8 @@ class _DashboardState extends State<Dashboard> {
                       ),
                       Center(
                         child: Image(
-                          height: screenHeight / 10,
-                          width: screenWidth * 0.2,
+                          height: screenHeight / 6,
+                          width: screenWidth * 0.25,
                           image: AssetImage('assets/images/search.png'),
                         ),
                       ),
@@ -306,8 +308,8 @@ class _DashboardState extends State<Dashboard> {
                       ),
                       Center(
                         child: Image(
-                          height: screenHeight / 10,
-                          width: screenWidth * 0.2,
+                          height: screenHeight / 5,
+                          width: screenWidth * 0.3,
                           image: AssetImage('assets/images/exp.png'),
                         ),
                       ),
