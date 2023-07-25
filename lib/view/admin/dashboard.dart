@@ -2,7 +2,6 @@
 
 import 'package:flutter/material.dart';
 import 'package:uroapplication/view/admin/createpatient.dart';
-import 'package:uroapplication/view/admin/searchpatient.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:path_provider/path_provider.dart';
@@ -10,6 +9,7 @@ import 'dart:io';
 import 'package:open_file/open_file.dart';
 import 'package:syncfusion_flutter_xlsio/xlsio.dart' hide Column hide Row;
 import '../../controller/mycolors.dart';
+import '../../search_patients.dart';
 
 class Dashboard extends StatefulWidget {
   const Dashboard({super.key});
@@ -21,34 +21,62 @@ class Dashboard extends StatefulWidget {
 class _DashboardState extends State<Dashboard> {
   final String userId = FirebaseAuth.instance.currentUser!.uid;
   openExcel() async {
-    final DocumentSnapshot snapshot = await FirebaseFirestore.instance
-        .collection("Patients")
-        .doc(userId)
-        .get();
-    // Create the Excel workbook
-    final workbook = Workbook();
-    final sheet = workbook.worksheets[0];
+  final QuerySnapshot patientsSnapshot =
+      await FirebaseFirestore.instance.collection("Patients").get();
+  final QuerySnapshot usersSnapshot =
+      await FirebaseFirestore.instance.collection("users").get();
 
-    // Add the patient data to the Excel sheet
+  // Create the Excel workbook
+  final workbook = Workbook();
+  final sheet = workbook.worksheets[0];
+
+  int rowIndex = 1; // Start from 2nd row as the 1st row will be used for headers
+
+  // Add headers to the Excel sheet
+  sheet.getRangeByName('A$rowIndex').setText("Patient ID");
+  sheet.getRangeByName('B$rowIndex').setText("First Name");
+  sheet.getRangeByName('C$rowIndex').setText("Last Name");
+  sheet.getRangeByName('D$rowIndex').setText("Email");
+  sheet.getRangeByName('E$rowIndex').setText("DOB");
+  sheet.getRangeByName('F$rowIndex').setText("Phone");
+  sheet.getRangeByName('G$rowIndex').setText("Selected Answers");
+  rowIndex++;
+
+  // Add the patient data to the Excel sheet
+  patientsSnapshot.docs.forEach((patientDocument) {
     final Map<String, dynamic> patientData =
-        snapshot.data() as Map<String, dynamic>;
-    int rowIndex =
-        1; // Start from 2nd row as the 1st row will be used for headers
-    patientData.forEach((key, value) {
-      sheet.getRangeByName('A$rowIndex').setText(key);
-      sheet.getRangeByName('B$rowIndex').setText(value.toString());
-      rowIndex++;
-    });
+        patientDocument.data() as Map<String, dynamic>;
+    final String patientId = patientDocument.id;
 
-    // Save the Excel sheet to a file
-    final List<int> bytes = workbook.saveAsStream();
-    workbook.dispose();
+    final userDocument = usersSnapshot.docs
+        .firstWhere((userDocument) => userDocument.id == patientId);
 
-    final directory = await getApplicationSupportDirectory();
-    final file = File('${directory.path}/Output.xlsx');
-    await file.writeAsBytes(bytes, flush: true);
-    OpenFile.open(file.path);
-  }
+    final Map<String, dynamic> userData =
+        userDocument.data() as Map<String, dynamic>;
+    final List<int?> selectedAnswers = List<int?>.from(userData["selectedAnswers"]);
+
+    sheet.getRangeByName('A$rowIndex').setText(patientId);
+    sheet.getRangeByName('B$rowIndex').setText(patientData["First Name"]);
+    sheet.getRangeByName('C$rowIndex').setText(patientData["Last Name"]);
+    sheet.getRangeByName('D$rowIndex').setText(patientData["Email"]);
+    sheet.getRangeByName('E$rowIndex').setText(patientData["DOB"]);
+    sheet.getRangeByName('F$rowIndex').setText(patientData["Phone"]);
+    sheet.getRangeByName('G$rowIndex').setText(selectedAnswers.toString());
+
+    rowIndex++;
+  });
+
+  // Save the Excel sheet to a file
+  final List<int> bytes = workbook.saveAsStream();
+  workbook.dispose();
+
+  final directory = await getApplicationSupportDirectory();
+  final file = File('${directory.path}/Output.xlsx');
+  await file.writeAsBytes(bytes, flush: true);
+  OpenFile.open(file.path);
+}
+
+
 
   @override
   Widget build(BuildContext context) {
@@ -58,8 +86,8 @@ class _DashboardState extends State<Dashboard> {
 
     // Adjust font size based on screen width and text scale factor
     //final fontSize = screenWidth * 0.14 * textScaleFactor;
-    final subheading = screenWidth * 0.07 * textScaleFactor;
-    final heading = screenWidth * 0.08 * textScaleFactor;
+    final subheading = screenWidth * 0.06 * textScaleFactor;
+    final heading = screenWidth * 0.07 * textScaleFactor;
     return Scaffold(
         body: Container(
       decoration: BoxDecoration(
@@ -81,7 +109,7 @@ class _DashboardState extends State<Dashboard> {
           SizedBox(
             height: screenHeight / 5,
             width: 300,
-            child: Image.asset('assets/images/logo.png'),
+           // child: Image.asset('assets/images/logo.png'),
           ),
           Row(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -168,11 +196,11 @@ class _DashboardState extends State<Dashboard> {
                           ],
                         ),
                       ),
-                      Image(
-                        height: screenHeight / 5,
-                        width: screenWidth * 0.3,
-                        image: AssetImage('assets/images/newuser.png'),
-                      ),
+                      // Image(
+                      //   height: screenHeight / 5,
+                      //   width: screenWidth * 0.3,
+                      //   image: AssetImage('assets/images/newuser.png'),
+                      // ),
                     ],
                   ),
                 ),
@@ -188,7 +216,7 @@ class _DashboardState extends State<Dashboard> {
               splashColor: Colors.black,
               onTap: () {
                 Navigator.push(context,
-                    MaterialPageRoute(builder: (ctx) => SearchScreen()));
+                    MaterialPageRoute(builder: (ctx) => SearchPatient()));
               },
               child: Container(
                 decoration: BoxDecoration(
@@ -236,13 +264,13 @@ class _DashboardState extends State<Dashboard> {
                           ],
                         ),
                       ),
-                      Center(
-                        child: Image(
-                          height: screenHeight / 6,
-                          width: screenWidth * 0.25,
-                          image: AssetImage('assets/images/searchnew.png'),
-                        ),
-                      ),
+                      // Center(
+                      //   child: Image(
+                      //     height: screenHeight / 6,
+                      //     width: screenWidth * 0.25,
+                      //     image: AssetImage('assets/images/searchnew.png'),
+                      //   ),
+                      // ),
                     ],
                   ),
                 ),
@@ -305,13 +333,13 @@ class _DashboardState extends State<Dashboard> {
                           ],
                         ),
                       ),
-                      Center(
-                        child: Image(
-                          height: screenHeight / 5,
-                          width: screenWidth * 0.3,
-                          image: AssetImage('assets/images/export.png'),
-                        ),
-                      ),
+                      // Center(
+                      //   child: Image(
+                      //     height: screenHeight / 5,
+                      //     width: screenWidth * 0.3,
+                      //     image: AssetImage('assets/images/export.png'),
+                      //   ),
+                      // ),
                     ],
                   ),
                 ),

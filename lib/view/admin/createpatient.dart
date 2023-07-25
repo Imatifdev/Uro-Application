@@ -380,6 +380,16 @@ class _NewSignupScreenState extends State<NewSignupScreen> {
                                 if (isRegistered) {
                                   var userId =
                                       FirebaseAuth.instance.currentUser!.uid;
+                                      final CollectionReference usersCollection =
+          FirebaseFirestore.instance.collection('users');
+      final user = FirebaseAuth.instance.currentUser;
+
+        final userData = {
+          'userId': user!.uid,
+          'selectedAnswers': [],
+        };
+
+        await usersCollection.doc(user.uid).set(userData);
                                   await FirebaseFirestore.instance
                                       .collection("Patients")
                                       .doc(userId)
