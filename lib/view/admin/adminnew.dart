@@ -6,17 +6,16 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:uroapplication/controller/mycolors.dart';
-import 'package:uroapplication/view/admin/dashboard.dart';
 import '../../models/registermodel.dart';
 import 'login.dart';
 import 'package:velocity_x/velocity_x.dart';
 
-class NewSignupScreen extends StatefulWidget {
+class CreateAdmin extends StatefulWidget {
   @override
-  State<NewSignupScreen> createState() => _NewSignupScreenState();
+  State<CreateAdmin> createState() => _CreateAdminState();
 }
 
-class _NewSignupScreenState extends State<NewSignupScreen> {
+class _CreateAdminState extends State<CreateAdmin> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
   final TextEditingController _emailController = TextEditingController();
@@ -123,7 +122,7 @@ class _NewSignupScreenState extends State<NewSignupScreen> {
                       height: height / 10,
                     ),
                     Text(
-                      "Create New Patient",
+                      "Create New Admin",
                       style:
                           TextStyle(fontSize: 28, fontWeight: FontWeight.bold),
                     ),
@@ -416,11 +415,11 @@ class _NewSignupScreenState extends State<NewSignupScreen> {
                                   });
 
                                   // Show a Snackbar to indicate data is saved
-                                  showSnackbar(context, "Data Saved!");
+                                  showSnackbar(context, "Admin Data Saved!");
                                   Navigator.push(
                                       context,
                                       MaterialPageRoute(
-                                          builder: (ctx) => Dashboard()));
+                                          builder: (ctx) => LoginScreen()));
                                 } else {
                                   setState(() {
                                     _isSigningUp = false;

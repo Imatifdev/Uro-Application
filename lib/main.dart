@@ -5,7 +5,10 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:uroapplication/quiz_screen.dart';
 import 'package:uroapplication/search_patients.dart';
+import 'package:uroapplication/view/admin/createpatient.dart';
 import 'package:uroapplication/view/admin/dashboard.dart';
+import 'package:uroapplication/view/admin/login.dart';
+import 'package:uroapplication/view/patient/login.dart';
 import 'package:uroapplication/view/welcome.dart';
 
 import 'firebase_options.dart';
@@ -29,10 +32,9 @@ class MyApp extends StatelessWidget {
           fontFamily:
               'MinionVariableConcept-Roman', // Specify the font family here
 
-          textTheme: TextTheme(),
           colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
           useMaterial3: true,
         ),
-        home: SearchPatient());
+        home: Welcome());
   }
 }

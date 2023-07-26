@@ -25,10 +25,8 @@ class _QuizScreenState extends State<QuizScreen> {
         text,
         softWrap: true,
         style: TextStyle(
-          fontSize: fontSize, 
-          fontWeight: 
-          bold? FontWeight.bold:FontWeight.normal
-          ),
+            fontSize: fontSize,
+            fontWeight: bold ? FontWeight.bold : FontWeight.normal),
       ),
     );
   }
@@ -106,6 +104,16 @@ class _QuizScreenState extends State<QuizScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final screenWidth = MediaQuery.of(context).size.width;
+    final screenHeight = MediaQuery.of(context).size.height;
+    final textScaleFactor = MediaQuery.of(context).textScaleFactor;
+
+    // Adjust font size based on screen width and text scale factor
+    //final fontSize = screenWidth * 0.14 * textScaleFactor;
+    final subheading = screenWidth * 0.06 * textScaleFactor;
+    final heading = screenWidth * 0.15 * textScaleFactor;
+    final fontsize = screenWidth * 0.07 * textScaleFactor;
+
     return Scaffold(
       backgroundColor: Colors.deepPurple,
       body: SafeArea(
@@ -147,7 +155,8 @@ class _QuizScreenState extends State<QuizScreen> {
                               children: [
                                 FittedBox(
                                   fit: BoxFit.scaleDown,
-                                  child: buildHeadingText(headings[index], 20, false),
+                                  child: buildHeadingText(
+                                      headings[index], heading, false),
                                 ),
                                 Column(
                                   children: [
@@ -155,20 +164,26 @@ class _QuizScreenState extends State<QuizScreen> {
                                       alignment: Alignment.centerLeft,
                                       child: FittedBox(
                                         fit: BoxFit.scaleDown,
-                                        child: buildHeadingText("Question No ${index + 1}/7", 18, true),
+                                        child: buildHeadingText(
+                                            "Question No ${index + 1}/7",
+                                            subheading,
+                                            true),
                                       ),
                                     ),
                                     FittedBox(
-                                      fit: BoxFit.scaleDown ,
-                                      child: 
-                                      buildHeadingText(questions[index], 18, false),
+                                      fit: BoxFit.scaleDown,
+                                      child: buildHeadingText(
+                                          questions[index], subheading, false),
                                     ),
                                   ],
                                 ),
                                 Column(
-                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
                                   children: [
-                                    for (int i = 0; i < answers[index].length; i++)
+                                    for (int i = 0;
+                                        i < answers[index].length;
+                                        i++)
                                       InkWell(
                                         onTap: () {
                                           setState(() {
@@ -180,16 +195,28 @@ class _QuizScreenState extends State<QuizScreen> {
                                           width: constraints.maxWidth * 0.8,
                                           height: constraints.maxHeight * 0.06,
                                           decoration: BoxDecoration(
-                                            color: selectedAnswers[currentPage] == i ? Colors.deepPurple : Colors.white,
-                                            border: Border.all(color: Theme.of(context).primaryColor),
-                                            borderRadius: BorderRadius.circular(15),
+                                            color:
+                                                selectedAnswers[currentPage] ==
+                                                        i
+                                                    ? Colors.deepPurple
+                                                    : Colors.white,
+                                            border: Border.all(
+                                                color: Theme.of(context)
+                                                    .primaryColor),
+                                            borderRadius:
+                                                BorderRadius.circular(15),
                                           ),
                                           child: Center(
                                             child: FittedBox(
                                               fit: BoxFit.scaleDown,
                                               child: Text(
                                                 answers[index][i],
-                                                style: TextStyle(color: selectedAnswers[currentPage] == i ? Colors.white : Colors.deepPurple),
+                                                style: TextStyle(
+                                                    color: selectedAnswers[
+                                                                currentPage] ==
+                                                            i
+                                                        ? Colors.white
+                                                        : Colors.deepPurple),
                                               ),
                                             ),
                                           ),
@@ -235,7 +262,9 @@ class _QuizScreenState extends State<QuizScreen> {
 
         await usersCollection.doc(user.uid).set(userData);
         print("User answers saved to Firestore successfully!");
-        Navigator.of(context).push(MaterialPageRoute(builder: (context) => ResultScreen(answers: selectedAnswers),) );
+        Navigator.of(context).push(MaterialPageRoute(
+          builder: (context) => ResultScreen(answers: selectedAnswers),
+        ));
       }
     } catch (e) {
       print("Error saving user answers to Firestore: $e");
@@ -306,7 +335,7 @@ class _QuizScreenState extends State<QuizScreen> {
 
   CircleAvatar buildBackButton(BoxConstraints constraints) {
     return CircleAvatar(
-      radius: constraints.maxWidth * 0.1,
+      radius: constraints.maxWidth * 0.05,
       child: IconButton(
         onPressed: () {
           if (currentPage > 0) {
@@ -317,14 +346,14 @@ class _QuizScreenState extends State<QuizScreen> {
                 duration: const Duration(seconds: 2), curve: Curves.decelerate);
           }
         },
-        icon: Icon(Icons.arrow_back_ios_new, size: constraints.maxWidth * 0.1),
+        icon: Icon(Icons.arrow_back_ios_new, size: constraints.maxWidth * 0.05),
       ),
     );
   }
 
   CircleAvatar buildForwardButton(BoxConstraints constraints) {
     return CircleAvatar(
-      radius: constraints.maxWidth * 0.1,
+      radius: constraints.maxWidth * 0.05,
       child: IconButton(
         onPressed: () {
           if (currentPage < 6) {
@@ -336,7 +365,7 @@ class _QuizScreenState extends State<QuizScreen> {
           }
         },
         icon: Icon(Icons.arrow_forward_ios_sharp,
-            size: constraints.maxWidth * 0.1),
+            size: constraints.maxWidth * 0.05),
       ),
     );
   }

@@ -3,17 +3,20 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
+import 'package:uroapplication/controller/mycolors.dart';
+import 'package:uroapplication/view/admin/login.dart';
+import 'package:uroapplication/view/patient/login.dart';
 
 import 'admin/dashboard.dart';
 
-class GlassmorphismContainer extends StatefulWidget {
-  const GlassmorphismContainer({super.key});
+class Welcome extends StatefulWidget {
+  const Welcome({super.key});
 
   @override
-  State<GlassmorphismContainer> createState() => _GlassmorphismContainerState();
+  State<Welcome> createState() => _WelcomeState();
 }
 
-class _GlassmorphismContainerState extends State<GlassmorphismContainer> {
+class _WelcomeState extends State<Welcome> {
   @override
   Widget build(BuildContext context) {
     final screenWidth = MediaQuery.of(context).size.width;
@@ -41,7 +44,7 @@ class _GlassmorphismContainerState extends State<GlassmorphismContainer> {
           gradient: LinearGradient(
             begin: Alignment.topCenter,
             end: Alignment.bottomCenter,
-            colors: [Color(0xFF3626af), Color.fromARGB(255, 133, 92, 231)],
+            colors: [skyblue, darkblue],
           ),
         ),
         child: Column(
@@ -100,28 +103,37 @@ class _GlassmorphismContainerState extends State<GlassmorphismContainer> {
                             Row(
                               mainAxisAlignment: MainAxisAlignment.spaceAround,
                               children: [
-                                Column(
-                                  children: [
-                                    Image(
-                                      image: AssetImage(
-                                        "assets/images/patient.png",
+                                InkWell(
+                                  onTap: () {
+                                    Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                            builder: (ctx) =>
+                                                LoginScreenPatient()));
+                                  },
+                                  child: Column(
+                                    children: [
+                                      Image(
+                                        image: AssetImage(
+                                          "assets/images/patient.png",
+                                        ),
+                                        height: screenHeight / 6,
                                       ),
-                                      height: screenHeight / 6,
-                                    ),
-                                    Text(
-                                      "Patient",
-                                      style: TextStyle(
-                                          fontSize: 22,
-                                          fontWeight: FontWeight.bold),
-                                    )
-                                  ],
+                                      Text(
+                                        "Patient",
+                                        style: TextStyle(
+                                            fontSize: 22,
+                                            fontWeight: FontWeight.bold),
+                                      )
+                                    ],
+                                  ),
                                 ),
                                 InkWell(
                                   onTap: () {
                                     Navigator.push(
                                         context,
                                         MaterialPageRoute(
-                                            builder: (ctx) => Dashboard()));
+                                            builder: (ctx) => LoginScreen()));
                                   },
                                   child: Column(
                                     children: [

@@ -3,10 +3,13 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:uroapplication/controller/mycolors.dart';
+import 'package:uroapplication/view/admin/dashboard.dart';
 
 import '../../models/loginmodel.dart';
 import 'package:velocity_x/velocity_x.dart';
 
+import 'adminnew.dart';
 import 'createpatient.dart';
 import 'forgotpass.dart';
 
@@ -87,27 +90,32 @@ class _LoginScreenState extends State<LoginScreen> {
             child: Column(
               children: [
                 Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     SizedBox(
                       height: 100,
                     ),
+                    Center(
+                      child: Image.asset(
+                        'assets/images/admin.png',
+                        height: 200,
+                        width: 200,
+                      ),
+                    ),
+
+                    SizedBox(
+                      height: 30,
+                    ),
                     Text(
                       "Hello Again!",
                       textAlign: TextAlign.center,
-                      style:
-                          TextStyle(fontSize: 28, fontWeight: FontWeight.bold),
+                      style: TextStyle(
+                          fontSize: 28,
+                          fontWeight: FontWeight.bold,
+                          color: blue),
                     ),
                     SizedBox(
                       height: 20,
-                    ),
-                    Text(
-                      "Welcome to Snabb Budget",
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                          fontSize: 22, fontWeight: FontWeight.normal),
-                    ),
-                    SizedBox(
-                      height: 80,
                     ),
                     Card(
                       elevation: 10,
@@ -193,27 +201,27 @@ class _LoginScreenState extends State<LoginScreen> {
                     SizedBox(
                       height: 10,
                     ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.end,
-                      children: [
-                        GestureDetector(
-                          onTap: () {
-                            Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (ctx) => ForgitPassword()));
-                          },
-                          child: Text(
-                            "Forgot Password?",
-                            style: TextStyle(
-                                color: Colors.black,
-                                fontSize: 16,
-                                fontWeight: FontWeight.bold,
-                                decoration: TextDecoration.underline),
-                          ),
-                        ),
-                      ],
-                    )
+                    // Row(
+                    //   mainAxisAlignment: MainAxisAlignment.end,
+                    //   children: [
+                    //     GestureDetector(
+                    //       onTap: () {
+                    //         Navigator.push(
+                    //             context,
+                    //             MaterialPageRoute(
+                    //                 builder: (ctx) => ForgitPassword()));
+                    //       },
+                    //       child: Text(
+                    //         "Forgot Password?",
+                    //         style: TextStyle(
+                    //             color: Colors.black,
+                    //             fontSize: 16,
+                    //             fontWeight: FontWeight.bold,
+                    //             decoration: TextDecoration.underline),
+                    //       ),
+                    //     ),
+                    //   ],
+                    // )
                   ],
                 ).pSymmetric(h: 20),
                 SizedBox(
@@ -244,6 +252,8 @@ class _LoginScreenState extends State<LoginScreen> {
                                   context, "Invalid email or Password");
                             } else {}
                           }
+                          Navigator.push(context,
+                              MaterialPageRoute(builder: (ctx) => Dashboard()));
                         },
                   child: Card(
                     shape: RoundedRectangleBorder(
@@ -254,7 +264,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       height: 50,
                       width: 300,
                       decoration: BoxDecoration(
-                        color: Color(0xff2ddcdc),
+                        color: pink,
                         borderRadius: BorderRadius.circular(15),
                       ),
                       child: _isLoggingIn
@@ -282,11 +292,11 @@ class _LoginScreenState extends State<LoginScreen> {
                             Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                    builder: (context) => NewSignupScreen()));
+                                    builder: (context) => CreateAdmin()));
                           },
                         style: TextStyle(
                           fontWeight: FontWeight.bold,
-                          color: Color(0xff2ddcdc),
+                          color: blue,
                           fontSize: 18,
                         ),
                       ),
