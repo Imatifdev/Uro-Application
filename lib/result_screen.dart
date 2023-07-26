@@ -25,21 +25,72 @@ class _ResultScreenState extends State<ResultScreen> {
     Size size = MediaQuery.of(context).size;
     return Scaffold(
       backgroundColor: Colors.deepPurple,
-      body: SafeArea(child: 
+      body: 
+      !isLoading?
+      SafeArea(child: 
       SizedBox(
         width: size.width,
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            const Text("Result", style: TextStyle(color: Colors.white, fontSize: 18),),
-            isLoading
-                  ? const CircularProgressIndicator(color: Colors.white,) // Show the progress indicator
-                  : Text(widget.answers.toString(), style: const TextStyle(color: Colors.white)),
-            ],
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 15),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              const Text("Result", style: TextStyle(color: Colors.white, fontSize: 18),),
+               Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                 children: [
+                  Text("Question 1", style: TextStyle(color: Colors.white),),
+                   Text(widget.answers[0].toString(), style: const TextStyle(color: Colors.white)),
+                 ],
+               ),
+               Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                 children: [
+                  Text("Question 2", style: TextStyle(color: Colors.white),),
+                   Text(widget.answers[1].toString(), style: const TextStyle(color: Colors.white)),
+                 ],
+               ),
+               Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                 children: [
+                  Text("Question 3", style: TextStyle(color: Colors.white),),
+                   Text(widget.answers[2].toString(), style: const TextStyle(color: Colors.white)),
+                 ],
+               ),
+               Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                 children: [
+                  Text("Question 4", style: TextStyle(color: Colors.white),),
+                   Text(widget.answers[3].toString(), style: const TextStyle(color: Colors.white)),
+                 ],
+               ),
+               Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                 children: [
+                  Text("Question 5", style: TextStyle(color: Colors.white),),
+                   Text(widget.answers[4].toString(), style: const TextStyle(color: Colors.white)),
+                 ],
+               ),
+               Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                 children: [
+                  Text("Question 6", style: TextStyle(color: Colors.white),),
+                   Text(widget.answers[5].toString(), style: const TextStyle(color: Colors.white)),
+                 ],
+               ),
+               Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                 children: [
+                  Text("Question 7", style: TextStyle(color: Colors.white),),
+                   Text(widget.answers[6].toString(), style: const TextStyle(color: Colors.white)),
+                 ],
+               ),
+              ],
+          ),
         ),
        )
-      ),
+      ):const Center(child:  CircularProgressIndicator(color: Colors.white,)),
     );
   }
 }
