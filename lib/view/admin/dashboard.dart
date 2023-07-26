@@ -109,7 +109,7 @@ class _DashboardState extends State<Dashboard> {
           SizedBox(
             height: screenHeight / 5,
             width: 300,
-           // child: Image.asset('assets/images/logo.png'),
+            child: Image.asset('assets/images/logo.png'),
           ),
           Row(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -196,11 +196,11 @@ class _DashboardState extends State<Dashboard> {
                           ],
                         ),
                       ),
-                      // Image(
-                      //   height: screenHeight / 5,
-                      //   width: screenWidth * 0.3,
-                      //   image: AssetImage('assets/images/newuser.png'),
-                      // ),
+                      Image(
+                        height: screenHeight / 5,
+                        width: screenWidth * 0.3,
+                        image: AssetImage('assets/images/newuser.png'),
+                      ),
                     ],
                   ),
                 ),
@@ -264,13 +264,13 @@ class _DashboardState extends State<Dashboard> {
                           ],
                         ),
                       ),
-                      // Center(
-                      //   child: Image(
-                      //     height: screenHeight / 6,
-                      //     width: screenWidth * 0.25,
-                      //     image: AssetImage('assets/images/searchnew.png'),
-                      //   ),
-                      // ),
+                      Center(
+                        child: Image(
+                          height: screenHeight / 6,
+                          width: screenWidth * 0.25,
+                          image: AssetImage('assets/images/searchnew.png'),
+                        ),
+                      ),
                     ],
                   ),
                 ),
@@ -333,13 +333,13 @@ class _DashboardState extends State<Dashboard> {
                           ],
                         ),
                       ),
-                      // Center(
-                      //   child: Image(
-                      //     height: screenHeight / 5,
-                      //     width: screenWidth * 0.3,
-                      //     image: AssetImage('assets/images/export.png'),
-                      //   ),
-                      // ),
+                      Center(
+                        child: Image(
+                          height: screenHeight / 5,
+                          width: screenWidth * 0.3,
+                          image: AssetImage('assets/images/export.png'),
+                        ),
+                      ),
                     ],
                   ),
                 ),

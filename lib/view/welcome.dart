@@ -27,7 +27,7 @@ class _WelcomeState extends State<Welcome> {
     //final fontSize = screenWidth * 0.04 * textScaleFactor;
 
     // Adjust container size based on screen width and height
-    final containerWidth = screenWidth * 0.8;
+    final containerWidth = screenWidth * 0.9;
     final containerHeight = screenHeight * 0.5;
     // bool isExpanded = false;
 

@@ -50,7 +50,7 @@ class _SearchPatientState extends State<SearchPatient> with SingleTickerProvider
       backgroundColor: Colors.deepPurple.shade100,
     //  floatingActionButton: FloatingActionButton(onPressed: (){logOut();}, child: const Icon(Icons.logout, color: Colors.white,)),
       appBar: AppBar(
-        title: const Text('Admin Panel', style: TextStyle(color: Color.fromARGB(255, 0, 0, 0))),
+        title: const Text('Search Record', style: TextStyle(color: Color.fromARGB(255, 0, 0, 0))),
       ),
       body: Tab1Widget()
       // bottomNavigationBar: TabBar(
@@ -127,7 +127,7 @@ class _Tab1WidgetState extends State<Tab1Widget> {
         width: double.infinity,
         child:  Column(
          children: [ 
-          const Text("Customers", style: TextStyle(fontSize: 18),),
+          const Text("Patients", style: TextStyle(fontSize: 18),),
           Padding(
             padding: const EdgeInsets.all(16.0),
             child: TextField(

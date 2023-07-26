@@ -111,7 +111,7 @@ class _QuizScreenState extends State<QuizScreen> {
     // Adjust font size based on screen width and text scale factor
     //final fontSize = screenWidth * 0.14 * textScaleFactor;
     final subheading = screenWidth * 0.06 * textScaleFactor;
-    final heading = screenWidth * 0.15 * textScaleFactor;
+    final heading = screenWidth * 0.09 * textScaleFactor;
     final fontsize = screenWidth * 0.07 * textScaleFactor;
 
     return Scaffold(
