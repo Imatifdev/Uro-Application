@@ -5,17 +5,17 @@ import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:uroapplication/result_screen.dart';
 
-class QuizScreen extends StatefulWidget {
-  const QuizScreen({super.key});
+class Quiz2Screen extends StatefulWidget {
+  const Quiz2Screen({super.key});
 
   @override
-  State<QuizScreen> createState() => _QuizScreenState();
+  State<Quiz2Screen> createState() => _Quiz2ScreenState();
 }
 
-class _QuizScreenState extends State<QuizScreen> {
+class _Quiz2ScreenState extends State<Quiz2Screen> {
   final PageController _pageController = PageController();
-  List<int?> selectedAnswers = List.filled(7, null);
-  List<bool> answered = List.filled(7, false);
+  List<int?> selectedAnswers = List.filled(5, null);
+  List<bool> answered = List.filled(5, false);
   int currentPage = 0;
 
   SizedBox buildHeadingText(String text, double fontSize, bool bold) {
@@ -32,87 +32,73 @@ class _QuizScreenState extends State<QuizScreen> {
   }
 
   List<String> questions = [
-    "Over the past month, how often have you had the sensation of not emptying your bladder completely after you finish urinating?",
-    "Over the past month, how often have you had to urinate again less than two hours after you finished urinating?",
-    "Over the past month, how often have you found you stopped and started again several times when you urinated?",
-    "Over the past month, how difficult you found it to postpone urination?",
-    "Over the past month, how often have you had a weak urinary stream?",
-    "Over the past month, how often have you had to push or strain to begin urination?",
-    "Over the past month, how many times did you most typically get up to urinate from the time you went to bed until the time you got up in the morning?"
-  ];
+    "How often do you have a strong, sudden urge to urinate that makes you fear you will leak urine if you can't get to a bathroom immediately?",
+    "How often do you leak urine after feeling a strong urge to go? (whether you wear pads/protection or not)",
+    "How much urine do you think usually leaks? (whether you wear pads/protection or not)",
+    "How often do you urinate during the day?",
+    "How many times do you usually get up at night to urinate, from when you went to bed until you get up in the morning?",
+    ];
   List<String> headings = [
-    "Incomplete Emptying",
-    "Frequency",
-    "Intermittency",
     "Urgency",
-    "Weak Stream",
-    "Straining",
-    "Nocturia"
+    "Urgency Incontinence",
+    "Incontinence",
+    "Frequency",
+    "Waking to Urinate"
   ];
-
   List<List<String>> answers = [
     [
       "Not at all",
-      "Less than 1 time in 5 days",
-      "Less than half the time",
+      "Occasionally",
+      "About once a day",
+      "About three times a day",
       "About half the time",
-      "More than half the time",
       "Almost always"
     ],
     [
       "Not at all",
-      "Less than 1 time in 5 days",
-      "Less than half the time",
+      "Occasionally",
+      "About once a day",
+      "About three times a day",
       "About half the time",
-      "More than half the time",
       "Almost always"
     ],
     [
-      "Not at all",
-      "Less than 1 time in 5 days",
-      "Less than half the time",
-      "About half the time",
-      "More than half the time",
-      "Almost always"
+      "None",
+      "Drops",
+      "1 tea spoon",
+      "1 table spoon",
+      "1/4 cup",
+      "Entire Bladder",
     ],
     [
-      "Not at all",
-      "Less than 1 time in 5 days",
-      "Less than half the time",
-      "About half the time",
-      "More than half the time",
-      "Almost always"
+      "1-6 times",
+      "7-8 times",
+      "9-10 times",
+      "11-12 times",
+      "13-14 times",
+      "15 or more times"
     ],
     [
-      "Not at all",
-      "Less than 1 time in 5 days",
-      "Less than half the time",
-      "About half the time",
-      "More than half the time",
-      "Almost always"
+      "None",
+      "1 time",
+      "2 times",
+      "3 times",
+      "4 times",
+      "5 or more times"
     ],
-    [
-      "Not at all",
-      "Less than 1 time in 5 days",
-      "Less than half the time",
-      "About half the time",
-      "More than half the time",
-      "Almost always"
-    ],
-    ["None", "1 Time", "2 Times", "3 Times", "4 Times", "5 Times or more"]
   ];
 
   @override
   Widget build(BuildContext context) {
     final screenWidth = MediaQuery.of(context).size.width;
-    final screenHeight = MediaQuery.of(context).size.height;
+    //final screenHeight = MediaQuery.of(context).size.height;
     final textScaleFactor = MediaQuery.of(context).textScaleFactor;
 
     // Adjust font size based on screen width and text scale factor
     //final fontSize = screenWidth * 0.14 * textScaleFactor;
     final subheading = screenWidth * 0.06 * textScaleFactor;
     final heading = screenWidth * 0.09 * textScaleFactor;
-    final fontsize = screenWidth * 0.07 * textScaleFactor;
+    //final fontsize = screenWidth * 0.07 * textScaleFactor;
 
     return Scaffold(
       backgroundColor: Colors.deepPurple,
@@ -132,7 +118,7 @@ class _QuizScreenState extends State<QuizScreen> {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
                       children: [
-                        for (int i = 0; i < 7; i++)
+                        for (int i = 0; i < 5; i++)
                           buildCircleAvatar(constraints, i),
                       ],
                     ),
@@ -165,7 +151,7 @@ class _QuizScreenState extends State<QuizScreen> {
                                       child: FittedBox(
                                         fit: BoxFit.scaleDown,
                                         child: buildHeadingText(
-                                            "Question No ${index + 1}/7",
+                                            "Question No ${index + 1}/5",
                                             subheading,
                                             true),
                                       ),
@@ -255,17 +241,17 @@ class _QuizScreenState extends State<QuizScreen> {
           FirebaseFirestore.instance.collection('QuizResults').doc(user!.uid).collection("Result");
       
 
-    //  if (user != null) {
+     // if (user != null) {
         final userData = {
           'selectedAnswers': selectedAnswers,
         };
 
-        await usersCollection.doc("Quiz 1").set(userData);
+        await usersCollection.doc("Quiz 2").set(userData);
         print("User answers saved to Firestore successfully!");
         Navigator.of(context).push(MaterialPageRoute(
           builder: (context) => ResultScreen(answers: selectedAnswers),
         ));
-     // }
+    //  }
     } catch (e) {
       print("Error saving user answers to Firestore: $e");
     }

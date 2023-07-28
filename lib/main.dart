@@ -3,6 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:uroapplication/quiz_screen.dart';
 import 'package:uroapplication/search_patients.dart';
 import 'package:uroapplication/view/admin/createpatient.dart';
@@ -26,6 +27,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      builder: EasyLoading.init(),
         debugShowCheckedModeBanner: false,
         title: 'Uro App',
         theme: ThemeData(
