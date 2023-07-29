@@ -3,6 +3,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:uroapplication/Utils/popup_loader.dart';
 import 'package:uroapplication/result_screen.dart';
 
 class Quiz2Screen extends StatefulWidget {
@@ -17,6 +18,7 @@ class _Quiz2ScreenState extends State<Quiz2Screen> {
   List<int?> selectedAnswers = List.filled(5, null);
   List<bool> answered = List.filled(5, false);
   int currentPage = 0;
+  int sum = 0;
 
   SizedBox buildHeadingText(String text, double fontSize, bool bold) {
     return SizedBox(
@@ -235,7 +237,11 @@ class _Quiz2ScreenState extends State<Quiz2Screen> {
   }
 
   Future<void> saveUserAnswersToFirestore() async {
+    PopupLoader.show();
     final user = FirebaseAuth.instance.currentUser;
+    for(int i = 0; i < selectedAnswers.length; i++){
+      sum+= selectedAnswers[i] as int;
+    }
     try {
       final CollectionReference usersCollection =
           FirebaseFirestore.instance.collection('QuizResults').doc(user!.uid).collection("Result");
@@ -248,11 +254,13 @@ class _Quiz2ScreenState extends State<Quiz2Screen> {
 
         await usersCollection.doc("Quiz 2").set(userData);
         print("User answers saved to Firestore successfully!");
+        PopupLoader.hide();
         Navigator.of(context).push(MaterialPageRoute(
-          builder: (context) => ResultScreen(answers: selectedAnswers),
+          builder: (context) => ResultScreen(answers: selectedAnswers, avg: sum,qNum: 5),
         ));
     //  }
     } catch (e) {
+      PopupLoader.hide();
       print("Error saving user answers to Firestore: $e");
     }
   }
@@ -270,6 +278,7 @@ class _Quiz2ScreenState extends State<Quiz2Screen> {
     return ElevatedButton(
       onPressed: isAllQuestionsAnswered()
           ? () async {
+            sum = 0;
               print("Selected Answers: $selectedAnswers");
               await saveUserAnswersToFirestore();
             }

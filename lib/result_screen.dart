@@ -1,7 +1,12 @@
 import 'package:flutter/material.dart';
+
+import 'package:percent_indicator/percent_indicator.dart';
+
 class ResultScreen extends StatefulWidget {
   final List answers;
-  const ResultScreen({super.key, required this.answers});
+  final num avg;
+  final int qNum;
+  const ResultScreen({super.key, required this.answers, required this.avg, required this.qNum});
 
   @override
   State<ResultScreen> createState() => _ResultScreenState();
@@ -14,19 +19,19 @@ class _ResultScreenState extends State<ResultScreen> {
   void initState() {
     super.initState();
     // Show the progress indicator for 3 seconds using Future.delayed
-    Future.delayed(const Duration(seconds: 3), () {
-      setState(() {
-        isLoading = false;
-      });
-    });
+    // Future.delayed(const Duration(seconds: 3), () {
+    //   setState(() {
+    //     isLoading = false;
+    //   });
+    // });
   }
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
+    int questionScore = widget.qNum == 7? 35:25;
     return Scaffold(
       backgroundColor: Colors.deepPurple,
       body: 
-      !isLoading?
       SafeArea(child: 
       SizedBox(
         height: size.height-100,
@@ -34,21 +39,60 @@ class _ResultScreenState extends State<ResultScreen> {
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 15),
           child: Column(
-             mainAxisAlignment: MainAxisAlignment.center,
+             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             // crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              const Text("Result", style: TextStyle(color: Colors.white, fontSize: 18),),              
+              const Align(
+                alignment: Alignment.centerLeft,
+                child: Text("Result", style: TextStyle(color: Colors.white, fontSize: 22),)),
+              LinearPercentIndicator(
+                  // radius:90.0,
+                  // lineWidth: 15.0,
+                  //width: size.width-30,
+                  lineHeight: 40,
+                  barRadius: const Radius.circular(15),
+                  //trailing: 
+                  percent: ((widget.avg/questionScore)),
+                  center: Text("${((widget.avg/questionScore)*100).toStringAsFixed(1)}%", style: const TextStyle(color: Colors.black),),
+                  animation: true,
+                  animationDuration: 1800,
+                  curve: Curves.bounceOut,
+                  // rotateLinearGradient: true,
+                  // circularStrokeCap: CircularStrokeCap.round,
+                  linearGradient: const LinearGradient(colors: [Colors.green, Colors.yellow ,Colors.red]) ,
+                  //progressColor: Colors.green,
+                ),
+              Text("According to our calculator there is ${((widget.avg/questionScore)*100).toStringAsFixed(1)}% chance that you have a problem", textAlign: TextAlign.center ,style: const TextStyle(color: Colors.white, fontSize: 18, fontWeight: FontWeight.bold),),
               SizedBox(
-                height: size.height/6,
+                height: 60*7,
                 child: ListView.builder(
+                  physics: const NeverScrollableScrollPhysics() ,
                   itemCount: widget.answers.length,
-                  itemBuilder: (context, index) => Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                   children: [
-                    Text("Question ${index+1}", style: const TextStyle(color: Colors.white),),
-                    Text(widget.answers[index].toString(), style: const TextStyle(color: Colors.white)),
-                   ],
-                 ),),
+                  itemBuilder: (context, index) => ListTile(
+                    title: Text("Question ${index+1}", style: const TextStyle(color: Colors.white),), 
+                   trailing: Text(widget.answers[index].toString(), style: const TextStyle(color: Colors.white, fontSize: 18)),
+                  ),),
+              ),
+              SizedBox(
+                width: size.width-100,
+                child: Card(
+                  shape:  RoundedRectangleBorder(
+    borderRadius: BorderRadius.circular(25),
+      //set border radius more than 50% of height and width to make circle
+  ),
+                  color: Colors.deepPurple.shade100,
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Column(
+                      children: [
+                        const Align(
+                          alignment: Alignment.centerLeft,
+                          child:  Text("Your Score", style: TextStyle(color: Colors.black, fontSize: 18))),
+                        Text("${widget.avg.toString()}/$questionScore", style: const TextStyle(color: Colors.black,fontSize: 30 )),
+                      ],
+                    ),
+                  ),
+                ),
               ),
             ],
           )
@@ -110,7 +154,7 @@ class _ResultScreenState extends State<ResultScreen> {
           // ),
         ),
        )
-      ):const Center(child:  CircularProgressIndicator(color: Colors.white,)),
-    );
+      )
+      );
   }
 }

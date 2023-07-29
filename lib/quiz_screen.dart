@@ -1,9 +1,11 @@
-// ignore_for_file: avoid_print, depend_on_referenced_packages
+// ignore_for_file: avoid_print, depend_on_referenced_packages, use_build_context_synchronously
 
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:uroapplication/result_screen.dart';
+
+import 'Utils/popup_loader.dart';
 
 class QuizScreen extends StatefulWidget {
   const QuizScreen({super.key});
@@ -17,6 +19,7 @@ class _QuizScreenState extends State<QuizScreen> {
   List<int?> selectedAnswers = List.filled(7, null);
   List<bool> answered = List.filled(7, false);
   int currentPage = 0;
+  int sum = 0;
 
   SizedBox buildHeadingText(String text, double fontSize, bool bold) {
     return SizedBox(
@@ -49,7 +52,6 @@ class _QuizScreenState extends State<QuizScreen> {
     "Straining",
     "Nocturia"
   ];
-
   List<List<String>> answers = [
     [
       "Not at all",
@@ -105,14 +107,14 @@ class _QuizScreenState extends State<QuizScreen> {
   @override
   Widget build(BuildContext context) {
     final screenWidth = MediaQuery.of(context).size.width;
-    final screenHeight = MediaQuery.of(context).size.height;
+    //final screenHeight = MediaQuery.of(context).size.height;
     final textScaleFactor = MediaQuery.of(context).textScaleFactor;
 
     // Adjust font size based on screen width and text scale factor
     //final fontSize = screenWidth * 0.14 * textScaleFactor;
     final subheading = screenWidth * 0.06 * textScaleFactor;
     final heading = screenWidth * 0.09 * textScaleFactor;
-    final fontsize = screenWidth * 0.07 * textScaleFactor;
+    //final fontsize = screenWidth * 0.07 * textScaleFactor;
 
     return Scaffold(
       backgroundColor: Colors.deepPurple,
@@ -249,7 +251,12 @@ class _QuizScreenState extends State<QuizScreen> {
   }
 
   Future<void> saveUserAnswersToFirestore() async {
+    PopupLoader.show();
     final user = FirebaseAuth.instance.currentUser;
+    for(int i = 0; i < selectedAnswers.length; i++){
+      sum+= selectedAnswers[i] as int;
+    }
+    num avg = sum/7;
     try {
       final CollectionReference usersCollection =
           FirebaseFirestore.instance.collection('QuizResults').doc(user!.uid).collection("Result");
@@ -258,15 +265,18 @@ class _QuizScreenState extends State<QuizScreen> {
     //  if (user != null) {
         final userData = {
           'selectedAnswers': selectedAnswers,
+          'average': sum
         };
 
         await usersCollection.doc("Quiz 1").set(userData);
         print("User answers saved to Firestore successfully!");
+        PopupLoader.hide();
         Navigator.of(context).push(MaterialPageRoute(
-          builder: (context) => ResultScreen(answers: selectedAnswers),
+          builder: (context) => ResultScreen(answers: selectedAnswers, avg: sum,qNum: 7),
         ));
      // }
     } catch (e) {
+      PopupLoader.hide();
       print("Error saving user answers to Firestore: $e");
     }
   }
@@ -284,6 +294,7 @@ class _QuizScreenState extends State<QuizScreen> {
     return ElevatedButton(
       onPressed: isAllQuestionsAnswered()
           ? () async {
+            sum = 0;
               print("Selected Answers: $selectedAnswers");
               await saveUserAnswersToFirestore();
             }

@@ -1,18 +1,15 @@
 // ignore_for_file: depend_on_referenced_packages
 
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'package:google_fonts/google_fonts.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
-import 'package:uroapplication/quiz_screen.dart';
-import 'package:uroapplication/search_patients.dart';
-import 'package:uroapplication/view/admin/createpatient.dart';
-import 'package:uroapplication/view/admin/dashboard.dart';
-import 'package:uroapplication/view/admin/login.dart';
-import 'package:uroapplication/view/patient/login.dart';
+import 'package:uroapplication/view/patient/user_screen.dart';
 import 'package:uroapplication/view/welcome.dart';
-
+import 'package:flutter_gen/gen_l10n/app_localization.dart';
 import 'firebase_options.dart';
+import 'l10n/l10n.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -37,6 +34,15 @@ class MyApp extends StatelessWidget {
           colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
           useMaterial3: true,
         ),
-        home: Welcome());
+        home: FirebaseAuth.instance.currentUser==null? Welcome():UserScreen(),
+        supportedLocales: L10n.all,
+        locale: const Locale("en"),
+        localizationsDelegates: const [
+              AppLocalizations.delegate,
+              GlobalMaterialLocalizations.delegate,
+              GlobalCupertinoLocalizations.delegate,
+              GlobalWidgetsLocalizations.delegate
+            ],
+        );
   }
 }
