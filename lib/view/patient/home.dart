@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
+import 'package:uroapplication/view/patient/oab.dart';
 import 'package:uroapplication/view/patient/patientdashboard.dart';
 import 'package:uroapplication/view/patient/profile.dart';
 import 'package:uroapplication/view/patient/settings.dart';
@@ -18,7 +19,7 @@ class _PatientHomeState extends State<PatientHome>
   int _currentIndex = 0;
   final List<Widget> _screens = [
     HomeState(),
-    SettingsScreen(),
+    OABScreen(),
     ProfileView(),
   ];
 

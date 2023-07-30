@@ -35,80 +35,89 @@ class _SettingsScreenState extends State<SettingsScreen> {
 
     // final controller = Get.put(ProfileController());
     return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Colors.grey.shade100,
+        leading: IconButton(
+            onPressed: () {
+              Navigator.pop(context);
+            },
+            icon: Icon(CupertinoIcons.left_chevron)),
+      ),
       backgroundColor: Colors.grey.shade100,
-      body: SingleChildScrollView(
-        child: Column(
-          children: [
-            Text(
-              "Settings",
-              style: TextStyle(
-                  fontSize: heading,
-                  color: Colors.black,
-                  fontWeight: FontWeight.bold),
-            ),
-            Padding(
-              padding: const EdgeInsets.all(16.0),
-              child: Column(children: [
-                Card(
-                  color: Colors.white,
-                  child: Container(
-                    height: screenHeight * 0.16,
-                    child: Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 00),
-                      child: Column(
-                        children: [
-                          ListTile(
-                            leading: Icon(
-                              Icons.language,
-                              color: Colors.pink,
-                            ),
-                            title: Text(
-                              "Language",
-                              style: TextStyle(
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: subheading3,
-                                  color: Colors.black),
-                            ),
-                            trailing: Icon(
-                              CupertinoIcons.right_chevron,
-                              color: Colors.pink,
-                              size: 20,
-                            ),
+      body: Column(
+        children: [
+          Text(
+            "Settings",
+            style: TextStyle(
+                fontSize: heading,
+                color: Colors.black,
+                fontWeight: FontWeight.bold),
+          ),
+          SizedBox(
+            height: screenHeight * 0.03,
+          ),
+          Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: Column(children: [
+              Card(
+                color: Colors.white,
+                child: Container(
+                  height: screenHeight * 0.16,
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 00),
+                    child: Column(
+                      children: [
+                        ListTile(
+                          leading: Icon(
+                            Icons.language,
+                            color: Colors.pink,
                           ),
-                          Padding(
-                            padding: const EdgeInsets.symmetric(horizontal: 20),
-                            child: Divider(
-                              thickness: 0.3,
-                              color: Colors.grey,
-                            ),
+                          title: Text(
+                            "Language",
+                            style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                fontSize: subheading3,
+                                color: Colors.black),
                           ),
-                          ListTile(
-                            leading: Icon(
-                              CupertinoIcons.color_filter,
-                              color: Colors.pink,
-                            ),
-                            title: Text(
-                              "Switch Theme",
-                              style: TextStyle(
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: subheading3,
-                                  color: Colors.black),
-                            ),
-                            trailing: Icon(
-                              CupertinoIcons.right_chevron,
-                              color: Colors.pink,
-                              size: 20,
-                            ),
+                          trailing: Icon(
+                            CupertinoIcons.right_chevron,
+                            color: Colors.pink,
+                            size: 20,
                           ),
-                        ],
-                      ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 20),
+                          child: Divider(
+                            thickness: 0.3,
+                            color: Colors.grey,
+                          ),
+                        ),
+                        ListTile(
+                          leading: Icon(
+                            CupertinoIcons.color_filter,
+                            color: Colors.pink,
+                          ),
+                          title: Text(
+                            "Switch Theme",
+                            style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                fontSize: subheading3,
+                                color: Colors.black),
+                          ),
+                          trailing: Icon(
+                            CupertinoIcons.right_chevron,
+                            color: Colors.pink,
+                            size: 20,
+                          ),
+                        ),
+                      ],
                     ),
                   ),
-                )
-              ]),
-            )
-          ],
-        ),
+                ),
+              )
+            ]),
+          )
+        ],
       ),
     );
   }

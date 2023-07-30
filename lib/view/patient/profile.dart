@@ -75,144 +75,153 @@ class _ProfileViewState extends State<ProfileView> {
     // final controller = Get.put(ProfileController());
     return Scaffold(
       backgroundColor: Colors.grey.shade100,
-      body: SingleChildScrollView(
-        child: Column(
-          children: [
-            Text(
-              "Account",
-              style: TextStyle(
-                  fontSize: heading,
-                  color: Colors.black,
-                  fontWeight: FontWeight.bold),
-            ),
-            Padding(
-              padding: const EdgeInsets.all(16.0),
-              child: Column(children: [
-                Card(
-                  child: Container(
-                    width: screenWidth,
-                    height: screenHeight * 0.13,
-                    child: Padding(
-                      padding: const EdgeInsets.symmetric(
-                          horizontal: 20, vertical: 10),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            name,
-                            style: TextStyle(
-                                fontSize: subheading3,
-                                color: Colors.black,
-                                fontWeight: FontWeight.bold),
+      appBar: AppBar(
+        backgroundColor: Colors.grey.shade100,
+        leading: IconButton(
+            onPressed: () {
+              Navigator.pop(context);
+            },
+            icon: Icon(CupertinoIcons.left_chevron)),
+      ),
+      body: Column(
+        children: [
+          Text(
+            "Account",
+            style: TextStyle(
+                fontSize: heading,
+                color: Colors.black,
+                fontWeight: FontWeight.bold),
+          ),
+          SizedBox(
+            height: screenHeight * 0.03,
+          ),
+          Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: Column(children: [
+              Card(
+                child: Container(
+                  width: screenWidth,
+                  height: screenHeight * 0.13,
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 20, vertical: 10),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          name,
+                          style: TextStyle(
+                              fontSize: subheading3,
+                              color: Colors.black,
+                              fontWeight: FontWeight.bold),
+                        ),
+                        Divider(
+                          thickness: 0.3,
+                          color: Colors.grey,
+                        ),
+                        Text(
+                          email,
+                          style: TextStyle(
+                              fontSize: subheading3,
+                              color: Colors.black,
+                              fontWeight: FontWeight.bold),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ),
+              Card(
+                color: blue,
+                child: Container(
+                  height: screenHeight * 0.07,
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 20),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          "Share Your Story",
+                          style: TextStyle(
+                              fontSize: subheading3, color: Colors.white),
+                        ),
+                        Icon(
+                          CupertinoIcons.right_chevron,
+                          color: Colors.white,
+                          size: 20,
+                        )
+                      ],
+                    ),
+                  ),
+                ),
+              ),
+              Card(
+                color: Colors.white,
+                child: Container(
+                  height: screenHeight * 0.16,
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 00),
+                    child: Column(
+                      children: [
+                        ListTile(
+                          onTap: () async {
+                            await Navigator.push(
+                                context,
+                                PageTransition(
+                                  type: PageTransitionType.fade,
+                                  child: SettingsScreen(),
+                                ));
+                          },
+                          leading: Icon(
+                            CupertinoIcons.settings_solid,
+                            color: Colors.pink,
                           ),
-                          Divider(
+                          title: Text(
+                            "Settings",
+                            style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                fontSize: subheading3,
+                                color: Colors.black),
+                          ),
+                          trailing: Icon(
+                            CupertinoIcons.right_chevron,
+                            color: Colors.pink,
+                            size: 20,
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 20),
+                          child: Divider(
                             thickness: 0.3,
                             color: Colors.grey,
                           ),
-                          Text(
-                            email,
+                        ),
+                        ListTile(
+                          leading: Icon(
+                            CupertinoIcons.cloud_download,
+                            color: Colors.pink,
+                          ),
+                          title: Text(
+                            "Download Your Record",
                             style: TextStyle(
+                                fontWeight: FontWeight.bold,
                                 fontSize: subheading3,
-                                color: Colors.black,
-                                fontWeight: FontWeight.bold),
+                                color: Colors.black),
                           ),
-                        ],
-                      ),
-                    ),
-                  ),
-                ),
-                Card(
-                  color: blue,
-                  child: Container(
-                    height: screenHeight * 0.07,
-                    child: Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 20),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Text(
-                            "Share Your Story",
-                            style: TextStyle(
-                                fontSize: subheading3, color: Colors.white),
-                          ),
-                          Icon(
+                          trailing: Icon(
                             CupertinoIcons.right_chevron,
-                            color: Colors.white,
+                            color: Colors.pink,
                             size: 20,
-                          )
-                        ],
-                      ),
+                          ),
+                        ),
+                      ],
                     ),
                   ),
                 ),
-                Card(
-                  color: Colors.white,
-                  child: Container(
-                    height: screenHeight * 0.16,
-                    child: Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 00),
-                      child: Column(
-                        children: [
-                          ListTile(
-                            onTap: () async {
-                              await Navigator.push(
-                                  context,
-                                  PageTransition(
-                                    type: PageTransitionType.fade,
-                                    child: SettingsScreen(),
-                                  ));
-                            },
-                            leading: Icon(
-                              CupertinoIcons.settings_solid,
-                              color: Colors.pink,
-                            ),
-                            title: Text(
-                              "Settings",
-                              style: TextStyle(
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: subheading3,
-                                  color: Colors.black),
-                            ),
-                            trailing: Icon(
-                              CupertinoIcons.right_chevron,
-                              color: Colors.pink,
-                              size: 20,
-                            ),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.symmetric(horizontal: 20),
-                            child: Divider(
-                              thickness: 0.3,
-                              color: Colors.grey,
-                            ),
-                          ),
-                          ListTile(
-                            leading: Icon(
-                              CupertinoIcons.cloud_download,
-                              color: Colors.pink,
-                            ),
-                            title: Text(
-                              "Download Your Record",
-                              style: TextStyle(
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: subheading3,
-                                  color: Colors.black),
-                            ),
-                            trailing: Icon(
-                              CupertinoIcons.right_chevron,
-                              color: Colors.pink,
-                              size: 20,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-                )
-              ]),
-            )
-          ],
-        ),
+              )
+            ]),
+          )
+        ],
       ),
     );
   }
