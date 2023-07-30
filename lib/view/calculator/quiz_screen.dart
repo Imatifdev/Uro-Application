@@ -4,6 +4,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:uroapplication/view/calculator/result_screen.dart';
+import 'package:flutter_gen/gen_l10n/app_localization.dart';
 
 import '../../Utils/popup_loader.dart';
 
@@ -34,82 +35,91 @@ class _OABState extends State<OAB> {
     );
   }
 
-  List<String> questions = [
-    "Over the past month, how often have you had the sensation of not emptying your bladder completely after you finish urinating?",
-    "Over the past month, how often have you had to urinate again less than two hours after you finished urinating?",
-    "Over the past month, how often have you found you stopped and started again several times when you urinated?",
-    "Over the past month, how difficult you found it to postpone urination?",
-    "Over the past month, how often have you had a weak urinary stream?",
-    "Over the past month, how often have you had to push or strain to begin urination?",
-    "Over the past month, how many times did you most typically get up to urinate from the time you went to bed until the time you got up in the morning?"
-  ];
-  List<String> headings = [
-    "Incomplete Emptying",
-    "Frequency",
-    "Intermittency",
-    "Urgency",
-    "Weak Stream",
-    "Straining",
-    "Nocturia"
-  ];
-  List<List<String>> answers = [
-    [
-      "Not at all",
-      "Less than 1 time in 5 days",
-      "Less than half the time",
-      "About half the time",
-      "More than half the time",
-      "Almost always"
-    ],
-    [
-      "Not at all",
-      "Less than 1 time in 5 days",
-      "Less than half the time",
-      "About half the time",
-      "More than half the time",
-      "Almost always"
-    ],
-    [
-      "Not at all",
-      "Less than 1 time in 5 days",
-      "Less than half the time",
-      "About half the time",
-      "More than half the time",
-      "Almost always"
-    ],
-    [
-      "Not at all",
-      "Less than 1 time in 5 days",
-      "Less than half the time",
-      "About half the time",
-      "More than half the time",
-      "Almost always"
-    ],
-    [
-      "Not at all",
-      "Less than 1 time in 5 days",
-      "Less than half the time",
-      "About half the time",
-      "More than half the time",
-      "Almost always"
-    ],
-    [
-      "Not at all",
-      "Less than 1 time in 5 days",
-      "Less than half the time",
-      "About half the time",
-      "More than half the time",
-      "Almost always"
-    ],
-    ["None", "1 Time", "2 Times", "3 Times", "4 Times", "5 Times or more"]
-  ];
+  
 
   @override
   Widget build(BuildContext context) {
+
+    List<String> questions = [
+    AppLocalizations.of(context)!.oabQuestion1,
+    AppLocalizations.of(context)!.oabQuestion2,
+    AppLocalizations.of(context)!.oabQuestion3,
+    AppLocalizations.of(context)!.oabQuestion4,
+    AppLocalizations.of(context)!.oabQuestion5,
+    AppLocalizations.of(context)!.oabQuestion6,
+    AppLocalizations.of(context)!.oabQuestion7,
+    ];
+  List<String> headings = [
+    AppLocalizations.of(context)!.oabHeading1,
+    AppLocalizations.of(context)!.oabHeading2,
+    AppLocalizations.of(context)!.oabHeading3,
+    AppLocalizations.of(context)!.oabHeading4,
+    AppLocalizations.of(context)!.oabHeading5,
+    AppLocalizations.of(context)!.oabHeading6,
+    AppLocalizations.of(context)!.oabHeading7,
+  ];
+  List<List<String>> answers = [
+    [
+      AppLocalizations.of(context)!.oabAnswer1,
+      AppLocalizations.of(context)!.oabAnswer2,
+      AppLocalizations.of(context)!.oabAnswer3,
+      AppLocalizations.of(context)!.oabAnswer4,
+      AppLocalizations.of(context)!.oabAnswer5,
+      AppLocalizations.of(context)!.oabAnswer6,
+    ],
+    [
+      AppLocalizations.of(context)!.oabAnswer1,
+      AppLocalizations.of(context)!.oabAnswer2,
+      AppLocalizations.of(context)!.oabAnswer3,
+      AppLocalizations.of(context)!.oabAnswer4,
+      AppLocalizations.of(context)!.oabAnswer5,
+      AppLocalizations.of(context)!.oabAnswer6,
+    ],
+    [
+      AppLocalizations.of(context)!.oabAnswer1,
+      AppLocalizations.of(context)!.oabAnswer2,
+      AppLocalizations.of(context)!.oabAnswer3,
+      AppLocalizations.of(context)!.oabAnswer4,
+      AppLocalizations.of(context)!.oabAnswer5,
+      AppLocalizations.of(context)!.oabAnswer6,
+    ],
+    [
+      AppLocalizations.of(context)!.oabAnswer1,
+      AppLocalizations.of(context)!.oabAnswer2,
+      AppLocalizations.of(context)!.oabAnswer3,
+      AppLocalizations.of(context)!.oabAnswer4,
+      AppLocalizations.of(context)!.oabAnswer5,
+      AppLocalizations.of(context)!.oabAnswer6,
+    ],
+    [
+      AppLocalizations.of(context)!.oabAnswer1,
+      AppLocalizations.of(context)!.oabAnswer2,
+      AppLocalizations.of(context)!.oabAnswer3,
+      AppLocalizations.of(context)!.oabAnswer4,
+      AppLocalizations.of(context)!.oabAnswer5,
+      AppLocalizations.of(context)!.oabAnswer6,
+    ],
+    [
+      AppLocalizations.of(context)!.oabAnswer1,
+      AppLocalizations.of(context)!.oabAnswer2,
+      AppLocalizations.of(context)!.oabAnswer3,
+      AppLocalizations.of(context)!.oabAnswer4,
+      AppLocalizations.of(context)!.oabAnswer5,
+      AppLocalizations.of(context)!.oabAnswer6,
+    ],
+    [
+      AppLocalizations.of(context)!.oabLastAnswer1,
+      AppLocalizations.of(context)!.oabLastAnswer2,
+      AppLocalizations.of(context)!.oabLastAnswer3,
+      AppLocalizations.of(context)!.oabLastAnswer4,
+      AppLocalizations.of(context)!.oabLastAnswer5,
+      AppLocalizations.of(context)!.oabLastAnswer6,
+    ],
+  ];
+
     final screenWidth = MediaQuery.of(context).size.width;
     //final screenHeight = MediaQuery.of(context).size.height;
     final textScaleFactor = MediaQuery.of(context).textScaleFactor;
-
     // Adjust font size based on screen width and text scale factor
     //final fontSize = screenWidth * 0.14 * textScaleFactor;
     final subheading = screenWidth * 0.06 * textScaleFactor;
@@ -167,7 +177,7 @@ class _OABState extends State<OAB> {
                                       child: FittedBox(
                                         fit: BoxFit.scaleDown,
                                         child: buildHeadingText(
-                                            "Question No ${index + 1}/7",
+                                            "${AppLocalizations.of(context)!.questionNo} ${index + 1}/7",
                                             subheading,
                                             true),
                                       ),
@@ -256,7 +266,6 @@ class _OABState extends State<OAB> {
     for (int i = 0; i < selectedAnswers.length; i++) {
       sum += selectedAnswers[i] as int;
     }
-    num avg = sum / 7;
     try {
       final CollectionReference usersCollection = FirebaseFirestore.instance
           .collection('QuizResults')
@@ -264,9 +273,10 @@ class _OABState extends State<OAB> {
           .collection("Result");
 
       //  if (user != null) {
-      final userData = {'selectedAnswers': selectedAnswers, 'average': sum};
+      final userData = {'selectedAnswers': selectedAnswers, 'sum': sum, "time":DateTime.now()};
 
       await usersCollection.doc("Quiz 1").set(userData);
+      await FirebaseFirestore.instance.collection("QuizHistory").doc(user.uid).collection("Quiz1History").add(userData);
       print("User answers saved to Firestore successfully!");
       PopupLoader.hide();
       Navigator.of(context).push(MaterialPageRoute(

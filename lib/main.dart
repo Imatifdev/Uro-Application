@@ -5,7 +5,10 @@ import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
+import 'package:uroapplication/view/calculator/quiz_screen.dart';
+import 'package:uroapplication/view/patient/history_page.dart';
 import 'package:uroapplication/view/patient/home.dart';
+import 'package:uroapplication/view/patient/oab.dart';
 import 'package:uroapplication/view/patient/patientdashboard.dart';
 import 'package:uroapplication/view/patient/user_screen.dart';
 import 'package:uroapplication/view/welcome.dart';
@@ -36,10 +39,10 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: PatientHome(),
+      home: QuizHistoryScreen(quiz: "Quiz1History"),
       //FirebaseAuth.instance.currentUser == null ? Welcome() : HomeState(),
       supportedLocales: L10n.all,
-      locale: const Locale("en"),
+      locale: const Locale("ur"),
       localizationsDelegates: const [
         AppLocalizations.delegate,
         GlobalMaterialLocalizations.delegate,

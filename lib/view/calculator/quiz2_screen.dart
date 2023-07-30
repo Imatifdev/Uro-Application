@@ -242,11 +242,11 @@ class _IPSSState extends State<IPSS> {
           .collection("Result");
 
       // if (user != null) {
-      final userData = {
-        'selectedAnswers': selectedAnswers,
-      };
+      final userData = {'selectedAnswers': selectedAnswers, 'sum': sum, "time":DateTime.now()};
+
 
       await usersCollection.doc("Quiz 2").set(userData);
+      await FirebaseFirestore.instance.collection("QuizHistory").doc(user.uid).collection("Quiz2History").add(userData);
       print("User answers saved to Firestore successfully!");
       PopupLoader.hide();
       Navigator.of(context).push(MaterialPageRoute(
