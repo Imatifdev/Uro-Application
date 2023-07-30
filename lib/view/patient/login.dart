@@ -4,7 +4,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:uroapplication/controller/mycolors.dart';
-import 'package:uroapplication/quiz_screen.dart';
+import 'package:uroapplication/view/calculator/quiz_screen.dart';
 import 'package:uroapplication/view/patient/user_screen.dart';
 
 import '../../models/loginmodel.dart';
@@ -241,9 +241,11 @@ class _LoginScreenPatientState extends State<LoginScreenPatient> {
                             bool isLoggedIn = await _loginVM.login(
                                 _emailController.text,
                                 _passwordController.text);
-                                if(isLoggedIn){
-                                  Navigator.of(context).push(MaterialPageRoute(builder: (context) => UserScreen(),));
-                                }
+                            if (isLoggedIn) {
+                              Navigator.of(context).push(MaterialPageRoute(
+                                builder: (context) => UserScreen(),
+                              ));
+                            }
                             setState(() {
                               _isLoggingIn = false;
                             });

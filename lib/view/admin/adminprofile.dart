@@ -7,8 +7,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
-import '../../controller/widgets/custombutton.dart';
-import '../../controller/widgets/customtextfield.dart';
+import '../../widgets/custombutton.dart';
+import '../../widgets/customtextfield.dart';
 
 class EditProfile extends StatefulWidget {
   const EditProfile({super.key});

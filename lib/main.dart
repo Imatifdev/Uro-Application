@@ -5,6 +5,8 @@ import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
+import 'package:uroapplication/view/patient/home.dart';
+import 'package:uroapplication/view/patient/patientdashboard.dart';
 import 'package:uroapplication/view/patient/user_screen.dart';
 import 'package:uroapplication/view/welcome.dart';
 import 'package:flutter_gen/gen_l10n/app_localization.dart';
@@ -25,24 +27,25 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       builder: EasyLoading.init(),
-        debugShowCheckedModeBanner: false,
-        title: 'Uro App',
-        theme: ThemeData(
-          fontFamily:
-              'MinionVariableConcept-Roman', // Specify the font family here
+      debugShowCheckedModeBanner: false,
+      title: 'Uro App',
+      theme: ThemeData(
+        fontFamily:
+            'MinionVariableConcept-Roman', // Specify the font family here
 
-          colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-          useMaterial3: true,
-        ),
-        home: FirebaseAuth.instance.currentUser==null? Welcome():UserScreen(),
-        supportedLocales: L10n.all,
-        locale: const Locale("en"),
-        localizationsDelegates: const [
-              AppLocalizations.delegate,
-              GlobalMaterialLocalizations.delegate,
-              GlobalCupertinoLocalizations.delegate,
-              GlobalWidgetsLocalizations.delegate
-            ],
-        );
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+        useMaterial3: true,
+      ),
+      home: PatientHome(),
+      //FirebaseAuth.instance.currentUser == null ? Welcome() : HomeState(),
+      supportedLocales: L10n.all,
+      locale: const Locale("en"),
+      localizationsDelegates: const [
+        AppLocalizations.delegate,
+        GlobalMaterialLocalizations.delegate,
+        GlobalCupertinoLocalizations.delegate,
+        GlobalWidgetsLocalizations.delegate
+      ],
+    );
   }
 }
