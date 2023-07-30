@@ -14,6 +14,7 @@ import 'package:uroapplication/view/admin/login.dart';
 import 'package:uroapplication/view/patient/settings.dart';
 
 import '../../widgets/custombutton.dart';
+import 'login.dart';
 
 class ProfileView extends StatefulWidget {
   @override
@@ -26,7 +27,7 @@ class _ProfileViewState extends State<ProfileView> {
     print('object');
     await auth.signOut();
     Navigator.pushReplacement(
-        context, MaterialPageRoute(builder: (context) => LoginScreen()));
+        context, MaterialPageRoute(builder: (context) => LoginScreenPatient()));
   }
 
   final userId = FirebaseAuth.instance.currentUser!.uid;
@@ -218,7 +219,37 @@ class _ProfileViewState extends State<ProfileView> {
                     ),
                   ),
                 ),
-              )
+              ),
+              Card(
+                color: Colors.white,
+                child: Container(
+                  height: screenHeight * 0.07,
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 00),
+                    child: ListTile(
+                      onTap: () {
+                        signOut();
+                      },
+                      leading: Icon(
+                        Icons.logout,
+                        color: Colors.pink,
+                      ),
+                      title: Text(
+                        "LogOut Your Account",
+                        style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            fontSize: subheading3,
+                            color: Colors.black),
+                      ),
+                      trailing: Icon(
+                        CupertinoIcons.right_chevron,
+                        color: Colors.pink,
+                        size: 20,
+                      ),
+                    ),
+                  ),
+                ),
+              ),
             ]),
           )
         ],

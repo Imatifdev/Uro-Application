@@ -280,29 +280,6 @@ class _LoginScreenState extends State<LoginScreen> {
                 SizedBox(
                   height: height / 40,
                 ),
-                RichText(
-                  text: TextSpan(
-                    text: 'Don\'t have an Account? ',
-                    style: TextStyle(color: Colors.black, fontSize: 16),
-                    children: <TextSpan>[
-                      TextSpan(
-                        text: 'Signup',
-                        recognizer: TapGestureRecognizer()
-                          ..onTap = () {
-                            Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => CreateAdmin()));
-                          },
-                        style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          color: blue,
-                          fontSize: 18,
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
               ],
             ),
           ),

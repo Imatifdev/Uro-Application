@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
+import 'package:uroapplication/view/admin/login.dart';
 import 'package:uroapplication/view/patient/home.dart';
 import 'package:uroapplication/view/patient/patientdashboard.dart';
 import 'package:uroapplication/view/patient/user_screen.dart';
@@ -36,7 +37,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: PatientHome(),
+      home: LoginScreen(),
       //FirebaseAuth.instance.currentUser == null ? Welcome() : HomeState(),
       supportedLocales: L10n.all,
       locale: const Locale("en"),
