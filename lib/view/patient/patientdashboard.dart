@@ -120,7 +120,7 @@ class _HomeStateState extends State<HomeState> {
                     ));
               },
               child: Container(
-                height: screenHeight / 3.5,
+                height: screenHeight / 3,
                 width: screenWidth,
                 decoration: BoxDecoration(
                   color: Colors.white.withOpacity(0.2),
