@@ -23,67 +23,65 @@ class _DashboardState extends State<Dashboard> {
   final String userId = FirebaseAuth.instance.currentUser!.uid;
   final String? userName = FirebaseAuth.instance.currentUser!.displayName;
 
-
   void openExcel() async {
-  PopupLoader.show();
-  final QuerySnapshot patientsSnapshot =
-      await FirebaseFirestore.instance.collection("Patients").get();
-  final QuerySnapshot usersSnapshot =
-      await FirebaseFirestore.instance.collection("users").get();
+    PopupLoader.show();
+    final QuerySnapshot patientsSnapshot =
+        await FirebaseFirestore.instance.collection("Patients").get();
+    final QuerySnapshot usersSnapshot =
+        await FirebaseFirestore.instance.collection("users").get();
 
-  // Create the Excel workbook
-  final workbook = Workbook();
-  final sheet = workbook.worksheets[0];
+    // Create the Excel workbook
+    final workbook = Workbook();
+    final sheet = workbook.worksheets[0];
 
-  int rowIndex = 1; // Start from 2nd row as the 1st row will be used for headers
+    int rowIndex =
+        1; // Start from 2nd row as the 1st row will be used for headers
 
-  // Add headers to the Excel sheet
-  sheet.getRangeByName('A$rowIndex').setText("Patient ID");
-  sheet.getRangeByName('B$rowIndex').setText("First Name");
-  sheet.getRangeByName('C$rowIndex').setText("Last Name");
-  sheet.getRangeByName('D$rowIndex').setText("Email");
-  sheet.getRangeByName('E$rowIndex').setText("DOB");
-  sheet.getRangeByName('F$rowIndex').setText("Phone");
-  sheet.getRangeByName('G$rowIndex').setText("Quiz 1 Result");
-  sheet.getRangeByName('H$rowIndex').setText("Quiz 2 Result");
-  rowIndex++;
-
-  // Add the patient data to the Excel sheet
-  patientsSnapshot.docs.forEach((patientDocument) {
-    final Map<String, dynamic> patientData =
-        patientDocument.data() as Map<String, dynamic>;
-    final String patientId = patientDocument.id;
-
-    // final userDocument = usersSnapshot.docs
-    //     .firstWhere((userDocument) => userDocument.id == patientId);
-
-    // final Map<String, dynamic> userData =
-    //     userDocument.data() as Map<String, dynamic>;
-    //final List<int?> selectedAnswers = List<int?>.from(userData["selectedAnswers"]);
-
-    sheet.getRangeByName('A$rowIndex').setText(patientId);
-    sheet.getRangeByName('B$rowIndex').setText(patientData["First Name"]);
-    sheet.getRangeByName('C$rowIndex').setText(patientData["Last Name"]);
-    sheet.getRangeByName('D$rowIndex').setText(patientData["Email"]);
-    sheet.getRangeByName('E$rowIndex').setText(patientData["DOB"]);
-    sheet.getRangeByName('F$rowIndex').setText(patientData["Phone"]);
-    //sheet.getRangeByName('G$rowIndex').setText(selectedAnswers.toString());
-
+    // Add headers to the Excel sheet
+    sheet.getRangeByName('A$rowIndex').setText("Patient ID");
+    sheet.getRangeByName('B$rowIndex').setText("First Name");
+    sheet.getRangeByName('C$rowIndex').setText("Last Name");
+    sheet.getRangeByName('D$rowIndex').setText("Email");
+    sheet.getRangeByName('E$rowIndex').setText("DOB");
+    sheet.getRangeByName('F$rowIndex').setText("Phone");
+    sheet.getRangeByName('G$rowIndex').setText("Quiz 1 Result");
+    sheet.getRangeByName('H$rowIndex').setText("Quiz 2 Result");
     rowIndex++;
-  });
 
-  // Save the Excel sheet to a file
-  final List<int> bytes = workbook.saveAsStream();
-  workbook.dispose();
+    // Add the patient data to the Excel sheet
+    patientsSnapshot.docs.forEach((patientDocument) {
+      final Map<String, dynamic> patientData =
+          patientDocument.data() as Map<String, dynamic>;
+      final String patientId = patientDocument.id;
 
-  final directory = await getApplicationSupportDirectory();
-  final file = File('${directory.path}/Output.xlsx');
-  await file.writeAsBytes(bytes, flush: true);
-  PopupLoader.hide();
-  OpenFile.open(file.path);
-}
+      // final userDocument = usersSnapshot.docs
+      //     .firstWhere((userDocument) => userDocument.id == patientId);
 
+      // final Map<String, dynamic> userData =
+      //     userDocument.data() as Map<String, dynamic>;
+      //final List<int?> selectedAnswers = List<int?>.from(userData["selectedAnswers"]);
 
+      sheet.getRangeByName('A$rowIndex').setText(patientId);
+      sheet.getRangeByName('B$rowIndex').setText(patientData["First Name"]);
+      sheet.getRangeByName('C$rowIndex').setText(patientData["Last Name"]);
+      sheet.getRangeByName('D$rowIndex').setText(patientData["Email"]);
+      sheet.getRangeByName('E$rowIndex').setText(patientData["DOB"]);
+      sheet.getRangeByName('F$rowIndex').setText(patientData["Phone"]);
+      //sheet.getRangeByName('G$rowIndex').setText(selectedAnswers.toString());
+
+      rowIndex++;
+    });
+
+    // Save the Excel sheet to a file
+    final List<int> bytes = workbook.saveAsStream();
+    workbook.dispose();
+
+    final directory = await getApplicationSupportDirectory();
+    final file = File('${directory.path}/Output.xlsx');
+    await file.writeAsBytes(bytes, flush: true);
+    PopupLoader.hide();
+    OpenFile.open(file.path);
+  }
 
   @override
   Widget build(BuildContext context) {

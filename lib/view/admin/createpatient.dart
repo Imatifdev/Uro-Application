@@ -143,7 +143,7 @@ class _NewSignupScreenState extends State<NewSignupScreen> {
                               if (value.length < 3) {}
                               return null;
                             },
-                            controller: _lname,
+                            controller: _fname,
                             keyboardType: TextInputType.name,
                             decoration: InputDecoration(
                                 errorStyle: TextStyle(color: Colors.black),
@@ -177,7 +177,7 @@ class _NewSignupScreenState extends State<NewSignupScreen> {
                               if (value.length < 3) {}
                               return null;
                             },
-                            controller: _fname,
+                            controller: _lname,
                             keyboardType: TextInputType.name,
                             decoration: InputDecoration(
                                 errorStyle: TextStyle(color: Colors.black),
