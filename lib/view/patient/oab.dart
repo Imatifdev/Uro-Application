@@ -56,6 +56,7 @@ class _OABScreenState extends State<OABScreen> {
     final heading = screenWidth * 0.08 * textScaleFactor;
 
     return Scaffold(
+      backgroundColor: Colors.white,
         body: Container(
       height: screenHeight,
       width: screenWidth,

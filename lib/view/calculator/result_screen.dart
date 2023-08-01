@@ -30,7 +30,7 @@ class _ResultScreenState extends State<ResultScreen> {
     Size size = MediaQuery.of(context).size;
     int questionScore = widget.qNum == 7? 35:25;
     return Scaffold(
-      backgroundColor: Colors.deepPurple,
+      backgroundColor: Colors.blue,
       body: 
       SafeArea(child: 
       SizedBox(
@@ -80,7 +80,7 @@ class _ResultScreenState extends State<ResultScreen> {
     borderRadius: BorderRadius.circular(25),
       //set border radius more than 50% of height and width to make circle
   ),
-                  color: Colors.deepPurple.shade100,
+                  color: Colors.pink.shade100,
                   child: Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: Column(

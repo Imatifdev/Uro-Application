@@ -5,6 +5,8 @@ import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:uroapplication/Utils/popup_loader.dart';
 import 'package:uroapplication/view/calculator/result_screen.dart';
+import 'package:flutter_gen/gen_l10n/app_localization.dart';
+
 
 class IPSS extends StatefulWidget {
   const IPSS({super.key});
@@ -33,58 +35,68 @@ class _IPSSState extends State<IPSS> {
     );
   }
 
-  List<String> questions = [
-    "How often do you have a strong, sudden urge to urinate that makes you fear you will leak urine if you can't get to a bathroom immediately?",
-    "How often do you leak urine after feeling a strong urge to go? (whether you wear pads/protection or not)",
-    "How much urine do you think usually leaks? (whether you wear pads/protection or not)",
-    "How often do you urinate during the day?",
-    "How many times do you usually get up at night to urinate, from when you went to bed until you get up in the morning?",
-  ];
-  List<String> headings = [
-    "Urgency",
-    "Urgency Incontinence",
-    "Incontinence",
-    "Frequency",
-    "Waking to Urinate"
-  ];
-  List<List<String>> answers = [
-    [
-      "Not at all",
-      "Occasionally",
-      "About once a day",
-      "About three times a day",
-      "About half the time",
-      "Almost always"
-    ],
-    [
-      "Not at all",
-      "Occasionally",
-      "About once a day",
-      "About three times a day",
-      "About half the time",
-      "Almost always"
-    ],
-    [
-      "None",
-      "Drops",
-      "1 tea spoon",
-      "1 table spoon",
-      "1/4 cup",
-      "Entire Bladder",
-    ],
-    [
-      "1-6 times",
-      "7-8 times",
-      "9-10 times",
-      "11-12 times",
-      "13-14 times",
-      "15 or more times"
-    ],
-    ["None", "1 time", "2 times", "3 times", "4 times", "5 or more times"],
-  ];
-
+  
   @override
   Widget build(BuildContext context) {
+
+    List<String> questions = [
+    AppLocalizations.of(context)!.ipssQuestion1,
+    AppLocalizations.of(context)!.ipssQuestion2,
+    AppLocalizations.of(context)!.ipssQuestion3,
+    AppLocalizations.of(context)!.ipssQuestion4,
+    AppLocalizations.of(context)!.ipssQuestion5
+    ];
+  List<String> headings = [
+    AppLocalizations.of(context)!.ipssHeading1,
+    AppLocalizations.of(context)!.ipssHeading2,
+    AppLocalizations.of(context)!.ipssHeading3,
+    AppLocalizations.of(context)!.ipssHeading4,
+    AppLocalizations.of(context)!.ipssHeading5
+    ];
+  List<List<String>> answers = [
+    [
+      AppLocalizations.of(context)!.ipssOneAnswer1,
+      AppLocalizations.of(context)!.ipssOneAnswer2,
+      AppLocalizations.of(context)!.ipssOneAnswer3,
+      AppLocalizations.of(context)!.ipssOneAnswer4,
+      AppLocalizations.of(context)!.ipssOneAnswer5,
+      AppLocalizations.of(context)!.ipssOneAnswer6,
+    ],
+    [
+      AppLocalizations.of(context)!.ipssOneAnswer1,
+      AppLocalizations.of(context)!.ipssOneAnswer2,
+      AppLocalizations.of(context)!.ipssOneAnswer3,
+      AppLocalizations.of(context)!.ipssOneAnswer4,
+      AppLocalizations.of(context)!.ipssOneAnswer5,
+      AppLocalizations.of(context)!.ipssOneAnswer6,
+    ],
+    [
+      AppLocalizations.of(context)!.ipssTwoAnswer1,
+      AppLocalizations.of(context)!.ipssTwoAnswer2,
+      AppLocalizations.of(context)!.ipssTwoAnswer3,
+      AppLocalizations.of(context)!.ipssTwoAnswer4,
+      AppLocalizations.of(context)!.ipssTwoAnswer5,
+      AppLocalizations.of(context)!.ipssTwoAnswer6,
+    ],
+    [
+      AppLocalizations.of(context)!.ipssThreeAnswer1,
+      AppLocalizations.of(context)!.ipssThreeAnswer2,
+      AppLocalizations.of(context)!.ipssThreeAnswer3,
+      AppLocalizations.of(context)!.ipssThreeAnswer4,
+      AppLocalizations.of(context)!.ipssThreeAnswer5,
+      AppLocalizations.of(context)!.ipssThreeAnswer6,
+    ],
+    [
+      AppLocalizations.of(context)!.ipssFourAnswer1,
+      AppLocalizations.of(context)!.ipssFourAnswer2,
+      AppLocalizations.of(context)!.ipssFourAnswer3,
+      AppLocalizations.of(context)!.ipssFourAnswer4,
+      AppLocalizations.of(context)!.ipssFourAnswer5,
+      AppLocalizations.of(context)!.ipssFourAnswer6,
+    ],
+  ];
+
+
     final screenWidth = MediaQuery.of(context).size.width;
     //final screenHeight = MediaQuery.of(context).size.height;
     final textScaleFactor = MediaQuery.of(context).textScaleFactor;
@@ -96,7 +108,7 @@ class _IPSSState extends State<IPSS> {
     //final fontsize = screenWidth * 0.07 * textScaleFactor;
 
     return Scaffold(
-      backgroundColor: Colors.deepPurple,
+      backgroundColor: Colors.blue,
       body: SafeArea(
         child: LayoutBuilder(
           builder: (context, constraints) {
@@ -109,6 +121,7 @@ class _IPSSState extends State<IPSS> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
+                    Text("IPSS Quiz"),
                     SizedBox(height: constraints.maxHeight * 0.01),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -128,7 +141,7 @@ class _IPSSState extends State<IPSS> {
                           });
                         },
                         itemBuilder: (context, index) => Card(
-                          color: Colors.deepPurple.shade100,
+                          color: Colors.pink.shade100,
                           child: Padding(
                             padding: const EdgeInsets.all(8.0),
                             child: Column(
@@ -179,7 +192,7 @@ class _IPSSState extends State<IPSS> {
                                             color:
                                                 selectedAnswers[currentPage] ==
                                                         i
-                                                    ? Colors.deepPurple
+                                                    ? Colors.pink
                                                     : Colors.white,
                                             border: Border.all(
                                                 color: Theme.of(context)
@@ -197,7 +210,7 @@ class _IPSSState extends State<IPSS> {
                                                                 currentPage] ==
                                                             i
                                                         ? Colors.white
-                                                        : Colors.deepPurple),
+                                                        : Colors.pink),
                                               ),
                                             ),
                                           ),
@@ -284,7 +297,7 @@ class _IPSSState extends State<IPSS> {
             if (states.contains(MaterialState.disabled)) {
               return Colors.grey;
             }
-            return Colors.deepPurple.shade100;
+            return Colors.pink.shade100;
           },
         ),
       ),
@@ -313,7 +326,7 @@ class _IPSSState extends State<IPSS> {
         child: CircleAvatar(
           radius: constraints.maxWidth * 0.05,
           backgroundColor:
-              answered[index] ? Colors.deepPurple.shade100 : Colors.deepPurple,
+              answered[index] ? Colors.pink.shade100 : Colors.pink,
           child: answered[index]
               ? const Icon(Icons.check, color: Colors.white)
               : Text((index + 1).toString(),
