@@ -1,7 +1,7 @@
 // ignore_for_file: prefer_const_constructors, depend_on_referenced_packages, unused_element, no_leading_underscores_for_local_identifiers, avoid_print, use_build_context_synchronously
 
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/gestures.dart';
+import 'package:uroapplication/view/patient/home.dart';
 import 'package:flutter/material.dart';
 import 'package:uroapplication/controller/mycolors.dart';
 import 'package:uroapplication/view/calculator/quiz_screen.dart';
@@ -243,7 +243,7 @@ class _LoginScreenPatientState extends State<LoginScreenPatient> {
                                 _passwordController.text);
                             if (isLoggedIn) {
                               Navigator.of(context).push(MaterialPageRoute(
-                                builder: (context) => UserScreen(),
+                                builder: (context) => PatientHome(),
                               ));
                             }
                             setState(() {

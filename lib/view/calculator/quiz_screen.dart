@@ -127,7 +127,7 @@ class _OABState extends State<OAB> {
     //final fontsize = screenWidth * 0.07 * textScaleFactor;
 
     return Scaffold(
-      backgroundColor: Colors.deepPurple,
+      backgroundColor: Colors.blue,
       body: SafeArea(
         child: LayoutBuilder(
           builder: (context, constraints) {
@@ -140,6 +140,7 @@ class _OABState extends State<OAB> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
+                    const Text("OAB Quiz"),
                     SizedBox(height: constraints.maxHeight * 0.01),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -159,7 +160,7 @@ class _OABState extends State<OAB> {
                           });
                         },
                         itemBuilder: (context, index) => Card(
-                          color: Colors.deepPurple.shade100,
+                          color: Colors.pink.shade100 ,
                           child: Padding(
                             padding: const EdgeInsets.all(8.0),
                             child: Column(
@@ -210,7 +211,7 @@ class _OABState extends State<OAB> {
                                             color:
                                                 selectedAnswers[currentPage] ==
                                                         i
-                                                    ? Colors.deepPurple
+                                                    ? Colors.pink
                                                     : Colors.white,
                                             border: Border.all(
                                                 color: Theme.of(context)
@@ -228,7 +229,7 @@ class _OABState extends State<OAB> {
                                                                 currentPage] ==
                                                             i
                                                         ? Colors.white
-                                                        : Colors.deepPurple),
+                                                        : Colors.pink),
                                               ),
                                             ),
                                           ),
@@ -314,7 +315,7 @@ class _OABState extends State<OAB> {
             if (states.contains(MaterialState.disabled)) {
               return Colors.grey;
             }
-            return Colors.deepPurple.shade100;
+            return Colors.pink.shade100;
           },
         ),
       ),
@@ -343,7 +344,7 @@ class _OABState extends State<OAB> {
         child: CircleAvatar(
           radius: constraints.maxWidth * 0.05,
           backgroundColor:
-              answered[index] ? Colors.deepPurple.shade100 : Colors.deepPurple,
+              answered[index] ? Colors.pink.shade100 : Colors.pink,
           child: answered[index]
               ? const Icon(Icons.check, color: Colors.white)
               : Text((index + 1).toString(),

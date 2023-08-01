@@ -1,10 +1,11 @@
-// ignore_for_file: depend_on_referenced_packages
+// ignore_for_file: depend_on_referenced_packages, prefer_const_constructors
 
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
+import 'package:uroapplication/view/calculator/quiz2_screen.dart';
 import 'package:uroapplication/view/calculator/quiz_screen.dart';
 import 'package:uroapplication/view/patient/history_page.dart';
 import 'package:uroapplication/view/patient/home.dart';
@@ -36,11 +37,11 @@ class MyApp extends StatelessWidget {
         fontFamily:
             'MinionVariableConcept-Roman', // Specify the font family here
 
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.pink),
         useMaterial3: true,
       ),
-      home: QuizHistoryScreen(quiz: "Quiz1History"),
-      //FirebaseAuth.instance.currentUser == null ? Welcome() : HomeState(),
+      home: //PatientHome(),
+      FirebaseAuth.instance.currentUser == null ? Welcome() : IPSS(),
       supportedLocales: L10n.all,
       locale: const Locale("ur"),
       localizationsDelegates: const [
