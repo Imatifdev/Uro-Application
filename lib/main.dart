@@ -5,7 +5,6 @@ import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
-import 'package:uroapplication/view/calculator/quiz2_screen.dart';
 import 'package:uroapplication/view/calculator/quiz_screen.dart';
 import 'package:uroapplication/view/patient/history_page.dart';
 import 'package:uroapplication/view/patient/home.dart';
@@ -41,9 +40,9 @@ class MyApp extends StatelessWidget {
         useMaterial3: true,
       ),
       home: //PatientHome(),
-      FirebaseAuth.instance.currentUser == null ? Welcome() : IPSS(),
+      FirebaseAuth.instance.currentUser == null ? Welcome() : PatientHome(),
       supportedLocales: L10n.all,
-      locale: const Locale("ur"),
+      locale: const Locale("en"),
       localizationsDelegates: const [
         AppLocalizations.delegate,
         GlobalMaterialLocalizations.delegate,

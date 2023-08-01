@@ -67,11 +67,11 @@ class _ProfileViewState extends State<ProfileView> {
 
     // Adjust font size based on screen width and text scale factor
     //final fontSize = screenWidth * 0.14 * textScaleFactor;
-    final subheading1 = screenWidth * 0.07 * textScaleFactor;
-    final subheading2 = screenWidth * 0.06 * textScaleFactor;
-    final subheading3 = screenWidth * 0.06 * textScaleFactor;
+    // final subheading1 = screenWidth * 0.07 * textScaleFactor;
+    // final subheading2 = screenWidth * 0.06 * textScaleFactor;
+    final subheading3 = screenWidth * 0.04 * textScaleFactor;
 
-    final heading = screenWidth * 0.09 * textScaleFactor;
+    final heading = screenWidth * 0.07 * textScaleFactor;
 
     // final controller = Get.put(ProfileController());
     return Scaffold(
@@ -102,7 +102,7 @@ class _ProfileViewState extends State<ProfileView> {
               Card(
                 child: Container(
                   width: screenWidth,
-                  height: screenHeight * 0.13,
+                  height: screenHeight * 0.15,
                   child: Padding(
                     padding: const EdgeInsets.symmetric(
                         horizontal: 20, vertical: 10),
