@@ -3,14 +3,11 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:uroapplication/view/calculator/quiz_screen.dart';
 import 'package:uroapplication/view/patient/oab.dart';
 import '../../controller/mycolors.dart';
 
 import 'package:page_transition/page_transition.dart';
-import 'package:swipeable_button_view/swipeable_button_view.dart';
 
 class HomeState extends StatefulWidget {
   @override
@@ -41,9 +38,9 @@ class _HomeStateState extends State<HomeState> {
     print(userId);
   }
 
-  int _currentIndex = 0;
+  //int _currentIndex = 0;
 
-  final List<Widget> _screens = [];
+  //final List<Widget> _screens = [];
 
   @override
   Widget build(BuildContext context) {
@@ -55,7 +52,7 @@ class _HomeStateState extends State<HomeState> {
     //final fontSize = screenWidth * 0.14 * textScaleFactor;
     final subheading1 = screenWidth * 0.07 * textScaleFactor;
     final subheading2 = screenWidth * 0.06 * textScaleFactor;
-    final subheading3 = screenWidth * 0.06 * textScaleFactor;
+    //final subheading3 = screenWidth * 0.06 * textScaleFactor;
 
     final heading = screenWidth * 0.08 * textScaleFactor;
     if (check == 0) {

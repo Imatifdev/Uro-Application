@@ -7,7 +7,6 @@ import 'package:uroapplication/controller/mycolors.dart';
 import 'package:uroapplication/view/admin/login.dart';
 import 'package:uroapplication/view/patient/login.dart';
 
-import 'admin/dashboard.dart';
 
 class Welcome extends StatefulWidget {
   const Welcome({super.key});

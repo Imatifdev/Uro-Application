@@ -27,8 +27,8 @@ class _DashboardState extends State<Dashboard> {
     PopupLoader.show();
     final QuerySnapshot patientsSnapshot =
         await FirebaseFirestore.instance.collection("Patients").get();
-    final QuerySnapshot usersSnapshot =
-        await FirebaseFirestore.instance.collection("users").get();
+    // final QuerySnapshot usersSnapshot =
+    //     await FirebaseFirestore.instance.collection("users").get();
 
     // Create the Excel workbook
     final workbook = Workbook();

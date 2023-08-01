@@ -3,7 +3,6 @@ import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:uroapplication/view/patient/oab.dart';
 import 'package:uroapplication/view/patient/patientdashboard.dart';
 import 'package:uroapplication/view/patient/profile.dart';
-import 'package:uroapplication/view/patient/settings.dart';
 
 import '../../controller/mycolors.dart';
 

@@ -2,7 +2,6 @@
 
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:uroapplication/view/calculator/quiz2_screen.dart';
 import 'package:uroapplication/view/calculator/quiz_screen.dart';
@@ -40,9 +39,9 @@ class _OABScreenState extends State<OABScreen> {
     print(userId);
   }
 
-  int _currentIndex = 0;
+  // int _currentIndex = 0;
 
-  final List<Widget> _screens = [];
+  // final List<Widget> _screens = [];
 
   @override
   Widget build(BuildContext context) {

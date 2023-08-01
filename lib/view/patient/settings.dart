@@ -27,8 +27,8 @@ class _SettingsScreenState extends State<SettingsScreen> {
 
     // Adjust font size based on screen width and text scale factor
     //final fontSize = screenWidth * 0.14 * textScaleFactor;
-    final subheading1 = screenWidth * 0.07 * textScaleFactor;
-    final subheading2 = screenWidth * 0.06 * textScaleFactor;
+    // final subheading1 = screenWidth * 0.07 * textScaleFactor;
+   // final subheading2 = screenWidth * 0.06 * textScaleFactor;
     final subheading3 = screenWidth * 0.06 * textScaleFactor;
 
     final heading = screenWidth * 0.09 * textScaleFactor;

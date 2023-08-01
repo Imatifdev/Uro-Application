@@ -4,8 +4,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:uroapplication/view/patient/home.dart';
 import 'package:flutter/material.dart';
 import 'package:uroapplication/controller/mycolors.dart';
-import 'package:uroapplication/view/calculator/quiz_screen.dart';
-import 'package:uroapplication/view/patient/user_screen.dart';
 
 import '../../models/loginmodel.dart';
 import 'package:velocity_x/velocity_x.dart';
