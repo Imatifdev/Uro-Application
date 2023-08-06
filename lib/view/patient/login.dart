@@ -1,12 +1,17 @@
 // ignore_for_file: prefer_const_constructors, depend_on_referenced_packages, unused_element, no_leading_underscores_for_local_identifiers, avoid_print, use_build_context_synchronously
 
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/gestures.dart';
+import 'package:lottie/lottie.dart';
 import 'package:uroapplication/view/patient/home.dart';
 import 'package:flutter/material.dart';
 import 'package:uroapplication/controller/mycolors.dart';
 
 import '../../models/loginmodel.dart';
 import 'package:velocity_x/velocity_x.dart';
+
+import 'createpatient.dart';
+import 'forgot.dart';
 
 class LoginScreenPatient extends StatefulWidget {
   const LoginScreenPatient({super.key});
@@ -91,13 +96,8 @@ class _LoginScreenPatientState extends State<LoginScreenPatient> {
                       height: 100,
                     ),
                     Center(
-                      child: Image.asset(
-                        'assets/images/patient.png',
-                        height: 200,
-                        width: 200,
-                      ),
-                    ),
-
+                        child: Lottie.asset('assets/log.json',
+                            height: height / 3.5)),
                     SizedBox(
                       height: 30,
                     ),
@@ -115,7 +115,7 @@ class _LoginScreenPatientState extends State<LoginScreenPatient> {
                     Card(
                       elevation: 10,
                       shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(15)),
+                          borderRadius: BorderRadius.circular(50)),
                       child: TextFormField(
                         validator: (value) {
                           if (value!.isEmpty) {}
@@ -151,7 +151,7 @@ class _LoginScreenPatientState extends State<LoginScreenPatient> {
                     Card(
                       elevation: 10,
                       shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(15)),
+                          borderRadius: BorderRadius.circular(50)),
                       child: TextFormField(
                         validator: (value) {
                           if (value!.isEmpty) {}
@@ -196,27 +196,27 @@ class _LoginScreenPatientState extends State<LoginScreenPatient> {
                     SizedBox(
                       height: 10,
                     ),
-                    // Row(
-                    //   mainAxisAlignment: MainAxisAlignment.end,
-                    //   children: [
-                    //     GestureDetector(
-                    //       onTap: () {
-                    //         Navigator.push(
-                    //             context,
-                    //             MaterialPageRoute(
-                    //                 builder: (ctx) => ForgitPassword()));
-                    //       },
-                    //       child: Text(
-                    //         "Forgot Password?",
-                    //         style: TextStyle(
-                    //             color: Colors.black,
-                    //             fontSize: 16,
-                    //             fontWeight: FontWeight.bold,
-                    //             decoration: TextDecoration.underline),
-                    //       ),
-                    //     ),
-                    //   ],
-                    // )
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: [
+                        GestureDetector(
+                          onTap: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (ctx) => ForgitPassword()));
+                          },
+                          child: Text(
+                            "Forgot Password?",
+                            style: TextStyle(
+                                color: Colors.black,
+                                fontSize: 16,
+                                fontWeight: FontWeight.bold,
+                                decoration: TextDecoration.underline),
+                          ),
+                        ),
+                      ],
+                    )
                   ],
                 ).pSymmetric(h: 20),
                 SizedBox(
@@ -266,7 +266,11 @@ class _LoginScreenPatientState extends State<LoginScreenPatient> {
                         borderRadius: BorderRadius.circular(15),
                       ),
                       child: _isLoggingIn
-                          ? const CircularProgressIndicator().centered()
+                          ? Lottie.asset(
+                              'assets/login.json', // Replace with your animation file path
+                              height: 30,
+                              width: 30,
+                            ).centered()
                           : const Text(
                               'Log In',
                               style:
@@ -278,29 +282,29 @@ class _LoginScreenPatientState extends State<LoginScreenPatient> {
                 SizedBox(
                   height: height / 40,
                 ),
-                // RichText(
-                //   text: TextSpan(
-                //     text: 'Don\'t have an Account? ',
-                //     style: TextStyle(color: Colors.black, fontSize: 16),
-                //     children: <TextSpan>[
-                //       TextSpan(
-                //         text: 'Signup',
-                //         recognizer: TapGestureRecognizer()
-                //           ..onTap = () {
-                //             Navigator.push(
-                //                 context,
-                //                 MaterialPageRoute(
-                //                     builder: (context) => NewSignupScreen()));
-                //           },
-                //         style: TextStyle(
-                //           fontWeight: FontWeight.bold,
-                //           color: blue,
-                //           fontSize: 18,
-                //         ),
-                //       ),
-                //     ],
-                //   ),
-                // ),
+                RichText(
+                  text: TextSpan(
+                    text: 'Don\'t have an Account? ',
+                    style: TextStyle(color: Colors.black, fontSize: 16),
+                    children: <TextSpan>[
+                      TextSpan(
+                        text: 'Signup',
+                        recognizer: TapGestureRecognizer()
+                          ..onTap = () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => NewSignupScreen()));
+                          },
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          color: blue,
+                          fontSize: 18,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
               ],
             ),
           ),

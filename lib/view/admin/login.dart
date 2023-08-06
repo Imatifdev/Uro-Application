@@ -7,7 +7,7 @@ import 'package:uroapplication/view/admin/dashboard.dart';
 
 import '../../models/loginmodel.dart';
 import 'package:velocity_x/velocity_x.dart';
-
+import 'package:lottie/lottie.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -91,13 +91,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     SizedBox(
                       height: 100,
                     ),
-                    Center(
-                      child: Image.asset(
-                        'assets/images/admin.png',
-                        height: 200,
-                        width: 200,
-                      ),
-                    ),
+                    Center(child: LottieBuilder.asset('assets/login.json')),
 
                     SizedBox(
                       height: 30,
@@ -116,7 +110,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     Card(
                       elevation: 10,
                       shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(15)),
+                          borderRadius: BorderRadius.circular(50)),
                       child: TextFormField(
                         validator: (value) {
                           if (value!.isEmpty) {}

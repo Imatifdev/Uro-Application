@@ -17,7 +17,7 @@ class _PatientHomeState extends State<PatientHome>
     with SingleTickerProviderStateMixin {
   int _currentIndex = 0;
   final List<Widget> _screens = [
-    HomeState(),
+    PatientDashboard(),
     OABScreen(),
     ProfileView(),
   ];

@@ -5,16 +5,17 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:uroapplication/view/patient/oab.dart';
+import 'package:uroapplication/view/patient/profile.dart';
 import '../../controller/mycolors.dart';
 
 import 'package:page_transition/page_transition.dart';
 
-class HomeState extends StatefulWidget {
+class PatientDashboard extends StatefulWidget {
   @override
-  State<HomeState> createState() => _HomeStateState();
+  State<PatientDashboard> createState() => _PatientDashboardState();
 }
 
-class _HomeStateState extends State<HomeState> {
+class _PatientDashboardState extends State<PatientDashboard> {
   bool isFinished = false;
 
   final userId = FirebaseAuth.instance.currentUser!.uid;
@@ -89,11 +90,20 @@ class _HomeStateState extends State<HomeState> {
                       color: Colors.white,
                       fontWeight: FontWeight.bold),
                 ),
-                Icon(
-                  CupertinoIcons.person_alt_circle,
-                  color: Colors.white,
-                  size: 35,
-                ),
+                IconButton(
+                  icon: Icon(
+                    CupertinoIcons.person_alt_circle,
+                    color: Colors.white,
+                    size: 35,
+                  ),
+                  onPressed: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (ctx) => ProfileView(),
+                        ));
+                  },
+                )
               ],
             ),
             Text(

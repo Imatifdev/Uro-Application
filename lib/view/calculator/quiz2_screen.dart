@@ -4,9 +4,9 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:uroapplication/Utils/popup_loader.dart';
+import 'package:uroapplication/controller/mycolors.dart';
 import 'package:uroapplication/view/calculator/result_screen.dart';
 import 'package:flutter_gen/gen_l10n/app_localization.dart';
-
 
 class IPSS extends StatefulWidget {
   const IPSS({super.key});
@@ -30,72 +30,70 @@ class _IPSSState extends State<IPSS> {
         softWrap: true,
         style: TextStyle(
             fontSize: fontSize,
-            fontWeight: bold ? FontWeight.bold : FontWeight.normal),
+            fontWeight: bold ? FontWeight.bold : FontWeight.normal,
+            color: Colors.white),
       ),
     );
   }
 
-  
   @override
   Widget build(BuildContext context) {
-
     List<String> questions = [
-    AppLocalizations.of(context)!.ipssQuestion1,
-    AppLocalizations.of(context)!.ipssQuestion2,
-    AppLocalizations.of(context)!.ipssQuestion3,
-    AppLocalizations.of(context)!.ipssQuestion4,
-    AppLocalizations.of(context)!.ipssQuestion5
+      AppLocalizations.of(context)!.ipssQuestion1,
+      AppLocalizations.of(context)!.ipssQuestion2,
+      AppLocalizations.of(context)!.ipssQuestion3,
+      AppLocalizations.of(context)!.ipssQuestion4,
+      AppLocalizations.of(context)!.ipssQuestion5
     ];
-  List<String> headings = [
-    AppLocalizations.of(context)!.ipssHeading1,
-    AppLocalizations.of(context)!.ipssHeading2,
-    AppLocalizations.of(context)!.ipssHeading3,
-    AppLocalizations.of(context)!.ipssHeading4,
-    AppLocalizations.of(context)!.ipssHeading5
+    List<String> headings = [
+      AppLocalizations.of(context)!.ipssHeading1,
+      AppLocalizations.of(context)!.ipssHeading2,
+      AppLocalizations.of(context)!.ipssHeading3,
+      AppLocalizations.of(context)!.ipssHeading4,
+      AppLocalizations.of(context)!.ipssHeading5
     ];
-  List<List<String>> answers = [
-    [
-      AppLocalizations.of(context)!.ipssOneAnswer1,
-      AppLocalizations.of(context)!.ipssOneAnswer2,
-      AppLocalizations.of(context)!.ipssOneAnswer3,
-      AppLocalizations.of(context)!.ipssOneAnswer4,
-      AppLocalizations.of(context)!.ipssOneAnswer5,
-      AppLocalizations.of(context)!.ipssOneAnswer6,
-    ],
-    [
-      AppLocalizations.of(context)!.ipssOneAnswer1,
-      AppLocalizations.of(context)!.ipssOneAnswer2,
-      AppLocalizations.of(context)!.ipssOneAnswer3,
-      AppLocalizations.of(context)!.ipssOneAnswer4,
-      AppLocalizations.of(context)!.ipssOneAnswer5,
-      AppLocalizations.of(context)!.ipssOneAnswer6,
-    ],
-    [
-      AppLocalizations.of(context)!.ipssTwoAnswer1,
-      AppLocalizations.of(context)!.ipssTwoAnswer2,
-      AppLocalizations.of(context)!.ipssTwoAnswer3,
-      AppLocalizations.of(context)!.ipssTwoAnswer4,
-      AppLocalizations.of(context)!.ipssTwoAnswer5,
-      AppLocalizations.of(context)!.ipssTwoAnswer6,
-    ],
-    [
-      AppLocalizations.of(context)!.ipssThreeAnswer1,
-      AppLocalizations.of(context)!.ipssThreeAnswer2,
-      AppLocalizations.of(context)!.ipssThreeAnswer3,
-      AppLocalizations.of(context)!.ipssThreeAnswer4,
-      AppLocalizations.of(context)!.ipssThreeAnswer5,
-      AppLocalizations.of(context)!.ipssThreeAnswer6,
-    ],
-    [
-      AppLocalizations.of(context)!.ipssFourAnswer1,
-      AppLocalizations.of(context)!.ipssFourAnswer2,
-      AppLocalizations.of(context)!.ipssFourAnswer3,
-      AppLocalizations.of(context)!.ipssFourAnswer4,
-      AppLocalizations.of(context)!.ipssFourAnswer5,
-      AppLocalizations.of(context)!.ipssFourAnswer6,
-    ],
-  ];
-
+    List<List<String>> answers = [
+      [
+        AppLocalizations.of(context)!.ipssOneAnswer1,
+        AppLocalizations.of(context)!.ipssOneAnswer2,
+        AppLocalizations.of(context)!.ipssOneAnswer3,
+        AppLocalizations.of(context)!.ipssOneAnswer4,
+        AppLocalizations.of(context)!.ipssOneAnswer5,
+        AppLocalizations.of(context)!.ipssOneAnswer6,
+      ],
+      [
+        AppLocalizations.of(context)!.ipssOneAnswer1,
+        AppLocalizations.of(context)!.ipssOneAnswer2,
+        AppLocalizations.of(context)!.ipssOneAnswer3,
+        AppLocalizations.of(context)!.ipssOneAnswer4,
+        AppLocalizations.of(context)!.ipssOneAnswer5,
+        AppLocalizations.of(context)!.ipssOneAnswer6,
+      ],
+      [
+        AppLocalizations.of(context)!.ipssTwoAnswer1,
+        AppLocalizations.of(context)!.ipssTwoAnswer2,
+        AppLocalizations.of(context)!.ipssTwoAnswer3,
+        AppLocalizations.of(context)!.ipssTwoAnswer4,
+        AppLocalizations.of(context)!.ipssTwoAnswer5,
+        AppLocalizations.of(context)!.ipssTwoAnswer6,
+      ],
+      [
+        AppLocalizations.of(context)!.ipssThreeAnswer1,
+        AppLocalizations.of(context)!.ipssThreeAnswer2,
+        AppLocalizations.of(context)!.ipssThreeAnswer3,
+        AppLocalizations.of(context)!.ipssThreeAnswer4,
+        AppLocalizations.of(context)!.ipssThreeAnswer5,
+        AppLocalizations.of(context)!.ipssThreeAnswer6,
+      ],
+      [
+        AppLocalizations.of(context)!.ipssFourAnswer1,
+        AppLocalizations.of(context)!.ipssFourAnswer2,
+        AppLocalizations.of(context)!.ipssFourAnswer3,
+        AppLocalizations.of(context)!.ipssFourAnswer4,
+        AppLocalizations.of(context)!.ipssFourAnswer5,
+        AppLocalizations.of(context)!.ipssFourAnswer6,
+      ],
+    ];
 
     final screenWidth = MediaQuery.of(context).size.width;
     //final screenHeight = MediaQuery.of(context).size.height;
@@ -108,11 +106,17 @@ class _IPSSState extends State<IPSS> {
     //final fontsize = screenWidth * 0.07 * textScaleFactor;
 
     return Scaffold(
-      backgroundColor: Colors.blue,
+      backgroundColor: Colors.transparent,
       body: SafeArea(
         child: LayoutBuilder(
           builder: (context, constraints) {
-            return SizedBox(
+            return Container(
+              decoration: BoxDecoration(
+                gradient: LinearGradient(
+                    colors: [grad1, grad2],
+                    begin: Alignment.topCenter,
+                    end: Alignment.bottomCenter),
+              ),
               width: constraints.maxWidth,
               height: constraints.maxHeight,
               child: Padding(
@@ -121,7 +125,13 @@ class _IPSSState extends State<IPSS> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    Text("IPSS Quiz"),
+                    Text(
+                      "IPSS Quiz",
+                      style: TextStyle(
+                          fontSize: heading,
+                          color: Colors.white,
+                          fontWeight: FontWeight.bold),
+                    ),
                     SizedBox(height: constraints.maxHeight * 0.01),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -141,7 +151,7 @@ class _IPSSState extends State<IPSS> {
                           });
                         },
                         itemBuilder: (context, index) => Card(
-                          color: Colors.pink.shade100,
+                          color: Colors.white30,
                           child: Padding(
                             padding: const EdgeInsets.all(8.0),
                             child: Column(
@@ -192,7 +202,7 @@ class _IPSSState extends State<IPSS> {
                                             color:
                                                 selectedAnswers[currentPage] ==
                                                         i
-                                                    ? Colors.pink
+                                                    ? pink
                                                     : Colors.white,
                                             border: Border.all(
                                                 color: Theme.of(context)
@@ -210,7 +220,7 @@ class _IPSSState extends State<IPSS> {
                                                                 currentPage] ==
                                                             i
                                                         ? Colors.white
-                                                        : Colors.pink),
+                                                        : pink),
                                               ),
                                             ),
                                           ),
@@ -255,11 +265,18 @@ class _IPSSState extends State<IPSS> {
           .collection("Result");
 
       // if (user != null) {
-      final userData = {'selectedAnswers': selectedAnswers, 'sum': sum, "time":DateTime.now()};
-
+      final userData = {
+        'selectedAnswers': selectedAnswers,
+        'sum': sum,
+        "time": DateTime.now()
+      };
 
       await usersCollection.doc("Quiz 2").set(userData);
-      await FirebaseFirestore.instance.collection("QuizHistory").doc(user.uid).collection("Quiz2History").add(userData);
+      await FirebaseFirestore.instance
+          .collection("QuizHistory")
+          .doc(user.uid)
+          .collection("Quiz2History")
+          .add(userData);
       print("User answers saved to Firestore successfully!");
       PopupLoader.hide();
       Navigator.of(context).push(MaterialPageRoute(
@@ -321,12 +338,11 @@ class _IPSSState extends State<IPSS> {
         });
       },
       child: CircleAvatar(
-        radius: constraints.maxWidth * 0.06,
+        radius: constraints.maxWidth * 0.05,
         backgroundColor: Colors.white,
         child: CircleAvatar(
-          radius: constraints.maxWidth * 0.05,
-          backgroundColor:
-              answered[index] ? Colors.pink.shade100 : Colors.pink,
+          radius: constraints.maxWidth * 0.045,
+          backgroundColor: answered[index] ? skyblue : pink,
           child: answered[index]
               ? const Icon(Icons.check, color: Colors.white)
               : Text((index + 1).toString(),
@@ -338,6 +354,7 @@ class _IPSSState extends State<IPSS> {
 
   CircleAvatar buildBackButton(BoxConstraints constraints) {
     return CircleAvatar(
+      backgroundColor: pink,
       radius: constraints.maxWidth * 0.05,
       child: IconButton(
         onPressed: () {
@@ -349,7 +366,8 @@ class _IPSSState extends State<IPSS> {
                 duration: const Duration(seconds: 2), curve: Curves.decelerate);
           }
         },
-        icon: Icon(Icons.arrow_back_ios_new, size: constraints.maxWidth * 0.05),
+        icon: Icon(Icons.arrow_back_ios_new,
+            color: Colors.white, size: constraints.maxWidth * 0.05),
       ),
     );
   }
@@ -357,6 +375,7 @@ class _IPSSState extends State<IPSS> {
   CircleAvatar buildForwardButton(BoxConstraints constraints) {
     return CircleAvatar(
       radius: constraints.maxWidth * 0.05,
+      backgroundColor: pink,
       child: IconButton(
         onPressed: () {
           if (currentPage < 6) {
@@ -368,7 +387,7 @@ class _IPSSState extends State<IPSS> {
           }
         },
         icon: Icon(Icons.arrow_forward_ios_sharp,
-            size: constraints.maxWidth * 0.05),
+            color: Colors.white, size: constraints.maxWidth * 0.05),
       ),
     );
   }
