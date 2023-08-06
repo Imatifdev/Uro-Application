@@ -11,6 +11,7 @@ import 'package:syncfusion_flutter_xlsio/xlsio.dart' hide Column hide Row;
 import '../../Utils/popup_loader.dart';
 import '../../controller/mycolors.dart';
 import '../../search_patients.dart';
+import '../welcome.dart';
 
 class Dashboard extends StatefulWidget {
   const Dashboard({super.key});
@@ -83,6 +84,8 @@ class _DashboardState extends State<Dashboard> {
     OpenFile.open(file.path);
   }
 
+  final FirebaseAuth auth = FirebaseAuth.instance;
+
   @override
   Widget build(BuildContext context) {
     final screenWidth = MediaQuery.of(context).size.width;
@@ -129,18 +132,31 @@ class _DashboardState extends State<Dashboard> {
                 width: screenWidth * 0.03,
               ),
               Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text(
-                    "Hello, ",
-                    style: TextStyle(
-                        color: subtitle,
-                        fontSize: 28,
-                        fontWeight: FontWeight.normal),
+                  Row(
+                    children: [
+                      Text(
+                        "Hello, ",
+                        style: TextStyle(
+                            color: subtitle,
+                            fontSize: 28,
+                            fontWeight: FontWeight.normal),
+                      ),
+                      Text(
+                        userName.toString(),
+                        style: TextStyle(color: subtitle, fontSize: 28),
+                      ),
+                    ],
                   ),
-                  Text(
-                    userName.toString(),
-                    style: TextStyle(color: subtitle, fontSize: 28),
-                  ),
+                  IconButton(
+                      onPressed: () async {
+                        print('object');
+                        await auth.signOut();
+                        Navigator.pushReplacement(context,
+                            MaterialPageRoute(builder: (context) => Welcome()));
+                      },
+                      icon: Icon(Icons.logout)),
                 ],
               ),
             ],

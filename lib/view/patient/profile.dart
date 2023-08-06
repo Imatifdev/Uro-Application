@@ -12,6 +12,7 @@ import 'package:page_transition/page_transition.dart';
 import 'package:uroapplication/controller/mycolors.dart';
 import 'package:uroapplication/view/admin/login.dart';
 import 'package:uroapplication/view/patient/settings.dart';
+import 'package:uroapplication/view/welcome.dart';
 
 import '../../widgets/custombutton.dart';
 import 'login.dart';
@@ -27,7 +28,7 @@ class _ProfileViewState extends State<ProfileView> {
     print('object');
     await auth.signOut();
     Navigator.pushReplacement(
-        context, MaterialPageRoute(builder: (context) => LoginScreenPatient()));
+        context, MaterialPageRoute(builder: (context) => Welcome()));
   }
 
   final userId = FirebaseAuth.instance.currentUser!.uid;
