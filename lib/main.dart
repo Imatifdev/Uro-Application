@@ -42,7 +42,6 @@ class MyApp extends StatelessWidget {
               : PatientHome(),
       supportedLocales: L10n.all,
       locale: const Locale("en"),
-      locale: const Locale("en"),
       localizationsDelegates: const [
         AppLocalizations.delegate,
         GlobalMaterialLocalizations.delegate,
