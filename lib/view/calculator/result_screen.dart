@@ -3,6 +3,7 @@ import 'package:lottie/lottie.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:percent_indicator/percent_indicator.dart';
 import 'package:uroapplication/view/calculator/quiz2_screen.dart';
+import 'package:uroapplication/view/patient/patientdashboard.dart';
 
 class ResultScreen extends StatefulWidget {
   final List answers;
@@ -129,19 +130,38 @@ class _ResultScreenState extends State<ResultScreen> {
                     ),
                   ),
                 ),
-                ElevatedButton.icon(
-                  onPressed: () async {
-                    await Navigator.push(
-                      context,
-                      PageTransition(
-                        duration: Duration(seconds: 2),
-                        type: PageTransitionType.fade,
-                        child: IPSS(),
-                      ),
-                    );
-                  },
-                  icon: Icon(Icons.restart_alt),
-                  label: Text("Restart"),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    ElevatedButton.icon(
+                      onPressed: () async {
+                        await Navigator.push(
+                          context,
+                          PageTransition(
+                            duration: Duration(seconds: 2),
+                            type: PageTransitionType.fade,
+                            child: IPSS(),
+                          ),
+                        );
+                      },
+                      icon: Icon(Icons.restart_alt),
+                      label: Text("Restart"),
+                    ),
+                    ElevatedButton.icon(
+                      onPressed: () async {
+                        await Navigator.push(
+                          context,
+                          PageTransition(
+                            duration: Duration(seconds: 2),
+                            type: PageTransitionType.bottomToTopPop,
+                            child: PatientDashboard(),
+                          ),
+                        );
+                      },
+                      icon: Icon(Icons.dashboard),
+                      label: Text("Return to Home"),
+                    ),
+                  ],
                 ),
               ],
             ),
