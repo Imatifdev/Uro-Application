@@ -140,7 +140,19 @@ class _OABState extends State<OAB> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    const Text("OAB Quiz"),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          "OAB Quiz",
+                          style: TextStyle(
+                              fontSize: heading,
+                              color: Colors.white,
+                              fontWeight: FontWeight.bold),
+                        ),
+                        Image.asset('assets/images/logo.png',height: 60,)
+                      ],
+                    ),
                     SizedBox(height: constraints.maxHeight * 0.01),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -150,7 +162,7 @@ class _OABState extends State<OAB> {
                       ],
                     ),
                     SizedBox(
-                      height: constraints.maxHeight * 0.7,
+                      height: constraints.maxHeight * 0.6,
                       child: PageView.builder(
                         controller: _pageController,
                         itemCount: questions.length,

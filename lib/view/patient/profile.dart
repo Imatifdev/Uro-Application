@@ -10,7 +10,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:uroapplication/controller/mycolors.dart';
-import 'package:uroapplication/view/admin/login.dart';
+import 'package:uroapplication/view/patient/historypage.dart';
 import 'package:uroapplication/view/patient/settings.dart';
 import 'package:uroapplication/view/welcome.dart';
 
@@ -28,7 +28,7 @@ class _ProfileViewState extends State<ProfileView> {
     print('object');
     await auth.signOut();
     Navigator.pushReplacement(
-        context, MaterialPageRoute(builder: (context) => Welcome()));
+        context, MaterialPageRoute(builder: (context) => LoginScreenPatient()));
   }
 
   final userId = FirebaseAuth.instance.currentUser!.uid;
@@ -79,14 +79,22 @@ class _ProfileViewState extends State<ProfileView> {
       backgroundColor: Colors.grey.shade100,
       appBar: AppBar(
         backgroundColor: Colors.grey.shade100,
-        leading: IconButton(
-            onPressed: () {
-              Navigator.pop(context);
-            },
-            icon: Icon(CupertinoIcons.left_chevron)),
+
+        toolbarHeight: screenHeight*0.09,
+        centerTitle: true,
+        title: Image.asset('assets/images/logo.png',height: 80,color: Colors.blue,),
+        elevation: 0,
+
+        leading: IconButton(icon: Icon(CupertinoIcons.left_chevron),color: Colors.blue,onPressed: (){
+          Navigator.pop(context);
+        },),
       ),
       body: Column(
         children: [
+
+          SizedBox(
+            height: screenHeight * 0.05,
+          ),
           Text(
             "Account",
             style: TextStyle(
@@ -103,11 +111,12 @@ class _ProfileViewState extends State<ProfileView> {
               Card(
                 child: Container(
                   width: screenWidth,
-                  height: screenHeight * 0.15,
+                  height: screenHeight * 0.12,
                   child: Padding(
                     padding: const EdgeInsets.symmetric(
                         horizontal: 20, vertical: 10),
                     child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
@@ -199,6 +208,14 @@ class _ProfileViewState extends State<ProfileView> {
                           ),
                         ),
                         ListTile(
+                          onTap: () async {
+                            await Navigator.push(
+                                context,
+                                PageTransition(
+                                  type: PageTransitionType.fade,
+                                  child: HistoryPage(),
+                                ));
+                          },
                           leading: Icon(
                             CupertinoIcons.cloud_download,
                             color: Colors.pink,
@@ -228,8 +245,13 @@ class _ProfileViewState extends State<ProfileView> {
                   child: Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 00),
                     child: ListTile(
-                      onTap: () {
-                        signOut();
+                      onTap: () async {
+                        await Navigator.push(
+                            context,
+                            PageTransition(
+                              type: PageTransitionType.fade,
+                              child: signOut(),
+                            ));
                       },
                       leading: Icon(
                         Icons.logout,

@@ -5,8 +5,10 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:uroapplication/view/patient/history_page.dart';
+import 'package:uroapplication/view/patient/historypage.dart';
 import 'package:uroapplication/view/patient/oab.dart';
 import 'package:uroapplication/view/patient/profile.dart';
+import 'package:uroapplication/view/patient/settings.dart';
 import '../../controller/mycolors.dart';
 
 import 'package:page_transition/page_transition.dart';
@@ -63,119 +65,173 @@ class _PatientDashboardState extends State<PatientDashboard> {
     }
 
     return Scaffold(
-        body: Container(
-      height: screenHeight,
-      width: screenWidth,
-      decoration: BoxDecoration(
-        gradient: LinearGradient(
-          begin: Alignment.topCenter,
-          end: Alignment.bottomCenter,
-          colors: [skyblue, darkblue],
-        ),
-      ),
-      child: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            SizedBox(
-              height: screenHeight * 0.1,
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text(
-                  "Hello,",
-                  style: TextStyle(
-                      fontSize: subheading1,
-                      color: Colors.white,
-                      fontWeight: FontWeight.bold),
-                ),
-                IconButton(
-                  icon: Icon(
-                    CupertinoIcons.person_alt_circle,
-                    color: Colors.white,
-                    size: 35,
+        backgroundColor: Color(0xff0047ba),
+        body: SingleChildScrollView(
+          child: Container(
+            height: screenHeight,
+            width: screenWidth,
+            decoration: BoxDecoration(),
+            child: Padding(
+              padding: const EdgeInsets.all(16.0),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  SizedBox(
+                    height: screenHeight * 0.1,
                   ),
-                  onPressed: () {
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (ctx) => ProfileView(),
-                        ));
-                  },
-                )
-              ],
-            ),
-            Text(
-              "$name \u{1F44B}",
-              style: TextStyle(
-                  fontSize: subheading2,
-                  color: Colors.white,
-                  fontWeight: FontWeight.bold),
-            ),
-            SizedBox(
-              height: screenHeight * 0.03,
-            ),
-            InkWell(
-              onTap: () async {
-                await Navigator.push(
-                    context,
-                    PageTransition(
-                      duration: Duration(seconds: 2),
-                      type: PageTransitionType.fade,
-                      child: OABScreen(),
-                    ));
-              },
-              child: Container(
-                height: screenHeight / 3,
-                width: screenWidth,
-                decoration: BoxDecoration(
-                  color: Colors.white.withOpacity(0.2),
-                  borderRadius: BorderRadius.circular(20),
-                ),
-                child: Column(
-                  children: [
-                    Image(
-                      height: screenHeight / 6,
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        "Hello,",
+                        style: TextStyle(
+                            fontSize: subheading1,
+                            color: Colors.white,
+                            fontWeight: FontWeight.bold),
+                      ),
+                      IconButton(
+                        icon: Icon(
+                          CupertinoIcons.person_alt_circle,
+                          color: Colors.white,
+                          size: 35,
+                        ),
+                        onPressed: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (ctx) => ProfileView(),
+                              ));
+                        },
+                      )
+                    ],
+                  ),
+                  Text(
+                    "$name \u{1F44B}",
+                    style: TextStyle(
+                        fontSize: subheading2,
+                        color: Colors.white,
+                        fontWeight: FontWeight.bold),
+                  ),
+                  SizedBox(
+                    height: screenHeight * 0.03,
+                  ),
+                  InkWell(
+                    onTap: () async {
+                      await Navigator.push(
+                          context,
+                          PageTransition(
+                            duration: Duration(seconds: 2),
+                            type: PageTransitionType.fade,
+                            child: OABScreen(),
+                          ));
+                    },
+                    child: Container(
+                      height: screenHeight / 3,
                       width: screenWidth,
-                      image: AssetImage('assets/images/health.png'),
+                      decoration: BoxDecoration(
+                        boxShadow: [],
+                        color: Colors.black.withOpacity(0.1),
+                        borderRadius: BorderRadius.circular(20),
+                      ),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Image(
+                            height: screenHeight / 6,
+                            width: screenWidth,
+                            image: AssetImage('assets/images/logo.png'),
+                          ),
+                          Text(
+                            "Mi Control Assessment",
+                            textAlign: TextAlign.center,
+                            style: TextStyle(
+                                fontSize: heading,
+                                fontWeight: FontWeight.bold,
+                                color: Colors.white),
+                          )
+                        ],
+                      ),
                     ),
-                    Text(
-                      "Urinary Function Assessment",
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                          fontSize: heading,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.white),
-                    )
-                  ],
-                ),
+                  ),
+                  SizedBox(
+                    height: screenHeight*0.02,
+                  ),
+                  Container(
+                    height: screenHeight*0.15,width: screenWidth,
+                    decoration: BoxDecoration(
+borderRadius: BorderRadius.circular(20),
+                      color: Colors.black.withOpacity(0.1)
+                    ),
+                    child: InkWell(
+                      onTap: (){
+                        Navigator.push(context, MaterialPageRoute(builder: (ctx)=>HistoryPage()));
+                      },
+                      child: Row(
+                        children: [
+                          Image.asset('assets/history.png',height:100,width: 100,fit:BoxFit.contain,),
+                          SizedBox(width: screenWidth*0.02,),
+                          Text("View History",style: TextStyle(fontSize: subheading1,color: Colors.white,fontWeight: FontWeight.bold),),
+                        ],
+                      ),
+                    ),
+                  ),
+
+                  SizedBox(
+                    height: screenHeight*0.02,
+                  ),
+                  Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Container(
+                        height: screenHeight*0.15,width: screenWidth/2.5,
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(20),
+                            color: Colors.black.withOpacity(0.1)
+                        ),
+                        child: InkWell(
+                          onTap: (){
+                            Navigator.push(context, MaterialPageRoute(builder: (ctx)=>SettingsScreen()));
+                          },
+                          child: Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Image.asset('assets/images/setting.png',height:screenHeight*0.05,width: screenWidth*0.2,fit:BoxFit.contain,color: Colors.white,),
+                                SizedBox(width: screenWidth*0.02,),
+                                Text("Settings",style: TextStyle(fontSize: subheading2,color: Colors.white,fontWeight: FontWeight.bold),),
+                              ],
+                            ),
+                          ),
+                        ),
+                      ),
+                      Container(
+                        height: screenHeight*0.15,width: screenWidth/2,
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(20),
+                            color: Colors.black.withOpacity(0.1)
+                        ),
+                        child: InkWell(
+                          onTap: (){
+                            Navigator.push(context, MaterialPageRoute(builder: (ctx)=>ProfileView()));
+                          },
+                          child: Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Row(
+                              children: [
+                                Image.asset('assets/images/newuser.png',height:screenHeight*0.08,width: screenWidth*0.2,fit:BoxFit.contain,),
+                                SizedBox(width: screenWidth*0.02,),
+                                Text("Profile",style: TextStyle(fontSize: subheading2,color: Colors.white,fontWeight: FontWeight.bold),),
+                              ],
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
+                  )
+                   ],
               ),
             ),
-            SizedBox(height: 50,),
-            Align(
-              alignment: Alignment.center,
-              child: ElevatedButton(
-                style: ElevatedButton.styleFrom(
-                  padding: EdgeInsets.all(20)
-                ),
-                onPressed: (){
-                  Navigator.of(context).push(MaterialPageRoute(builder: (context) => QuizHistoryScreen(quiz: 'Quiz1History',)));
-                }, child: Text("View OAB Test History"))),
-                SizedBox(height: 5,),
-             Align(
-              alignment: Alignment.center,
-              child: ElevatedButton(
-                style: ElevatedButton.styleFrom(
-                  padding: EdgeInsets.all(20)
-                ),
-                onPressed: (){
-                  Navigator.of(context).push(MaterialPageRoute(builder: (context) => QuizHistoryScreen(quiz: 'Quiz2History',)));
-                }, child: Text("View IPSS Test History")))    
-          ],
-        ),
-      ),
-    ));
+          ),
+        ));
   }
 }

@@ -125,12 +125,18 @@ class _IPSSState extends State<IPSS> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    Text(
-                      "IPSS Quiz",
-                      style: TextStyle(
-                          fontSize: heading,
-                          color: Colors.white,
-                          fontWeight: FontWeight.bold),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          "IPSS Quiz",
+                          style: TextStyle(
+                              fontSize: heading,
+                              color: Colors.white,
+                              fontWeight: FontWeight.bold),
+                        ),
+                        Image.asset('assets/images/logo.png',height: 60,)
+                      ],
                     ),
                     SizedBox(height: constraints.maxHeight * 0.01),
                     Row(
@@ -141,7 +147,7 @@ class _IPSSState extends State<IPSS> {
                       ],
                     ),
                     SizedBox(
-                      height: constraints.maxHeight * 0.7,
+                      height: constraints.maxHeight * 0.6,
                       child: PageView.builder(
                         controller: _pageController,
                         itemCount: questions.length,

@@ -67,6 +67,7 @@ dev_dependencies:
   velocity_x: ^4.1.0
   cloud_functions: ^4.3.4
   cloud_firestore: ^4.8.3
+  flutter_animation_progress_bar: ^2.3.1
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec

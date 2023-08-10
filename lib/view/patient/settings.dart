@@ -9,7 +9,7 @@ import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:uroapplication/controller/mycolors.dart';
-import 'package:uroapplication/view/admin/login.dart';
+import 'package:uroapplication/view/patient/forgot.dart';
 import 'package:uroapplication/view/patient/language_screen.dart';
 
 import '../../widgets/custombutton.dart';
@@ -26,10 +26,6 @@ class _SettingsScreenState extends State<SettingsScreen> {
     final screenHeight = MediaQuery.of(context).size.height;
     final textScaleFactor = MediaQuery.of(context).textScaleFactor;
 
-    // Adjust font size based on screen width and text scale factor
-    //final fontSize = screenWidth * 0.14 * textScaleFactor;
-    // final subheading1 = screenWidth * 0.07 * textScaleFactor;
-   // final subheading2 = screenWidth * 0.06 * textScaleFactor;
     final subheading3 = screenWidth * 0.06 * textScaleFactor;
 
     final heading = screenWidth * 0.09 * textScaleFactor;
@@ -38,15 +34,23 @@ class _SettingsScreenState extends State<SettingsScreen> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.grey.shade100,
-        leading: IconButton(
-            onPressed: () {
-              Navigator.pop(context);
-            },
-            icon: Icon(CupertinoIcons.left_chevron)),
+
+        toolbarHeight: screenHeight*0.09,
+        centerTitle: true,
+        title: Image.asset('assets/images/logo.png',height: 80,color: Colors.blue,),
+        elevation: 0,
+
+        leading: IconButton(icon: Icon(CupertinoIcons.left_chevron),color: Colors.blue,onPressed: (){
+          Navigator.pop(context);
+        },),
       ),
       backgroundColor: Colors.grey.shade100,
       body: Column(
         children: [
+          SizedBox(
+            height: screenHeight * 0.05,
+          ),
+
           Text(
             "Settings",
             style: TextStyle(
@@ -60,6 +64,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
           Padding(
             padding: const EdgeInsets.all(16.0),
             child: Column(children: [
+
               Card(
                 color: Colors.white,
                 child: Container(
@@ -69,8 +74,12 @@ class _SettingsScreenState extends State<SettingsScreen> {
                     child: Column(
                       children: [
                         ListTile(
-                          onTap: (){
-                            Navigator.push(context, MaterialPageRoute(builder: (context) => LanguageScreen(),));
+                          onTap: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => LanguageScreen(),
+                                ));
                           },
                           leading: Icon(
                             Icons.language,
@@ -97,12 +106,15 @@ class _SettingsScreenState extends State<SettingsScreen> {
                           ),
                         ),
                         ListTile(
+                          onTap: (){
+                            Navigator.push(context, MaterialPageRoute(builder: (context)=>ForgitPassword()));
+                          },
                           leading: Icon(
-                            CupertinoIcons.color_filter,
+                            CupertinoIcons.lock_shield_fill,
                             color: Colors.pink,
                           ),
                           title: Text(
-                            "Switch Theme",
+                            "Reset Password",
                             style: TextStyle(
                                 fontWeight: FontWeight.bold,
                                 fontSize: subheading3,

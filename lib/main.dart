@@ -5,9 +5,10 @@ import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
-import 'package:uroapplication/view/patient/home.dart';
 import 'package:uroapplication/view/patient/login.dart';
 import 'package:flutter_gen/gen_l10n/app_localization.dart';
+import 'package:uroapplication/view/patient/patientdashboard.dart';
+import 'package:uroapplication/view/splash.dart';
 import 'firebase_options.dart';
 import 'l10n/l10n.dart';
 
@@ -37,6 +38,7 @@ class _MyAppState extends State<MyApp> {
       _locale = newLocale;
     });
   }
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -54,7 +56,7 @@ class _MyAppState extends State<MyApp> {
       home: //PatientHome(),
           FirebaseAuth.instance.currentUser == null
               ? LoginScreenPatient()
-              : PatientHome(),
+              : PatientDashboard(),
       supportedLocales: L10n.all,
       locale: _locale,
       localizationsDelegates: const [

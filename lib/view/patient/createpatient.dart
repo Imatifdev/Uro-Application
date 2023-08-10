@@ -6,10 +6,10 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 import 'package:uroapplication/controller/mycolors.dart';
-import 'package:uroapplication/view/patient/home.dart';
 import 'package:uroapplication/view/patient/patientdashboard.dart';
 import '../../models/registermodel.dart';
 import 'package:velocity_x/velocity_x.dart';
+
 
 class NewSignupScreen extends StatefulWidget {
   @override
@@ -111,241 +111,209 @@ class _NewSignupScreenState extends State<NewSignupScreen> {
       },
       child: Scaffold(
         backgroundColor: Color(0xffe1e6ef),
-        body: SingleChildScrollView(
-          child: Form(
-            key: _formKey,
-            child: SizedBox(
-              height: height,
-              child: SingleChildScrollView(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    SizedBox(
-                      height: height / 10,
+        body: Form(
+          key: _formKey,
+          child: SizedBox(
+            height: height,
+            child: SingleChildScrollView(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  SizedBox(
+                    height: height / 10,
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 30),
+                    child: Lottie.asset('assets/signup.json',
+                        height: height / 3.5),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 30),
+                    child: Text(
+                      "Register Patient",
+                      style:
+                          TextStyle(fontSize: 32, fontWeight: FontWeight.bold),
                     ),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 30),
-                      child: Lottie.asset('assets/signup.json',
-                          height: height / 3.5),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 30),
-                      child: Text(
-                        "Register Patient",
-                        style: TextStyle(
-                            fontSize: 32, fontWeight: FontWeight.bold),
-                      ),
-                    ),
-                    SizedBox(
-                      height: 30,
-                    ),
+                  ),
+                  SizedBox(
+                    height: 30,
+                  ),
 
-                    Column(
-                      children: [
-                        Card(
-                          shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(50)),
-                          elevation: 10,
-                          child: TextFormField(
-                            validator: (value) {
-                              if (value!.isEmpty) {}
-                              if (value.length < 3) {}
-                              return null;
-                            },
-                            controller: _fname,
-                            keyboardType: TextInputType.name,
-                            decoration: InputDecoration(
-                                errorStyle: TextStyle(color: Colors.black),
-                                contentPadding: EdgeInsets.symmetric(
-                                    vertical: 0, horizontal: 20),
-                                fillColor: Colors.white,
-                                hintText: "Last Name",
-                                hintStyle: TextStyle(color: Colors.black),
-                                alignLabelWithHint: true,
-                                enabledBorder: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(50),
-                                  borderSide: BorderSide(color: Colors.white),
-                                ),
-                                focusedBorder: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(50),
-                                  borderSide: BorderSide(color: Colors.black),
-                                ),
-                                filled: true),
-                          ),
-                        ),
-                        SizedBox(
-                          height: height / 64,
-                        ),
-                        Card(
-                          shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(50)),
-                          elevation: 10,
-                          child: TextFormField(
-                            validator: (value) {
-                              if (value!.isEmpty) {}
-                              if (value.length < 3) {}
-                              return null;
-                            },
-                            controller: _lname,
-                            keyboardType: TextInputType.name,
-                            decoration: InputDecoration(
-                                errorStyle: TextStyle(color: Colors.black),
-                                contentPadding: EdgeInsets.symmetric(
-                                    vertical: 0, horizontal: 20),
-                                fillColor: Colors.white,
-                                hintText: "Full Name",
-                                hintStyle: TextStyle(color: Colors.black),
-                                alignLabelWithHint: true,
-                                enabledBorder: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(50),
-                                  borderSide: BorderSide(color: Colors.white),
-                                ),
-                                focusedBorder: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(50),
-                                  borderSide: BorderSide(color: Colors.black),
-                                ),
-                                filled: true),
-                          ),
-                        ),
-                        SizedBox(
-                          height: height / 64,
-                        ),
-                        Card(
-                          elevation: 10,
-                          shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(50)),
-                          child: TextFormField(
-                            validator: (value) {
-                              if (value!.isEmpty) {}
-                              if (!RegExp(r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$')
-                                  .hasMatch(value)) {}
-                              return null;
-                            },
-                            controller: _emailController,
-                            keyboardType: TextInputType.emailAddress,
-                            decoration: InputDecoration(
-                                errorStyle: TextStyle(color: Colors.black),
-                                contentPadding: EdgeInsets.symmetric(
-                                    vertical: 0, horizontal: 20),
-                                fillColor: Colors.white,
-                                hintText: "Email Address",
-                                suffixIcon: Icon(CupertinoIcons.mail),
-                                hintStyle: TextStyle(color: Colors.black),
-                                alignLabelWithHint: true,
-                                enabledBorder: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(50),
-                                  borderSide: BorderSide(color: Colors.white),
-                                ),
-                                focusedBorder: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(50),
-                                  borderSide: BorderSide(color: Colors.white),
-                                ),
-                                filled: true),
-                          ),
-                        ),
-                        SizedBox(
-                          height: height / 64,
-                        ),
-                        Card(
-                          elevation: 10,
-                          shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(50)),
-                          child: TextFormField(
-                            validator: (value) {
-                              if (value!.isEmpty) {}
-                              if (value.length < 6) {}
-                              return null;
-                            },
-                            obscureText: _isPasswordVisible,
-                            controller: _passwordController,
-                            keyboardType: TextInputType.visiblePassword,
-                            decoration: InputDecoration(
-                                suffixIcon: IconButton(
-                                  icon: Icon(
-                                    _isPasswordVisible
-                                        ? Icons.visibility
-                                        : Icons.visibility_off,
-                                    color: Colors.grey,
-                                  ),
-                                  onPressed: () {
-                                    setState(() {
-                                      _isPasswordVisible = !_isPasswordVisible;
-                                    });
-                                  },
-                                ),
-                                errorStyle: TextStyle(color: Colors.black),
-                                contentPadding: EdgeInsets.symmetric(
-                                    vertical: 0, horizontal: 20),
-                                fillColor: Colors.white,
-                                hintText: "Password ",
-                                hintStyle: TextStyle(color: Colors.black),
-                                alignLabelWithHint: true,
-                                enabledBorder: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(50),
-                                  borderSide: BorderSide(color: Colors.white),
-                                ),
-                                focusedBorder: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(50),
-                                  borderSide: BorderSide(color: Colors.white),
-                                ),
-                                filled: true),
-                          ),
-                        ),
-                        SizedBox(
-                          height: height / 64,
-                        ),
-                        InkWell(
-                          onTap: () {
-                            _pickDate;
+                  Column(
+                    children: [
+                      Card(
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(50)),
+                        elevation: 10,
+                        child: TextFormField(
+                          validator: (value) {
+                            if (value!.isEmpty) {}
+                            if (value.length < 3) {}
+                            return null;
                           },
-                          child: Card(
-                            elevation: 10,
-                            shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(50)),
-                            child: TextFormField(
-                              readOnly: true,
-                              controller: _dob,
-                              keyboardType: TextInputType.emailAddress,
-                              decoration: InputDecoration(
-                                  errorStyle: TextStyle(color: Colors.black),
-                                  contentPadding: EdgeInsets.symmetric(
-                                      vertical: 0, horizontal: 20),
-                                  fillColor: Colors.white,
-                                  hintText: "Date of Borth",
-                                  suffixIcon: IconButton(
-                                      onPressed: _pickDate,
-                                      icon: Icon(CupertinoIcons.calendar)),
-                                  hintStyle: TextStyle(color: Colors.black),
-                                  alignLabelWithHint: true,
-                                  enabledBorder: OutlineInputBorder(
-                                    borderRadius: BorderRadius.circular(50),
-                                    borderSide: BorderSide(color: Colors.white),
-                                  ),
-                                  focusedBorder: OutlineInputBorder(
-                                    borderRadius: BorderRadius.circular(50),
-                                    borderSide: BorderSide(color: Colors.white),
-                                  ),
-                                  filled: true),
-                            ),
-                          ),
+                          controller: _fname,
+                          keyboardType: TextInputType.name,
+                          decoration: InputDecoration(
+                              errorStyle: TextStyle(color: Colors.black),
+                              contentPadding: EdgeInsets.symmetric(
+                                  vertical: 0, horizontal: 20),
+                              fillColor: Colors.white,
+                              hintText: "Last Name",
+                              hintStyle: TextStyle(color: Colors.black),
+                              alignLabelWithHint: true,
+                              enabledBorder: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(50),
+                                borderSide: BorderSide(color: Colors.white),
+                              ),
+                              focusedBorder: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(50),
+                                borderSide: BorderSide(color: Colors.black),
+                              ),
+                              filled: true),
                         ),
-                        SizedBox(
-                          height: height / 64,
+                      ),
+                      SizedBox(
+                        height: height / 64,
+                      ),
+                      Card(
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(50)),
+                        elevation: 10,
+                        child: TextFormField(
+                          validator: (value) {
+                            if (value!.isEmpty) {}
+                            if (value.length < 3) {}
+                            return null;
+                          },
+                          controller: _lname,
+                          keyboardType: TextInputType.name,
+                          decoration: InputDecoration(
+                              errorStyle: TextStyle(color: Colors.black),
+                              contentPadding: EdgeInsets.symmetric(
+                                  vertical: 0, horizontal: 20),
+                              fillColor: Colors.white,
+                              hintText: "Full Name",
+                              hintStyle: TextStyle(color: Colors.black),
+                              alignLabelWithHint: true,
+                              enabledBorder: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(50),
+                                borderSide: BorderSide(color: Colors.white),
+                              ),
+                              focusedBorder: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(50),
+                                borderSide: BorderSide(color: Colors.black),
+                              ),
+                              filled: true),
                         ),
-                        Card(
+                      ),
+                      SizedBox(
+                        height: height / 64,
+                      ),
+                      Card(
+                        elevation: 10,
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(50)),
+                        child: TextFormField(
+                          validator: (value) {
+                            if (value!.isEmpty) {}
+                            if (!RegExp(r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$')
+                                .hasMatch(value)) {}
+                            return null;
+                          },
+                          controller: _emailController,
+                          keyboardType: TextInputType.emailAddress,
+                          decoration: InputDecoration(
+                              errorStyle: TextStyle(color: Colors.black),
+                              contentPadding: EdgeInsets.symmetric(
+                                  vertical: 0, horizontal: 20),
+                              fillColor: Colors.white,
+                              hintText: "Email Address",
+                              suffixIcon: Icon(CupertinoIcons.mail),
+                              hintStyle: TextStyle(color: Colors.black),
+                              alignLabelWithHint: true,
+                              enabledBorder: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(50),
+                                borderSide: BorderSide(color: Colors.white),
+                              ),
+                              focusedBorder: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(50),
+                                borderSide: BorderSide(color: Colors.white),
+                              ),
+                              filled: true),
+                        ),
+                      ),
+                      SizedBox(
+                        height: height / 64,
+                      ),
+                      Card(
+                        elevation: 10,
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(50)),
+                        child: TextFormField(
+                          validator: (value) {
+                            if (value!.isEmpty) {}
+                            if (value.length < 6) {}
+                            return null;
+                          },
+                          obscureText: _isPasswordVisible,
+                          controller: _passwordController,
+                          keyboardType: TextInputType.visiblePassword,
+                          decoration: InputDecoration(
+                              suffixIcon: IconButton(
+                                icon: Icon(
+                                  _isPasswordVisible
+                                      ? Icons.visibility
+                                      : Icons.visibility_off,
+                                  color: Colors.grey,
+                                ),
+                                onPressed: () {
+                                  setState(() {
+                                    _isPasswordVisible = !_isPasswordVisible;
+                                  });
+                                },
+                              ),
+                              errorStyle: TextStyle(color: Colors.black),
+                              contentPadding: EdgeInsets.symmetric(
+                                  vertical: 0, horizontal: 20),
+                              fillColor: Colors.white,
+                              hintText: "Password ",
+                              hintStyle: TextStyle(color: Colors.black),
+                              alignLabelWithHint: true,
+                              enabledBorder: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(50),
+                                borderSide: BorderSide(color: Colors.white),
+                              ),
+                              focusedBorder: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(50),
+                                borderSide: BorderSide(color: Colors.white),
+                              ),
+                              filled: true),
+                        ),
+                      ),
+                      SizedBox(
+                        height: height / 64,
+                      ),
+                      InkWell(
+                        onTap: () {
+                          _pickDate;
+                        },
+                        child: Card(
                           elevation: 10,
                           shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(50)),
                           child: TextFormField(
-                            controller: _phone,
+                            readOnly: true,
+                            controller: _dob,
                             keyboardType: TextInputType.emailAddress,
                             decoration: InputDecoration(
                                 errorStyle: TextStyle(color: Colors.black),
                                 contentPadding: EdgeInsets.symmetric(
                                     vertical: 0, horizontal: 20),
                                 fillColor: Colors.white,
-                                hintText: "Phone Num",
-                                suffixIcon: Icon(CupertinoIcons.phone),
+                                hintText: "Date of Borth",
+                                suffixIcon: IconButton(
+                                    onPressed: _pickDate,
+                                    icon: Icon(CupertinoIcons.calendar)),
                                 hintStyle: TextStyle(color: Colors.black),
                                 alignLabelWithHint: true,
                                 enabledBorder: OutlineInputBorder(
@@ -359,191 +327,220 @@ class _NewSignupScreenState extends State<NewSignupScreen> {
                                 filled: true),
                           ),
                         ),
-                      ],
-                    ).pSymmetric(h: 20),
-                    SizedBox(
-                      height: height / 40,
-                    ),
+                      ),
+                      SizedBox(
+                        height: height / 64,
+                      ),
+                      Card(
+                        elevation: 10,
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(50)),
+                        child: TextFormField(
+                          controller: _phone,
+                          keyboardType: TextInputType.emailAddress,
+                          decoration: InputDecoration(
+                              errorStyle: TextStyle(color: Colors.black),
+                              contentPadding: EdgeInsets.symmetric(
+                                  vertical: 0, horizontal: 20),
+                              fillColor: Colors.white,
+                              hintText: "Phone Num",
+                              suffixIcon: Icon(CupertinoIcons.phone),
+                              hintStyle: TextStyle(color: Colors.black),
+                              alignLabelWithHint: true,
+                              enabledBorder: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(50),
+                                borderSide: BorderSide(color: Colors.white),
+                              ),
+                              focusedBorder: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(50),
+                                borderSide: BorderSide(color: Colors.white),
+                              ),
+                              filled: true),
+                        ),
+                      ),
+                    ],
+                  ).pSymmetric(h: 20),
+                  SizedBox(
+                    height: height / 40,
+                  ),
 
-                    Center(
-                      child: InkWell(
-                        onTap: _isDataSaved
-                            ? null
-                            : () async {
-                                if (_formKey.currentState!.validate()) {
-                                  if (_emailController.text.isEmpty &&
-                                      _passwordController.text.isEmpty) {
-                                    showSnackbar(
-                                        context, "Please fill all fields");
-                                    return;
-                                  }
-                                  setState(() {
-                                    _isSigningUp = true;
+                  Center(
+                    child: InkWell(
+                      onTap: _isDataSaved
+                          ? null
+                          : () async {
+                              if (_formKey.currentState!.validate()) {
+                                if (_emailController.text.isEmpty &&
+                                    _passwordController.text.isEmpty) {
+                                  showSnackbar(
+                                      context, "Please fill all fields");
+                                  return;
+                                }
+                                setState(() {
+                                  _isSigningUp = true;
+                                });
+
+                                // call Firebase function to sign up user
+                                bool isRegistered = false;
+                                isRegistered = await _registerVM.register(
+                                    _emailController.text.trim(),
+                                    _passwordController.text.trim(),
+                                    _fname.text.trim(),
+                                    _lname.text.trim(),
+                                    _dob.text.trim(),
+                                    _phone.text.trim());
+
+                                if (isRegistered) {
+                                  var userId =
+                                      FirebaseAuth.instance.currentUser!.uid;
+                                  final CollectionReference usersCollection =
+                                      FirebaseFirestore.instance
+                                          .collection('users');
+                                  final user =
+                                      FirebaseAuth.instance.currentUser;
+
+                                  final userData = {
+                                    'userId': user!.uid,
+                                    'selectedAnswers': [],
+                                  };
+
+                                  await usersCollection
+                                      .doc(user.uid)
+                                      .set(userData);
+                                  await FirebaseFirestore.instance
+                                      .collection("Patients")
+                                      .doc(userId)
+                                      .set({
+                                    "First Name": _fname.text.trim(),
+                                    "Last Name": _lname.text.trim(),
+                                    "Email": _emailController.text.trim(),
+                                    "DOB": _dob.text.trim(),
+                                    "Phone": _phone.text.trim()
                                   });
 
-                                  // call Firebase function to sign up user
-                                  bool isRegistered = false;
-                                  isRegistered = await _registerVM.register(
-                                      _emailController.text.trim(),
-                                      _passwordController.text.trim(),
-                                      _fname.text.trim(),
-                                      _lname.text.trim(),
-                                      _dob.text.trim(),
-                                      _phone.text.trim());
+                                  // Update the state to indicate data is saved
+                                  setState(() {
+                                    _isDataSaved = true;
+                                    _isSigningUp = false;
+                                  });
 
-                                  if (isRegistered) {
-                                    var userId =
-                                        FirebaseAuth.instance.currentUser!.uid;
-                                    final CollectionReference usersCollection =
-                                        FirebaseFirestore.instance
-                                            .collection('users');
-                                    final user =
-                                        FirebaseAuth.instance.currentUser;
-
-                                    final userData = {
-                                      'userId': user!.uid,
-                                      'selectedAnswers': [],
-                                    };
-
-                                    await usersCollection
-                                        .doc(user.uid)
-                                        .set(userData);
-                                    await FirebaseFirestore.instance
-                                        .collection("Patients")
-                                        .doc(userId)
-                                        .set({
-                                      "First Name": _fname.text.trim(),
-                                      "Last Name": _lname.text.trim(),
-                                      "Email": _emailController.text.trim(),
-                                      "DOB": _dob.text.trim(),
-                                      "Phone": _phone.text.trim()
-                                    });
-
-                                    // Update the state to indicate data is saved
-                                    setState(() {
-                                      _isDataSaved = true;
-                                      _isSigningUp = false;
-                                    });
-
-                                    // Show a Snackbar to indicate data is saved
-                                    showSnackbar(context, "Data Saved!");
-                                    Navigator.push(
-                                        context,
-                                        MaterialPageRoute(
-                                            builder: (ctx) =>
-                                                PatientHome()));
-                                  } else {
-                                    setState(() {
-                                      _isSigningUp = false;
-                                      errMsg = _registerVM.message;
-                                    });
-                                  }
+                                  // Show a Snackbar to indicate data is saved
+                                  showSnackbar(context, "Data Saved!");
+                                  Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (ctx) => PatientDashboard()));
+                                } else {
+                                  setState(() {
+                                    _isSigningUp = false;
+                                    errMsg = _registerVM.message;
+                                  });
                                 }
-                              },
-                        child: Card(
-                          shape: RoundedRectangleBorder(
+                              }
+                            },
+                      child: Card(
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(15),
+                        ),
+                        elevation: 10,
+                        child: Container(
+                          height: 50,
+                          width: 300,
+                          decoration: BoxDecoration(
+                            color: pink,
                             borderRadius: BorderRadius.circular(15),
                           ),
-                          elevation: 10,
-                          child: Container(
-                            height: 50,
-                            width: 300,
-                            decoration: BoxDecoration(
-                              color: pink,
-                              borderRadius: BorderRadius.circular(15),
-                            ),
-                            child: _isSigningUp
-                                ? Lottie.asset(
-                                    'assets/login.json', // Replace with your animation file path
-                                    height: 30,
-                                    width: 30,
-                                  ).centered()
-                                : const Text(
-                                    'Register',
-                                    style: TextStyle(
-                                        color: Colors.white, fontSize: 18),
-                                  ).centered(),
-                          ),
+                          child: _isSigningUp
+                              ? Lottie.asset(
+                                  'assets/login.json', // Replace with your animation file path
+                                  height: 30,
+                                  width: 30,
+                                ).centered()
+                              : const Text(
+                                  'Register',
+                                  style: TextStyle(
+                                      color: Colors.white, fontSize: 18),
+                                ).centered(),
                         ),
                       ),
                     ),
-                    // SizedBox(
-                    //   height: height / 42,
-                    // ),
-                    // RichText(
-                    //   text: TextSpan(
-                    //     text: 'By signing up you are accepting ',
-                    //     style: TextStyle(color: Colors.black, fontSize: 16),
-                    //     children: const <TextSpan>[
-                    //       TextSpan(
-                    //         text: 'Terms and',
-                    //         style: TextStyle(
-                    //           fontWeight: FontWeight.bold,
-                    //           color: Colors.black,
-                    //           fontSize: 16,
-                    //         ),
-                    //       ),
-                    //     ],
-                    //   ),
-                    // ),
-                    // RichText(
-                    //   text: TextSpan(
-                    //     text: 'Conditions ',
-                    //     style: TextStyle(
-                    //         color: Colors.black,
-                    //         fontWeight: FontWeight.bold,
-                    //         fontSize: 16),
-                    //     children: const <TextSpan>[
-                    //       TextSpan(
-                    //         text: 'and',
-                    //         style: TextStyle(
-                    //           fontWeight: FontWeight.normal,
-                    //           color: Colors.black,
-                    //           fontSize: 16,
-                    //         ),
-                    //       ),
-                    //       TextSpan(
-                    //         text: ' Privacy Policy',
-                    //         style: TextStyle(
-                    //           fontWeight: FontWeight.bold,
-                    //           color: Colors.black,
-                    //           fontSize: 16,
-                    //         ),
-                    //       ),
-                    //     ],
-                    //   ),
-                    // ),
-                    // SizedBox(
-                    //   height: height / 35,
-                    // ),
-                    // RichText(
-                    //   text: TextSpan(
-                    //     text: 'Already have an Account? ',
-                    //     style: TextStyle(color: Colors.black, fontSize: 16),
-                    //     children: <TextSpan>[
-                    //       TextSpan(
-                    //         text: 'Log in',
-                    //         recognizer: TapGestureRecognizer()
-                    //           ..onTap = () {
-                    //             Navigator.push(
-                    //                 context,
-                    //                 MaterialPageRoute(
-                    //                     builder: (context) => LoginScreen()));
-                    //           },
-                    //         style: TextStyle(
-                    //           fontWeight: FontWeight.bold,
-                    //           color: Color(0xff2ddcdc),
-                    //           fontSize: 18,
-                    //         ),
-                    //       ),
-                    //     ],
-                    //   ),
-                    // ),
-                    // SizedBox(
-                    //   height: height / 35,
-                    // ),
-                  ],
-                ),
+                  ),
+                  // SizedBox(
+                  //   height: height / 42,
+                  // ),
+                  // RichText(
+                  //   text: TextSpan(
+                  //     text: 'By signing up you are accepting ',
+                  //     style: TextStyle(color: Colors.black, fontSize: 16),
+                  //     children: const <TextSpan>[
+                  //       TextSpan(
+                  //         text: 'Terms and',
+                  //         style: TextStyle(
+                  //           fontWeight: FontWeight.bold,
+                  //           color: Colors.black,
+                  //           fontSize: 16,
+                  //         ),
+                  //       ),
+                  //     ],
+                  //   ),
+                  // ),
+                  // RichText(
+                  //   text: TextSpan(
+                  //     text: 'Conditions ',
+                  //     style: TextStyle(
+                  //         color: Colors.black,
+                  //         fontWeight: FontWeight.bold,
+                  //         fontSize: 16),
+                  //     children: const <TextSpan>[
+                  //       TextSpan(
+                  //         text: 'and',
+                  //         style: TextStyle(
+                  //           fontWeight: FontWeight.normal,
+                  //           color: Colors.black,
+                  //           fontSize: 16,
+                  //         ),
+                  //       ),
+                  //       TextSpan(
+                  //         text: ' Privacy Policy',
+                  //         style: TextStyle(
+                  //           fontWeight: FontWeight.bold,
+                  //           color: Colors.black,
+                  //           fontSize: 16,
+                  //         ),
+                  //       ),
+                  //     ],
+                  //   ),
+                  // ),
+                  // SizedBox(
+                  //   height: height / 35,
+                  // ),
+                  // RichText(
+                  //   text: TextSpan(
+                  //     text: 'Already have an Account? ',
+                  //     style: TextStyle(color: Colors.black, fontSize: 16),
+                  //     children: <TextSpan>[
+                  //       TextSpan(
+                  //         text: 'Log in',
+                  //         recognizer: TapGestureRecognizer()
+                  //           ..onTap = () {
+                  //             Navigator.push(
+                  //                 context,
+                  //                 MaterialPageRoute(
+                  //                     builder: (context) => LoginScreen()));
+                  //           },
+                  //         style: TextStyle(
+                  //           fontWeight: FontWeight.bold,
+                  //           color: Color(0xff2ddcdc),
+                  //           fontSize: 18,
+                  //         ),
+                  //       ),
+                  //     ],
+                  //   ),
+                  // ),
+                  // SizedBox(
+                  //   height: height / 35,
+                  // ),
+                ],
               ),
             ),
           ),

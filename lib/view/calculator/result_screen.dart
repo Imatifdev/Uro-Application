@@ -43,7 +43,7 @@ class _ResultScreenState extends State<ResultScreen> {
     }
 
     return Scaffold(
-      backgroundColor: Colors.blue,
+      backgroundColor: Color(0xff0047ba),
       body: SafeArea(
         child: SizedBox(
           height: size.height - 100,
@@ -54,6 +54,15 @@ class _ResultScreenState extends State<ResultScreen> {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Lottie.asset('assets/res.json'),
+                if (widget.avg<7)
+
+                  Text("Mild",style: TextStyle(fontSize: heading,color: Colors.white,fontWeight: FontWeight.bold),),
+                if (widget.avg >7&&widget.avg<=19)
+
+                  Text("Moderate",style: TextStyle(fontSize: heading,color: Colors.white,fontWeight: FontWeight.bold),),
+                if (widget.avg>19)
+
+                Text("Severe",style: TextStyle(fontSize: heading,color: Colors.white,fontWeight: FontWeight.bold),),
                 LinearPercentIndicator(
                   lineHeight: 40,
                   barRadius: const Radius.circular(15),
@@ -68,8 +77,9 @@ class _ResultScreenState extends State<ResultScreen> {
                   linearGradient:
                       getProgressBarGradient(widget.avg / questionScore),
                 ),
+                if (widget.avg <=7)
                 Text(
-                  "According to Our Calculator there is ${((widget.avg / questionScore) * 100).toStringAsFixed(1)}% chance that you have a problem",
+                  "According to Our Calculator there is ${((widget.avg / questionScore) * 100).toStringAsFixed(1)}% chance that you have a mild symptoms",
                   textAlign: TextAlign.center,
                   style: const TextStyle(
                     color: Colors.white,
@@ -77,6 +87,25 @@ class _ResultScreenState extends State<ResultScreen> {
                     fontWeight: FontWeight.bold,
                   ),
                 ),
+                if (widget.avg >7&&widget.avg<=19)
+                  Text(
+                    "According to Our Calculator there is ${((widget.avg / questionScore) * 100).toStringAsFixed(1)}% chance that you have a moderate symptoms",
+                    textAlign: TextAlign.center,
+                    style: const TextStyle(
+                      color: Colors.white,
+                      fontSize: 18,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ), if (widget.avg >19)
+                  Text(
+                    "According to Our Calculator there is ${((widget.avg / questionScore) * 100).toStringAsFixed(1)}% chance that you have a severe symptoms",
+                    textAlign: TextAlign.center,
+                    style: const TextStyle(
+                      color: Colors.white,
+                      fontSize: 18,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
                 // SizedBox(
                 //   height: 60 * 7,
                 //   child: ListView.builder(

@@ -3,9 +3,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/gestures.dart';
 import 'package:lottie/lottie.dart';
-import 'package:uroapplication/view/patient/home.dart';
 import 'package:flutter/material.dart';
 import 'package:uroapplication/controller/mycolors.dart';
+import 'package:uroapplication/view/patient/patientdashboard.dart';
 
 import '../../models/loginmodel.dart';
 import 'package:velocity_x/velocity_x.dart';
@@ -241,7 +241,7 @@ class _LoginScreenPatientState extends State<LoginScreenPatient> {
                                 _passwordController.text);
                             if (isLoggedIn) {
                               Navigator.of(context).push(MaterialPageRoute(
-                                builder: (context) => PatientHome(),
+                                builder: (context) => PatientDashboard(),
                               ));
                             }
                             setState(() {
