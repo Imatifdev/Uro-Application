@@ -4,6 +4,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:uroapplication/view/patient/history_page.dart';
 import 'package:uroapplication/view/patient/oab.dart';
 import 'package:uroapplication/view/patient/profile.dart';
 import '../../controller/mycolors.dart';
@@ -152,6 +153,26 @@ class _PatientDashboardState extends State<PatientDashboard> {
                 ),
               ),
             ),
+            SizedBox(height: 50,),
+            Align(
+              alignment: Alignment.center,
+              child: ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                  padding: EdgeInsets.all(20)
+                ),
+                onPressed: (){
+                  Navigator.of(context).push(MaterialPageRoute(builder: (context) => QuizHistoryScreen(quiz: 'Quiz1History',)));
+                }, child: Text("View OAB Test History"))),
+                SizedBox(height: 5,),
+             Align(
+              alignment: Alignment.center,
+              child: ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                  padding: EdgeInsets.all(20)
+                ),
+                onPressed: (){
+                  Navigator.of(context).push(MaterialPageRoute(builder: (context) => QuizHistoryScreen(quiz: 'Quiz2History',)));
+                }, child: Text("View IPSS Test History")))    
           ],
         ),
       ),

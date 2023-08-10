@@ -111,38 +111,41 @@ class _OABScreenState extends State<OABScreen> {
                   SizedBox(
                     height: screenHeight / 30,
                   ),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 20),
-                    child: SwipeableButtonView(
-                      buttonText: 'Start OAB Diagnosis',
-                      buttonWidget: Container(
-                        child: Icon(
-                          Icons.arrow_forward_ios_rounded,
-                          color: Colors.grey,
-                        ),
-                      ),
-                      activeColor: Colors.white.withOpacity(0.2),
-                      isFinished: isFinished,
-                      onWaitingProcess: () {
-                        Future.delayed(Duration(seconds: 2), () {
-                          setState(() {
-                            isFinished = true;
-                          });
-                        });
-                      },
-                      onFinish: () async {
-                        await Navigator.push(
-                            context,
-                            PageTransition(
-                                type: PageTransitionType.fade, child: OAB()));
+                  // Padding(
+                  //   padding: const EdgeInsets.symmetric(horizontal: 20),
+                  //   child: SwipeableButtonView(
+                  //     buttonText: 'Start OAB Diagnosis',
+                  //     buttonWidget: Container(
+                  //       child: Icon(
+                  //         Icons.arrow_forward_ios_rounded,
+                  //         color: Colors.grey,
+                  //       ),
+                  //     ),
+                  //     activeColor: Colors.white.withOpacity(0.2),
+                  //     isFinished: isFinished,
+                  //     onWaitingProcess: () {
+                  //       Future.delayed(Duration(seconds: 2), () {
+                  //         setState(() {
+                  //           isFinished = true;
+                  //         });
+                  //       });
+                  //     },
+                  //     onFinish: () async {
+                  //       await Navigator.push(
+                  //           context,
+                  //           PageTransition(
+                  //               type: PageTransitionType.fade, child: OAB()));
 
-                        //TODO: For reverse ripple effect animation
-                        setState(() {
-                          isFinished = false;
-                        });
-                      },
-                    ),
-                  )
+                  //       //TODO: For reverse ripple effect animation
+                  //       setState(() {
+                  //         isFinished = false;
+                  //       });
+                  //     },
+                  //   ),
+                  // )
+                  ElevatedButton(onPressed: (){
+                    Navigator.of(context).push(MaterialPageRoute(builder: (context) => OAB()));
+                  }, child: Text("Take OAB Quiz"))
                 ],
               ),
             ),
@@ -177,38 +180,41 @@ class _OABScreenState extends State<OABScreen> {
                   SizedBox(
                     height: screenHeight / 30,
                   ),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 20),
-                    child: SwipeableButtonView(
-                      buttonText: 'Start IPSS Diagnosis',
-                      buttonWidget: Container(
-                        child: Icon(
-                          Icons.arrow_forward_ios_rounded,
-                          color: Colors.grey,
-                        ),
-                      ),
-                      activeColor: Colors.white.withOpacity(0.2),
-                      isFinished: isFinished,
-                      onWaitingProcess: () {
-                        Future.delayed(Duration(seconds: 2), () {
-                          setState(() {
-                            isFinished = true;
-                          });
-                        });
-                      },
-                      onFinish: () async {
-                        await Navigator.push(
-                            context,
-                            PageTransition(
-                                type: PageTransitionType.fade, child: IPSS()));
+                  // Padding(
+                  //   padding: const EdgeInsets.symmetric(horizontal: 20),
+                  //   child: SwipeableButtonView(
+                  //     buttonText: 'Start IPSS Diagnosis',
+                  //     buttonWidget: Container(
+                  //       child: Icon(
+                  //         Icons.arrow_forward_ios_rounded,
+                  //         color: Colors.grey,
+                  //       ),
+                  //     ),
+                  //     activeColor: Colors.white.withOpacity(0.2),
+                  //     isFinished: isFinished,
+                  //     onWaitingProcess: () {
+                  //       Future.delayed(Duration(seconds: 2), () {
+                  //         setState(() {
+                  //           isFinished = true;
+                  //         });
+                  //       });
+                  //     },
+                  //     onFinish: () async {
+                  //       await Navigator.push(
+                  //           context,
+                  //           PageTransition(
+                  //               type: PageTransitionType.fade, child: IPSS()));
 
-                        //TODO: For reverse ripple effect animation
-                        setState(() {
-                          isFinished = false;
-                        });
-                      },
-                    ),
-                  )
+                  //       //TODO: For reverse ripple effect animation
+                  //       setState(() {
+                  //         isFinished = false;
+                  //       });
+                  //     },
+                  //   ),
+                  // )
+                  ElevatedButton(onPressed: (){
+                    Navigator.of(context).push(MaterialPageRoute(builder: (context) => IPSS()));
+                  }, child: Text("Take IPSS Quiz"))
                 ],
               ),
             ),

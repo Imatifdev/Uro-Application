@@ -6,7 +6,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 import 'package:uroapplication/controller/mycolors.dart';
-import 'package:uroapplication/view/admin/dashboard.dart';
+import 'package:uroapplication/view/patient/home.dart';
 import 'package:uroapplication/view/patient/patientdashboard.dart';
 import '../../models/registermodel.dart';
 import 'package:velocity_x/velocity_x.dart';
@@ -431,7 +431,7 @@ class _NewSignupScreenState extends State<NewSignupScreen> {
                                         context,
                                         MaterialPageRoute(
                                             builder: (ctx) =>
-                                                PatientDashboard()));
+                                                PatientHome()));
                                   } else {
                                     setState(() {
                                       _isSigningUp = false;

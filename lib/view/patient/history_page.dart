@@ -12,7 +12,7 @@ class QuizHistoryScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Quiz History'),
+        title: const Text('Quiz History'),
       ),
       body: StreamBuilder<QuerySnapshot>(
         stream: FirebaseFirestore.instance
@@ -23,7 +23,7 @@ class QuizHistoryScreen extends StatelessWidget {
             .snapshots(),
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
-            return Center(
+            return const Center(
               child: CircularProgressIndicator(),
             );
           } else if (snapshot.hasError) {
@@ -44,7 +44,7 @@ class QuizHistoryScreen extends StatelessWidget {
                 DateTime time = (userData['time'] as Timestamp).toDate();
 
                 return ListTile(
-                  title: Text('Quiz Data ${index + 1}'),
+                  title: Text('Quiz History ${index + 1}'),
                   subtitle: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
@@ -58,7 +58,7 @@ class QuizHistoryScreen extends StatelessWidget {
               },
             );
           } else {
-            return Center(
+            return const Center(
               child: Text('No Quiz History'),
             );
           }

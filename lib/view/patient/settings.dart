@@ -10,6 +10,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:uroapplication/controller/mycolors.dart';
 import 'package:uroapplication/view/admin/login.dart';
+import 'package:uroapplication/view/patient/language_screen.dart';
 
 import '../../widgets/custombutton.dart';
 
@@ -68,6 +69,9 @@ class _SettingsScreenState extends State<SettingsScreen> {
                     child: Column(
                       children: [
                         ListTile(
+                          onTap: (){
+                            Navigator.push(context, MaterialPageRoute(builder: (context) => LanguageScreen(),));
+                          },
                           leading: Icon(
                             Icons.language,
                             color: Colors.pink,

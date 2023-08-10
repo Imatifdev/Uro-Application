@@ -107,18 +107,18 @@ class _IPSSState extends State<IPSS> {
 
     return Scaffold(
       backgroundColor: Colors.transparent,
-      body: SafeArea(
-        child: LayoutBuilder(
-          builder: (context, constraints) {
-            return Container(
-              decoration: BoxDecoration(
-                gradient: LinearGradient(
-                    colors: [grad1, grad2],
-                    begin: Alignment.topCenter,
-                    end: Alignment.bottomCenter),
-              ),
-              width: constraints.maxWidth,
-              height: constraints.maxHeight,
+      body: LayoutBuilder(
+        builder: (context, constraints) {
+          return Container(
+            decoration: const BoxDecoration(
+              gradient: LinearGradient(
+                  colors: [grad1, grad2],
+                  begin: Alignment.topCenter,
+                  end: Alignment.bottomCenter),
+            ),
+            width: constraints.maxWidth,
+            height: constraints.maxHeight,
+            child: SafeArea(
               child: Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: Column(
@@ -245,9 +245,9 @@ class _IPSSState extends State<IPSS> {
                   ],
                 ),
               ),
-            );
-          },
-        ),
+            ),
+          );
+        },
       ),
     );
   }
