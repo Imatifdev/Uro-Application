@@ -5,7 +5,6 @@ import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
-import 'package:uroapplication/view/patient/login.dart';
 import 'package:flutter_gen/gen_l10n/app_localization.dart';
 import 'package:uroapplication/view/patient/patientdashboard.dart';
 import 'package:uroapplication/view/splash.dart';
@@ -55,7 +54,7 @@ class _MyAppState extends State<MyApp> {
       ),
       home: //PatientHome(),
           FirebaseAuth.instance.currentUser == null
-              ? LoginScreenPatient()
+              ? SplashScreen()
               : PatientDashboard(),
       supportedLocales: L10n.all,
       locale: _locale,

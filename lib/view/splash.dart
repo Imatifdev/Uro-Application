@@ -18,7 +18,7 @@ class _SplashScreenState extends State<SplashScreen>
 
     _controller = AnimationController(
       vsync: this,
-      duration: Duration(seconds: 2),
+      duration: const Duration(seconds: 2),
     );
 
     _animation = CurvedAnimation(
@@ -30,11 +30,11 @@ class _SplashScreenState extends State<SplashScreen>
     _controller!.forward();
 
     // Simulate a loading process
-    Future.delayed(Duration(seconds: 2), () {
+    Future.delayed(const Duration(seconds: 2), () {
       //Navigate to the main screen after loading
       Navigator.pushReplacement(
         context,
-        MaterialPageRoute(builder: (context) => LoginScreenPatient()),
+        MaterialPageRoute(builder: (context) => const LoginScreenPatient()),
       );
     });
   }
@@ -42,11 +42,11 @@ class _SplashScreenState extends State<SplashScreen>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xff0047ba),
+      backgroundColor: const Color(0xff0047ba),
       body: Center(
         child: FadeTransition(
             opacity: _animation!,
-            child: Image(
+            child: const Image(
                 height: 300,
                 width: 300,
                 image: AssetImage('assets/images/logo.png'))),
