@@ -10,7 +10,7 @@ class HistoryPage extends StatelessWidget {
     final hieght = MediaQuery.of(context).size.height;
     final width = MediaQuery.of(context).size.width;
     final screenWidth = MediaQuery.of(context).size.width;
-    final screenHeight = MediaQuery.of(context).size.height;
+    //final screenHeight = MediaQuery.of(context).size.height;
     final textScaleFactor = MediaQuery.of(context).textScaleFactor;
 
     // Adjust font size based on screen width and text scale factor

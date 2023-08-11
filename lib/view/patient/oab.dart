@@ -4,9 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:uroapplication/view/calculator/quiz2_screen.dart';
 import 'package:uroapplication/view/calculator/quiz_screen.dart';
-import '../../controller/mycolors.dart';
-import 'package:page_transition/page_transition.dart';
-import 'package:swipeable_button_view/swipeable_button_view.dart';
 
 class OABScreen extends StatefulWidget {
   @override
@@ -59,31 +56,29 @@ class _OABScreenState extends State<OABScreen> {
     final heading = screenWidth * 0.08 * textScaleFactor;
 
     // Determine the text direction to set the alignment of the slide buttons
-    final isRTL = Directionality.of(context) == TextDirection.rtl;
-    final slideButtonAlignment =
-        isRTL ? Alignment.centerRight : Alignment.centerLeft;
+    //final isRTL = Directionality.of(context) == TextDirection.rtl;
+    // final slideButtonAlignment =
+    //     isRTL ? Alignment.centerRight : Alignment.centerLeft;
 
     return Scaffold(
         appBar: AppBar(
-          backgroundColor: Color(0xff0047ba),
+          backgroundColor: const Color(0xff0047ba),
 
           toolbarHeight: screenHeight*0.09,
           centerTitle: true,
           title: Image.asset('assets/images/logo.png',height: 80,color: Colors.white,),
           elevation: 0,
 
-          leading: IconButton(icon: Icon(CupertinoIcons.left_chevron),color: Colors.white,onPressed: (){
+          leading: IconButton(icon: const Icon(CupertinoIcons.left_chevron),color: Colors.white,onPressed: (){
             Navigator.pop(context);
           },),
         ),
 
-        backgroundColor: Color(0xff0047ba),
+        backgroundColor: const Color(0xff0047ba),
       body: SingleChildScrollView(
-        child: Container(
+        child: SizedBox(
           height: screenHeight,
           width: screenWidth,
-          decoration: BoxDecoration(
-           ),
           child: Column(
             children: [
               SizedBox(
@@ -115,7 +110,7 @@ class _OABScreenState extends State<OABScreen> {
                           Image(
                             height: screenHeight / 7,
                             width: screenWidth,
-                            image: AssetImage('assets/images/1.png'),
+                            image: const AssetImage('assets/images/oab.png'),
                           ),
                           Text(
                             "OAB Diagnosis",
@@ -162,12 +157,12 @@ class _OABScreenState extends State<OABScreen> {
                     //   ),
                     // )
                     ElevatedButton(onPressed: (){
-                      Navigator.of(context).push(MaterialPageRoute(builder: (context) => OAB()));
+                      Navigator.of(context).push(MaterialPageRoute(builder: (context) => const OAB()));
                     },
                         style: ElevatedButton.styleFrom(
-                          backgroundColor: Color(0xff3d6bb4),
+                          backgroundColor: const Color(0xff3d6bb4),
 
-                        ),child: Text("Take OAB Quiz",style: TextStyle(color: Colors.white),))
+                        ),child: const Text("Take OAB Quiz",style: TextStyle(color: Colors.white),))
                   ],
                 ),
               ),
@@ -189,7 +184,7 @@ class _OABScreenState extends State<OABScreen> {
                           Image(
                             height: screenHeight / 7,
                             width: screenWidth,
-                            image: AssetImage('assets/images/2.png'),
+                            image: const AssetImage('assets/images/ipss.png'),
                           ),
                           Text(
                             "IPSS Diagnosis",
@@ -237,12 +232,12 @@ class _OABScreenState extends State<OABScreen> {
                     // )
                     ElevatedButton(onPressed: (){
 
-                      Navigator.of(context).push(MaterialPageRoute(builder: (context) => IPSS()));
+                      Navigator.of(context).push(MaterialPageRoute(builder: (context) => const IPSS()));
                     },style: ElevatedButton.styleFrom(
-                      backgroundColor: Color(0xff3d6bb4),
+                      backgroundColor: const Color(0xff3d6bb4),
 
                     ),
-                        child: Text("Take IPSS Quiz",style: TextStyle(color: Colors.white),))
+                        child: const Text("Take IPSS Quiz",style: TextStyle(color: Colors.white),))
                   ],
                 ),
               ),

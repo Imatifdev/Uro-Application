@@ -4,12 +4,10 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:uroapplication/view/patient/history_page.dart';
 import 'package:uroapplication/view/patient/historypage.dart';
 import 'package:uroapplication/view/patient/oab.dart';
 import 'package:uroapplication/view/patient/profile.dart';
 import 'package:uroapplication/view/patient/settings.dart';
-import '../../controller/mycolors.dart';
 
 import 'package:page_transition/page_transition.dart';
 
