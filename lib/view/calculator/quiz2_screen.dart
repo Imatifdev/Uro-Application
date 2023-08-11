@@ -135,7 +135,7 @@ class _IPSSState extends State<IPSS> {
                               color: Colors.white,
                               fontWeight: FontWeight.bold),
                         ),
-                        Image.asset('assets/images/logo.png',height: 60,)
+                        Image.asset('assets/images/ipssbg.png',height: 60,)
                       ],
                     ),
                     SizedBox(height: constraints.maxHeight * 0.01),

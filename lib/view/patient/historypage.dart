@@ -2,13 +2,13 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import 'history_page.dart';
+
 class HistoryPage extends StatelessWidget {
   const HistoryPage({super.key});
-
   @override
   Widget build(BuildContext context) {
-    final hieght= MediaQuery.of(context).size.height;
-final width=MediaQuery.of(context).size.width;
+    final hieght = MediaQuery.of(context).size.height;
+    final width = MediaQuery.of(context).size.width;
     final screenWidth = MediaQuery.of(context).size.width;
     final screenHeight = MediaQuery.of(context).size.height;
     final textScaleFactor = MediaQuery.of(context).textScaleFactor;
@@ -20,38 +20,64 @@ final width=MediaQuery.of(context).size.width;
 
     return Scaffold(
       backgroundColor: Color(0xff0047ba),
-appBar: AppBar(
-  toolbarHeight: hieght*0.09,
-  centerTitle: true,
-  title: Image.asset('assets/images/logo.png',height: 80,),
-  elevation: 0,
-  backgroundColor: Color(0xff0047ba),
-
-  leading: IconButton(icon: Icon(CupertinoIcons.left_chevron),color: Colors.white,onPressed: (){
-    Navigator.pop(context);
-  },),
-),
+      appBar: AppBar(
+        toolbarHeight: hieght * 0.09,
+        centerTitle: true,
+        title: Image.asset(
+          'assets/images/logo.png',
+          height: 80,
+        ),
+        elevation: 0,
+        backgroundColor: Color(0xff0047ba),
+        leading: IconButton(
+          icon: Icon(CupertinoIcons.left_chevron),
+          color: Colors.white,
+          onPressed: () {
+            Navigator.pop(context);
+          },
+        ),
+      ),
       body: Column(
         children: [
           SizedBox(
-            height: hieght*0.1,
+            height: hieght * 0.1,
           ),
-          Image.asset('assets/history.png',height:hieght*0.3,width: width,fit:BoxFit.contain,),
-          SizedBox(height: hieght*0.05,),
-
-          Text("Download Patient History",style: TextStyle(fontSize: subheading1,color: Colors.white,fontWeight: FontWeight.bold),),
-SizedBox(height: hieght*0.05,),
+          Image.asset(
+            'assets/history.png',
+            height: hieght * 0.3,
+            width: width,
+            fit: BoxFit.contain,
+          ),
+          SizedBox(
+            height: hieght * 0.05,
+          ),
+          Text(
+            "Download Patient History",
+            style: TextStyle(
+                fontSize: subheading1,
+                color: Colors.white,
+                fontWeight: FontWeight.bold),
+          ),
+          SizedBox(
+            height: hieght * 0.05,
+          ),
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: Align(
                 alignment: Alignment.center,
                 child: ListTile(
                   shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(20)
-                  ),
+                      borderRadius: BorderRadius.circular(20)),
                   tileColor: Color(0xff3d6bb4),
-                  leading: Icon(Icons.download,color: Colors.white,),
-                  title: Text("View OAB Test History",style: TextStyle(fontSize: subheading2,color: Colors.white),),
+                  leading: Icon(
+                    Icons.download,
+                    color: Colors.white,
+                  ),
+                  title: Text(
+                    "View OAB Test History",
+                    style:
+                        TextStyle(fontSize: subheading2, color: Colors.white),
+                  ),
                   onTap: () {
                     Navigator.of(context).push(MaterialPageRoute(
                       builder: (context) => QuizHistoryScreen(
@@ -61,28 +87,32 @@ SizedBox(height: hieght*0.05,),
                   },
                 )),
           ),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Align(
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Align(
                 alignment: Alignment.center,
-                child: ListTile( shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(20)
-                ),
-
+                child: ListTile(
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(20)),
                   tileColor: Color(0xff3d6bb4),
-
-                  leading: Icon(Icons.download,color: Colors.white,),
-                  title: Text("View IPSS Test History",style: TextStyle(fontSize: subheading2,color: Colors.white),),
+                  leading: Icon(
+                    Icons.download,
+                    color: Colors.white,
+                  ),
+                  title: Text(
+                    "View IPSS Test History",
+                    style:
+                        TextStyle(fontSize: subheading2, color: Colors.white),
+                  ),
                   onTap: () {
                     Navigator.of(context).push(MaterialPageRoute(
                         builder: (context) => QuizHistoryScreen(
-                          quiz: 'Quiz2History',
-                        )));
+                              quiz: 'Quiz2History',
+                            )));
                   },
                 )),
-            ),
-
-           ],
+          ),
+        ],
       ),
     );
   }

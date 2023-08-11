@@ -131,7 +131,12 @@ class _OABState extends State<OAB> {
       body: SafeArea(
         child: LayoutBuilder(
           builder: (context, constraints) {
-            return SizedBox(
+            return Container(
+              decoration: BoxDecoration(
+                image: DecorationImage(
+                  image: AssetImage('assets/images/oabbg.png')
+                )
+              ),
               width: constraints.maxWidth,
               height: constraints.maxHeight,
               child: Padding(
