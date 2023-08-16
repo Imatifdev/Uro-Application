@@ -53,10 +53,9 @@ class _MyAppState extends State<MyApp> {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.pink),
         useMaterial3: true,
       ),
-      home: //PatientHome(),
-          FirebaseAuth.instance.currentUser == null
-              ? LoginScreenPatient()
-              : PatientDashboard(),
+      home: FirebaseAuth.instance.currentUser == null
+          ? LoginScreenPatient()
+          : PatientDashboard(),
       supportedLocales: L10n.all,
       locale: _locale,
       localizationsDelegates: const [

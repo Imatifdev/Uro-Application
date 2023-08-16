@@ -47,7 +47,7 @@ class _ForgitPasswordState extends State<ForgitPassword> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xffe1e6ef),
+      backgroundColor: Color(0xff0047ba),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 30),
         child: SingleChildScrollView(
@@ -62,7 +62,7 @@ class _ForgitPasswordState extends State<ForgitPassword> {
                 ),
                 const Text(
                   "Reset Your Password",
-                  style: TextStyle(fontSize: 20, color: Colors.black),
+                  style: TextStyle(fontSize: 20, color: Colors.white),
                 ),
                 const SizedBox(
                   height: 20,
@@ -111,8 +111,8 @@ class _ForgitPasswordState extends State<ForgitPassword> {
                           backgroundColor: Colors.red,
                         ));
                     },
-                    color1: pink,
-                    color2: pink,
+                    color1: button,
+                    color2: button,
                     width: MediaQuery.of(context).size.width - 50),
               ],
             ),

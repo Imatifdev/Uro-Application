@@ -33,29 +33,34 @@ class _SettingsScreenState extends State<SettingsScreen> {
     // final controller = Get.put(ProfileController());
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.grey.shade100,
-
-        toolbarHeight: screenHeight*0.09,
+        backgroundColor: Color(0xff0047ba),
+        toolbarHeight: screenHeight * 0.09,
         centerTitle: true,
-        title: Image.asset('assets/images/logo.png',height: 80,color: Colors.blue,),
+        title: Image.asset(
+          'assets/images/logo.png',
+          height: 80,
+          color: Colors.white,
+        ),
         elevation: 0,
-
-        leading: IconButton(icon: Icon(CupertinoIcons.left_chevron),color: Colors.blue,onPressed: (){
-          Navigator.pop(context);
-        },),
+        leading: IconButton(
+          icon: Icon(CupertinoIcons.left_chevron),
+          color: Colors.white,
+          onPressed: () {
+            Navigator.pop(context);
+          },
+        ),
       ),
-      backgroundColor: Colors.grey.shade100,
+      backgroundColor: Color(0xff0047ba),
       body: Column(
         children: [
           SizedBox(
             height: screenHeight * 0.05,
           ),
-
           Text(
             "Settings",
             style: TextStyle(
                 fontSize: heading,
-                color: Colors.black,
+                color: Colors.white,
                 fontWeight: FontWeight.bold),
           ),
           SizedBox(
@@ -64,9 +69,8 @@ class _SettingsScreenState extends State<SettingsScreen> {
           Padding(
             padding: const EdgeInsets.all(16.0),
             child: Column(children: [
-
               Card(
-                color: Colors.white,
+                color: button,
                 child: Container(
                   height: screenHeight * 0.16,
                   child: Padding(
@@ -83,18 +87,18 @@ class _SettingsScreenState extends State<SettingsScreen> {
                           },
                           leading: Icon(
                             Icons.language,
-                            color: Colors.pink,
+                            color: Colors.yellow,
                           ),
                           title: Text(
                             "Language",
                             style: TextStyle(
                                 fontWeight: FontWeight.bold,
                                 fontSize: subheading3,
-                                color: Colors.black),
+                                color: Colors.white),
                           ),
                           trailing: Icon(
                             CupertinoIcons.right_chevron,
-                            color: Colors.pink,
+                            color: Colors.yellow,
                             size: 20,
                           ),
                         ),
@@ -106,23 +110,26 @@ class _SettingsScreenState extends State<SettingsScreen> {
                           ),
                         ),
                         ListTile(
-                          onTap: (){
-                            Navigator.push(context, MaterialPageRoute(builder: (context)=>ForgitPassword()));
+                          onTap: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => ForgitPassword()));
                           },
                           leading: Icon(
                             CupertinoIcons.lock_shield_fill,
-                            color: Colors.pink,
+                            color: Colors.yellow,
                           ),
                           title: Text(
                             "Reset Password",
                             style: TextStyle(
                                 fontWeight: FontWeight.bold,
                                 fontSize: subheading3,
-                                color: Colors.black),
+                                color: Colors.white),
                           ),
                           trailing: Icon(
                             CupertinoIcons.right_chevron,
-                            color: Colors.pink,
+                            color: Colors.yellow,
                             size: 20,
                           ),
                         ),

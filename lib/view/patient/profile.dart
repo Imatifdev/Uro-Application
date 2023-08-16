@@ -76,22 +76,27 @@ class _ProfileViewState extends State<ProfileView> {
 
     // final controller = Get.put(ProfileController());
     return Scaffold(
-      backgroundColor: Colors.grey.shade100,
+      backgroundColor: Color(0xff0047ba),
       appBar: AppBar(
-        backgroundColor: Colors.grey.shade100,
-
-        toolbarHeight: screenHeight*0.09,
+        backgroundColor: Color(0xff0047ba),
+        toolbarHeight: screenHeight * 0.09,
         centerTitle: true,
-        title: Image.asset('assets/images/logo.png',height: 80,color: Colors.blue,),
+        title: Image.asset(
+          'assets/images/logo.png',
+          height: 80,
+          color: Colors.white,
+        ),
         elevation: 0,
-
-        leading: IconButton(icon: Icon(CupertinoIcons.left_chevron),color: Colors.blue,onPressed: (){
-          Navigator.pop(context);
-        },),
+        leading: IconButton(
+          icon: Icon(CupertinoIcons.left_chevron),
+          color: Colors.white,
+          onPressed: () {
+            Navigator.pop(context);
+          },
+        ),
       ),
       body: Column(
         children: [
-
           SizedBox(
             height: screenHeight * 0.05,
           ),
@@ -99,7 +104,7 @@ class _ProfileViewState extends State<ProfileView> {
             "Account",
             style: TextStyle(
                 fontSize: heading,
-                color: Colors.black,
+                color: Colors.white,
                 fontWeight: FontWeight.bold),
           ),
           SizedBox(
@@ -109,6 +114,7 @@ class _ProfileViewState extends State<ProfileView> {
             padding: const EdgeInsets.all(16.0),
             child: Column(children: [
               Card(
+                color: button,
                 child: Container(
                   width: screenWidth,
                   height: screenHeight * 0.12,
@@ -123,18 +129,18 @@ class _ProfileViewState extends State<ProfileView> {
                           name,
                           style: TextStyle(
                               fontSize: subheading3,
-                              color: Colors.black,
+                              color: Colors.white,
                               fontWeight: FontWeight.bold),
                         ),
                         Divider(
                           thickness: 0.3,
-                          color: Colors.grey,
+                          color: Colors.white,
                         ),
                         Text(
                           email,
                           style: TextStyle(
                               fontSize: subheading3,
-                              color: Colors.black,
+                              color: Colors.white,
                               fontWeight: FontWeight.bold),
                         ),
                       ],
@@ -143,7 +149,7 @@ class _ProfileViewState extends State<ProfileView> {
                 ),
               ),
               Card(
-                color: blue,
+                color: button,
                 child: Container(
                   height: screenHeight * 0.07,
                   child: Padding(
@@ -154,11 +160,13 @@ class _ProfileViewState extends State<ProfileView> {
                         Text(
                           "Share Your Story",
                           style: TextStyle(
-                              fontSize: subheading3, color: Colors.white),
+                            fontSize: subheading3,
+                            color: Colors.white,
+                          ),
                         ),
                         Icon(
                           CupertinoIcons.right_chevron,
-                          color: Colors.white,
+                          color: button,
                           size: 20,
                         )
                       ],
@@ -167,7 +175,7 @@ class _ProfileViewState extends State<ProfileView> {
                 ),
               ),
               Card(
-                color: Colors.white,
+                color: button,
                 child: Container(
                   height: screenHeight * 0.16,
                   child: Padding(
@@ -185,18 +193,19 @@ class _ProfileViewState extends State<ProfileView> {
                           },
                           leading: Icon(
                             CupertinoIcons.settings_solid,
-                            color: Colors.pink,
+                            color: Colors.yellow,
                           ),
                           title: Text(
                             "Settings",
                             style: TextStyle(
-                                fontWeight: FontWeight.bold,
-                                fontSize: subheading3,
-                                color: Colors.black),
+                              fontWeight: FontWeight.bold,
+                              fontSize: subheading3,
+                              color: Colors.white,
+                            ),
                           ),
                           trailing: Icon(
                             CupertinoIcons.right_chevron,
-                            color: Colors.pink,
+                            color: Colors.yellow,
                             size: 20,
                           ),
                         ),
@@ -204,7 +213,7 @@ class _ProfileViewState extends State<ProfileView> {
                           padding: const EdgeInsets.symmetric(horizontal: 20),
                           child: Divider(
                             thickness: 0.3,
-                            color: Colors.grey,
+                            color: Colors.white,
                           ),
                         ),
                         ListTile(
@@ -218,18 +227,18 @@ class _ProfileViewState extends State<ProfileView> {
                           },
                           leading: Icon(
                             CupertinoIcons.cloud_download,
-                            color: Colors.pink,
+                            color: Colors.yellow,
                           ),
                           title: Text(
                             "Download Your Record",
                             style: TextStyle(
                                 fontWeight: FontWeight.bold,
                                 fontSize: subheading3,
-                                color: Colors.black),
+                                color: Colors.white),
                           ),
                           trailing: Icon(
                             CupertinoIcons.right_chevron,
-                            color: Colors.pink,
+                            color: Colors.yellow,
                             size: 20,
                           ),
                         ),
@@ -239,7 +248,7 @@ class _ProfileViewState extends State<ProfileView> {
                 ),
               ),
               Card(
-                color: Colors.white,
+                color: button,
                 child: Container(
                   height: screenHeight * 0.07,
                   child: Padding(
@@ -255,18 +264,18 @@ class _ProfileViewState extends State<ProfileView> {
                       },
                       leading: Icon(
                         Icons.logout,
-                        color: Colors.pink,
+                        color: Colors.yellow,
                       ),
                       title: Text(
                         "LogOut Your Account",
                         style: TextStyle(
                             fontWeight: FontWeight.bold,
                             fontSize: subheading3,
-                            color: Colors.black),
+                            color: Colors.white),
                       ),
                       trailing: Icon(
                         CupertinoIcons.right_chevron,
-                        color: Colors.pink,
+                        color: Colors.yellow,
                         size: 20,
                       ),
                     ),
