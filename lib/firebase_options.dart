@@ -71,6 +71,6 @@ class DefaultFirebaseOptions {
     projectId: 'uro-app-f3690',
     storageBucket: 'uro-app-f3690.appspot.com',
     iosClientId: '152742107512-0eviievcmkilgaos1j1d1v37dhobret2.apps.googleusercontent.com',
-    iosBundleId: 'com.example.uroapplication',
+    iosBundleId: 'com.codefren.micontrol',
   );
 }
