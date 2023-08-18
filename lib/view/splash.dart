@@ -18,11 +18,7 @@ class SplashScreenState extends State<SplashScreen>
 
     _controller = AnimationController(
       vsync: this,
-<<<<<<< Updated upstream
       duration: const Duration(seconds: 3),
-=======
-      duration: const Duration(seconds: 2),
->>>>>>> Stashed changes
     );
 
     _animation = CurvedAnimation(
