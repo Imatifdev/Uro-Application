@@ -6,6 +6,7 @@ import 'package:uroapplication/controller/mycolors.dart';
 import 'package:uroapplication/view/calculator/quiz2_screen.dart';
 import 'package:uroapplication/view/calculator/quiz_screen.dart';
 import 'package:flutter_gen/gen_l10n/app_localization.dart';
+import 'package:flutter_gen/gen_l10n/app_localization.dart';
 
 class OABScreen extends StatefulWidget {
   @override
@@ -64,7 +65,7 @@ class _OABScreenState extends State<OABScreen> {
 
     return Scaffold(
         appBar: AppBar(
-          backgroundColor: const Color(0xff0047ba),
+          backgroundColor:  Color(0xff0047ba),
           toolbarHeight: screenHeight * 0.09,
           centerTitle: true,
           title: Image.asset(
@@ -74,14 +75,14 @@ class _OABScreenState extends State<OABScreen> {
           ),
           elevation: 0,
           leading: IconButton(
-            icon: const Icon(CupertinoIcons.left_chevron),
+            icon:  Icon(CupertinoIcons.left_chevron),
             color: Colors.white,
             onPressed: () {
               Navigator.pop(context);
             },
           ),
         ),
-        backgroundColor: const Color(0xff0047ba),
+        backgroundColor:  Color(0xff0047ba),
         body: SingleChildScrollView(
           child: SizedBox(
             height: screenHeight,
@@ -92,10 +93,10 @@ class _OABScreenState extends State<OABScreen> {
                   height: screenHeight * 0.03,
                 ),
                 Padding(
-                  padding: const EdgeInsets.all(8.0),
+                  padding:  EdgeInsets.all(8.0),
                   child: Text(
-                    "Health Test: Quick Assessment for Vital Indicators.",
-                    textAlign: TextAlign.center,
+                                         AppLocalizations.of(context)!.healthTestQuickAssesment,
+         textAlign: TextAlign.center,
                     style: TextStyle(fontSize: subheading, color: Colors.white),
                   ),
                 ),
@@ -103,7 +104,7 @@ class _OABScreenState extends State<OABScreen> {
                   height: screenHeight * 0.02,
                 ),
                 Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 20),
+                  padding:  EdgeInsets.symmetric(horizontal: 20),
                   child: Container(
                     height: screenHeight / 3.5,
                     decoration: BoxDecoration(
@@ -118,12 +119,12 @@ class _OABScreenState extends State<OABScreen> {
                               height: screenHeight / 7,
                               width: screenWidth,
                               color: Colors.pink.shade300,
-                              image: const AssetImage(
+                              image:  AssetImage(
                                 'assets/images/oab.png',
                               ),
                             ),
-                            Text(
-                              "OAB Diagnosis",
+                            Text(                              AppLocalizations.of(context)!.oabDiag,
+
                               style: TextStyle(
                                   fontSize: heading,
                                   fontWeight: FontWeight.bold,
@@ -137,13 +138,13 @@ class _OABScreenState extends State<OABScreen> {
                         ElevatedButton(
                             onPressed: () {
                               Navigator.of(context).push(MaterialPageRoute(
-                                  builder: (context) => const OAB()));
+                                  builder: (context) =>  OAB()));
                             },
                             style: ElevatedButton.styleFrom(
-                              backgroundColor: const Color(0xff3d6bb4),
+                              backgroundColor:  Color(0xff3d6bb4),
                             ),
-                            child: const Text(
-                              "Take OAB Quiz",
+                            child:  Text(                              AppLocalizations.of(context)!.takeoabQuiz,
+
                               style: TextStyle(color: Colors.white),
                             ))
                       ],
@@ -153,7 +154,7 @@ class _OABScreenState extends State<OABScreen> {
                 SizedBox(height: screenHeight * 0.01),
                 //quiz2
                 Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 20),
+                  padding:  EdgeInsets.symmetric(horizontal: 20),
                   child: Container(
                     height: screenHeight / 3.5,
                     decoration: BoxDecoration(
@@ -167,7 +168,7 @@ class _OABScreenState extends State<OABScreen> {
                             Image(
                               height: screenHeight / 7,
                               width: screenWidth,
-                              image: const AssetImage('assets/images/ipss.png'),
+                              image:  AssetImage('assets/images/ipss.png'),
                             ),
                             Text(
                               "IPSS Diagnosis",
@@ -182,7 +183,7 @@ class _OABScreenState extends State<OABScreen> {
                           height: screenHeight * 0.020,
                         ),
                         // Padding(
-                        //   padding: const EdgeInsets.symmetric(horizontal: 20),
+                        //   padding:  EdgeInsets.symmetric(horizontal: 20),
                         //   child: SwipeableButtonView(
                         //     buttonText: 'Start IPSS Diagnosis',
                         //     buttonWidget: Container(
@@ -216,13 +217,14 @@ class _OABScreenState extends State<OABScreen> {
                         ElevatedButton(
                             onPressed: () {
                               Navigator.of(context).push(MaterialPageRoute(
-                                  builder: (context) => const IPSS()));
+                                  builder: (context) =>  IPSS()));
                             },
                             style: ElevatedButton.styleFrom(
-                              backgroundColor: const Color(0xff3d6bb4),
+                              backgroundColor:  Color(0xff3d6bb4),
                             ),
-                            child: const Text(
-                              "Take IPSS Quiz",
+                            child:  Text(
+                                                            AppLocalizations.of(context)!.takeipssQuiz,
+
                               style: TextStyle(color: Colors.white),
                             ))
                       ],
