@@ -206,7 +206,6 @@ class _OABScreenState extends State<OABScreen> {
                         //           PageTransition(
                         //               type: PageTransitionType.fade, child: IPSS()));
 
-                        //       //TODO: For reverse ripple effect animation
                         //       setState(() {
                         //         isFinished = false;
                         //       });

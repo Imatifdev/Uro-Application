@@ -47,7 +47,7 @@ class _MyAppState extends State<MyApp> {
       theme: ThemeData(
         //brightness: Brightness.dark,
         fontFamily:
-            'MinionVariableConcept-Roman', // Specify the font family here
+            'MinionVariableConcept-Roman',
 
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.pink),
         useMaterial3: true,
