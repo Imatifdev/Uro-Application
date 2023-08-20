@@ -83,6 +83,28 @@
   "save": "محفوظ کریں",
   "download": "اپنا ریکارڈ ڈاؤن لوڈ کریں",
   "logout": "اپنے اکاؤنٹ سے لاگ آؤٹ کریں",
-  "sharestory": "اپنی کہانی شیئر کریں"
-}
+  "sharestory": "اپنی کہانی شیئر کریں",
+    "mild": "معتدل",
+    "moderate": "معتدل سے زیادہ",
+    "severe": "شدید",
+    "restart": "دوبارہ شروع کریں",
+    "returnHome": "مرکزی صفحے پر واپس جائیں",
+    "alreadyHaveanAccount?": "پہلے سے اکاؤنٹ ہے؟",
+    "quizHistory": "کوئز کی تاریخ",
+    "noQuizHistory": "کوئز کی تاریخ نہیں",
+    "downloadhistory": "مریض کی تاریخ ڈاؤنلوڈ کریں",
+    "oabHistory": "OAB ٹیسٹ کی تاریخ دیکھیں",
+    "ipssHistory": "IPSS ٹیسٹ کی تاریخ دیکھیں",
+    "changeLan": "زبان تبدیل کریں",
+    "en": "انگریزی",
+    "ur": "اردو",
+    "hello": "ہیلو",
+    "healthTestQuickAssesment": "صحت کا ٹیسٹ: جلدی اہم اشارات کی قدرتی تشخیص.",
+    "oabDiag": "OAB کی تشخیص",
+    "ipss": "IPSS کی تشخیص",
+    "takeoabQuiz": "OAB کوئز دیں",
+    "takeipssQuiz": "IPSS کوئز دیں",
+    "account": "اکاؤنٹ"
+  }
+  
 

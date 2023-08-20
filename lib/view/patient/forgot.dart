@@ -7,6 +7,7 @@ import 'package:uroapplication/controller/mycolors.dart';
 import '../../widgets/custombutton.dart';
 import '../../widgets/customtextfield.dart';
 import 'login.dart';
+import 'package:flutter_gen/gen_l10n/app_localization.dart';
 
 class ForgitPassword extends StatefulWidget {
   static const String idScreen = 'forgotpass';
@@ -60,8 +61,8 @@ class _ForgitPasswordState extends State<ForgitPassword> {
                 SizedBox(
                   height: 300,
                 ),
-                const Text(
-                  "Reset Your Password",
+                Text(
+                  AppLocalizations.of(context)!.resetPassword,
                   style: TextStyle(fontSize: 20, color: Colors.white),
                 ),
                 const SizedBox(
@@ -77,13 +78,13 @@ class _ForgitPasswordState extends State<ForgitPassword> {
                       return null;
                     },
                     textEditingController: _email,
-                    hintText: "Enter Your Email",
+                    hintText: AppLocalizations.of(context)!.entermail,
                     textInputType: TextInputType.visiblePassword),
                 const SizedBox(
                   height: 30,
                 ),
                 MyCustomButton(
-                    title: "Save",
+                    title: AppLocalizations.of(context)!.save,
                     borderrad: 15,
                     onaction: () {
                       if (formGlobalKey.currentState!.validate()) {

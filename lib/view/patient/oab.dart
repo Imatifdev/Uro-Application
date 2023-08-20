@@ -5,6 +5,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:uroapplication/controller/mycolors.dart';
 import 'package:uroapplication/view/calculator/quiz2_screen.dart';
 import 'package:uroapplication/view/calculator/quiz_screen.dart';
+import 'package:flutter_gen/gen_l10n/app_localization.dart';
 
 class OABScreen extends StatefulWidget {
   @override

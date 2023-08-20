@@ -11,7 +11,8 @@ import 'package:uroapplication/view/patient/login.dart';
 import 'package:uroapplication/view/patient/patientdashboard.dart';
 import '../../models/registermodel.dart';
 import 'package:velocity_x/velocity_x.dart';
-
+import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:flutter_gen/gen_l10n/app_localization.dart';
 
 class NewSignupScreen extends StatefulWidget {
   @override
@@ -133,15 +134,15 @@ class _NewSignupScreenState extends State<NewSignupScreen> {
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 30),
                       child: Text(
-                        "Register Patient",
-                        style:
-                            TextStyle(fontSize: 32, fontWeight: FontWeight.bold),
+                        AppLocalizations.of(context)!.registerPatient,
+                        style: TextStyle(
+                            fontSize: 32, fontWeight: FontWeight.bold),
                       ),
                     ),
                     SizedBox(
                       height: 30,
                     ),
-      
+
                     Column(
                       children: [
                         Card(
@@ -161,7 +162,7 @@ class _NewSignupScreenState extends State<NewSignupScreen> {
                                 contentPadding: EdgeInsets.symmetric(
                                     vertical: 0, horizontal: 20),
                                 fillColor: Colors.white,
-                                hintText: "Last Name",
+                                hintText: AppLocalizations.of(context)!.lName,
                                 hintStyle: TextStyle(color: Colors.black),
                                 alignLabelWithHint: true,
                                 enabledBorder: OutlineInputBorder(
@@ -195,7 +196,7 @@ class _NewSignupScreenState extends State<NewSignupScreen> {
                                 contentPadding: EdgeInsets.symmetric(
                                     vertical: 0, horizontal: 20),
                                 fillColor: Colors.white,
-                                hintText: "Full Name",
+                                hintText: AppLocalizations.of(context)!.fName,
                                 hintStyle: TextStyle(color: Colors.black),
                                 alignLabelWithHint: true,
                                 enabledBorder: OutlineInputBorder(
@@ -230,7 +231,8 @@ class _NewSignupScreenState extends State<NewSignupScreen> {
                                 contentPadding: EdgeInsets.symmetric(
                                     vertical: 0, horizontal: 20),
                                 fillColor: Colors.white,
-                                hintText: "Email Address",
+                                hintText:
+                                    AppLocalizations.of(context)!.entermail,
                                 suffixIcon: Icon(CupertinoIcons.mail),
                                 hintStyle: TextStyle(color: Colors.black),
                                 alignLabelWithHint: true,
@@ -279,7 +281,8 @@ class _NewSignupScreenState extends State<NewSignupScreen> {
                                 contentPadding: EdgeInsets.symmetric(
                                     vertical: 0, horizontal: 20),
                                 fillColor: Colors.white,
-                                hintText: "Password ",
+                                hintText:
+                                    AppLocalizations.of(context)!.password,
                                 hintStyle: TextStyle(color: Colors.black),
                                 alignLabelWithHint: true,
                                 enabledBorder: OutlineInputBorder(
@@ -313,7 +316,7 @@ class _NewSignupScreenState extends State<NewSignupScreen> {
                                   contentPadding: EdgeInsets.symmetric(
                                       vertical: 0, horizontal: 20),
                                   fillColor: Colors.white,
-                                  hintText: "Date of Borth",
+                                  hintText: AppLocalizations.of(context)!.dob,
                                   suffixIcon: IconButton(
                                       onPressed: _pickDate,
                                       icon: Icon(CupertinoIcons.calendar)),
@@ -346,7 +349,7 @@ class _NewSignupScreenState extends State<NewSignupScreen> {
                                 contentPadding: EdgeInsets.symmetric(
                                     vertical: 0, horizontal: 20),
                                 fillColor: Colors.white,
-                                hintText: "Phone Num",
+                                hintText: AppLocalizations.of(context)!.phone,
                                 suffixIcon: Icon(CupertinoIcons.phone),
                                 hintStyle: TextStyle(color: Colors.black),
                                 alignLabelWithHint: true,
@@ -366,7 +369,7 @@ class _NewSignupScreenState extends State<NewSignupScreen> {
                     SizedBox(
                       height: height / 40,
                     ),
-      
+
                     Center(
                       child: InkWell(
                         onTap: _isDataSaved
@@ -382,7 +385,7 @@ class _NewSignupScreenState extends State<NewSignupScreen> {
                                   setState(() {
                                     _isSigningUp = true;
                                   });
-      
+
                                   // call Firebase function to sign up user
                                   bool isRegistered = false;
                                   isRegistered = await _registerVM.register(
@@ -392,7 +395,7 @@ class _NewSignupScreenState extends State<NewSignupScreen> {
                                       _lname.text.trim(),
                                       _dob.text.trim(),
                                       _phone.text.trim());
-      
+
                                   if (isRegistered) {
                                     var userId =
                                         FirebaseAuth.instance.currentUser!.uid;
@@ -401,12 +404,12 @@ class _NewSignupScreenState extends State<NewSignupScreen> {
                                             .collection('users');
                                     final user =
                                         FirebaseAuth.instance.currentUser;
-      
+
                                     final userData = {
                                       'userId': user!.uid,
                                       'selectedAnswers': [],
                                     };
-      
+
                                     await usersCollection
                                         .doc(user.uid)
                                         .set(userData);
@@ -420,19 +423,20 @@ class _NewSignupScreenState extends State<NewSignupScreen> {
                                       "DOB": _dob.text.trim(),
                                       "Phone": _phone.text.trim()
                                     });
-      
+
                                     // Update the state to indicate data is saved
                                     setState(() {
                                       _isDataSaved = true;
                                       _isSigningUp = false;
                                     });
-      
+
                                     // Show a Snackbar to indicate data is saved
                                     showSnackbar(context, "Data Saved!");
                                     Navigator.push(
                                         context,
                                         MaterialPageRoute(
-                                            builder: (ctx) => PatientDashboard()));
+                                            builder: (ctx) =>
+                                                PatientDashboard()));
                                   } else {
                                     setState(() {
                                       _isSigningUp = false;
@@ -459,8 +463,8 @@ class _NewSignupScreenState extends State<NewSignupScreen> {
                                     height: 30,
                                     width: 30,
                                   ).centered()
-                                : const Text(
-                                    'Register',
+                                : Text(
+                                    AppLocalizations.of(context)!.register,
                                     style: TextStyle(
                                         color: Colors.white, fontSize: 18),
                                   ).centered(),
@@ -543,39 +547,38 @@ class _NewSignupScreenState extends State<NewSignupScreen> {
                     // SizedBox(
                     //   height: height / 35,
                     // )
-                     SizedBox(
-                    height: height / 40,
-                  ),
-                  Center(
-                    child: RichText(
-                      text: TextSpan(
-                        text: 'Already have an Account? ',
-                        style: TextStyle(color: Colors.black, fontSize: 16),
-                        children: <TextSpan>[
-                          TextSpan(
-                            text: 'Login',
-                            recognizer: TapGestureRecognizer()
-                              ..onTap = () {
-                                Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (context) => LoginScreenPatient()));
-                              },
-                            style: TextStyle(
-                              fontWeight: FontWeight.bold,
-                              color: blue,
-                              fontSize: 18,
+                    SizedBox(
+                      height: height / 40,
+                    ),
+                    Center(
+                      child: RichText(
+                        text: TextSpan(
+                          text: 'Already have an Account? ',
+                          style: TextStyle(color: Colors.black, fontSize: 16),
+                          children: <TextSpan>[
+                            TextSpan(
+                              text: AppLocalizations.of(context)!.dob,
+                              recognizer: TapGestureRecognizer()
+                                ..onTap = () {
+                                  Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (context) =>
+                                              LoginScreenPatient()));
+                                },
+                              style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                color: blue,
+                                fontSize: 18,
+                              ),
                             ),
-                          ),
-                        ],
+                          ],
+                        ),
                       ),
                     ),
-                  ), SizedBox(
-                      height: height*0.03,
+                    SizedBox(
+                      height: height * 0.03,
                     ),
-                   
-      
-                
                   ],
                 ),
               ),

@@ -11,6 +11,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:uroapplication/controller/mycolors.dart';
 import 'package:uroapplication/view/patient/forgot.dart';
 import 'package:uroapplication/view/patient/language_screen.dart';
+import 'package:flutter_gen/gen_l10n/app_localization.dart';
 
 import '../../widgets/custombutton.dart';
 
@@ -57,7 +58,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
             height: screenHeight * 0.05,
           ),
           Text(
-            "Settings",
+            AppLocalizations.of(context)!.settings,
             style: TextStyle(
                 fontSize: heading,
                 color: Colors.white,
@@ -90,7 +91,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                             color: Colors.yellow,
                           ),
                           title: Text(
-                            "Language",
+                            AppLocalizations.of(context)!.language,
                             style: TextStyle(
                                 fontWeight: FontWeight.bold,
                                 fontSize: subheading3,
@@ -121,7 +122,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                             color: Colors.yellow,
                           ),
                           title: Text(
-                            "Reset Password",
+                            AppLocalizations.of(context)!.resetPassword,
                             style: TextStyle(
                                 fontWeight: FontWeight.bold,
                                 fontSize: subheading3,

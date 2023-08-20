@@ -9,6 +9,7 @@ import 'package:uroapplication/view/patient/patientdashboard.dart';
 
 import '../../models/loginmodel.dart';
 import 'package:velocity_x/velocity_x.dart';
+import 'package:flutter_gen/gen_l10n/app_localization.dart';
 
 import 'createpatient.dart';
 import 'forgot.dart';
@@ -104,7 +105,7 @@ class _LoginScreenPatientState extends State<LoginScreenPatient> {
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 10),
                       child: Text(
-                        "Hello Again!",
+                        AppLocalizations.of(context)!.helloAgain,
                         textAlign: TextAlign.center,
                         style: TextStyle(
                             fontSize: 28,
@@ -133,7 +134,7 @@ class _LoginScreenPatientState extends State<LoginScreenPatient> {
                             contentPadding: EdgeInsets.symmetric(
                                 vertical: 0, horizontal: 20),
                             fillColor: Colors.white,
-                            hintText: "Email Address",
+                            hintText: AppLocalizations.of(context)!.entermail,
                             suffixIcon: Icon(CupertinoIcons.mail),
                             hintStyle: TextStyle(color: Colors.black),
                             alignLabelWithHint: true,
@@ -182,7 +183,7 @@ class _LoginScreenPatientState extends State<LoginScreenPatient> {
                             contentPadding: EdgeInsets.symmetric(
                                 vertical: 0, horizontal: 20),
                             fillColor: Colors.white,
-                            hintText: "Password ",
+                            hintText: AppLocalizations.of(context)!.password,
                             hintStyle: TextStyle(color: Colors.black),
                             alignLabelWithHint: true,
                             enabledBorder: OutlineInputBorder(
@@ -212,7 +213,7 @@ class _LoginScreenPatientState extends State<LoginScreenPatient> {
                                       builder: (ctx) => ForgitPassword()));
                             },
                             child: Text(
-                              "Forgot Password?",
+                              AppLocalizations.of(context)!.forgotPassword,
                               style: TextStyle(
                                   color: Colors.black,
                                   fontSize: 16,
@@ -277,8 +278,8 @@ class _LoginScreenPatientState extends State<LoginScreenPatient> {
                               height: 30,
                               width: 30,
                             ).centered()
-                          : const Text(
-                              'Log In',
+                          : Text(
+                              AppLocalizations.of(context)!.logIn,
                               style:
                                   TextStyle(color: Colors.white, fontSize: 18),
                             ).centered(),
@@ -290,11 +291,11 @@ class _LoginScreenPatientState extends State<LoginScreenPatient> {
                 ),
                 RichText(
                   text: TextSpan(
-                    text: 'Don\'t have an Account? ',
+                    text: AppLocalizations.of(context)!.dontHaveAnAcountSignup,
                     style: TextStyle(color: Colors.black, fontSize: 16),
                     children: <TextSpan>[
                       TextSpan(
-                        text: 'Signup',
+                        text: AppLocalizations.of(context)!.register,
                         recognizer: TapGestureRecognizer()
                           ..onTap = () {
                             Navigator.push(

@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter_gen/gen_l10n/app_localization.dart';
 
 class QuizHistoryScreen extends StatelessWidget {
   final String quiz;
@@ -37,7 +38,8 @@ class QuizHistoryScreen extends StatelessWidget {
             return ListView.builder(
               itemCount: documents.length,
               itemBuilder: (context, index) {
-                Map<String, dynamic>? userData = documents[index].data() as Map<String, dynamic>?;
+                Map<String, dynamic>? userData =
+                    documents[index].data() as Map<String, dynamic>?;
                 List<int> selectedAnswers =
                     List<int>.from(userData!['selectedAnswers']);
                 int average = userData['sum'];
@@ -58,8 +60,10 @@ class QuizHistoryScreen extends StatelessWidget {
               },
             );
           } else {
-            return const Center(
-              child: Text('No Quiz History'),
+            return Center(
+              child: Text(
+                AppLocalizations.of(context)!.noQuizHistory,
+              ),
             );
           }
         },

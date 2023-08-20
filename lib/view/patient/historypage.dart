@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import 'history_page.dart';
+import 'package:flutter_gen/gen_l10n/app_localization.dart';
 
 class HistoryPage extends StatelessWidget {
   const HistoryPage({super.key});
@@ -52,7 +53,7 @@ class HistoryPage extends StatelessWidget {
             height: hieght * 0.05,
           ),
           Text(
-            "Download Patient History",
+            AppLocalizations.of(context)!.downloadhistory,
             style: TextStyle(
                 fontSize: subheading1,
                 color: Colors.white,
@@ -74,7 +75,7 @@ class HistoryPage extends StatelessWidget {
                     color: Colors.white,
                   ),
                   title: Text(
-                    "View OAB Test History",
+                    AppLocalizations.of(context)!.oabHistory,
                     style:
                         TextStyle(fontSize: subheading2, color: Colors.white),
                   ),
@@ -100,7 +101,7 @@ class HistoryPage extends StatelessWidget {
                     color: Colors.white,
                   ),
                   title: Text(
-                    "View IPSS Test History",
+                    AppLocalizations.of(context)!.ipssHistory,
                     style:
                         TextStyle(fontSize: subheading2, color: Colors.white),
                   ),

@@ -13,6 +13,7 @@ import 'package:uroapplication/controller/mycolors.dart';
 import 'package:uroapplication/view/patient/historypage.dart';
 import 'package:uroapplication/view/patient/settings.dart';
 import 'package:uroapplication/view/welcome.dart';
+import 'package:flutter_gen/gen_l10n/app_localization.dart';
 
 import '../../widgets/custombutton.dart';
 import 'login.dart';
@@ -158,7 +159,7 @@ class _ProfileViewState extends State<ProfileView> {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Text(
-                          "Share Your Story",
+                          AppLocalizations.of(context)!.sharestory,
                           style: TextStyle(
                             fontSize: subheading3,
                             color: Colors.white,
@@ -196,7 +197,7 @@ class _ProfileViewState extends State<ProfileView> {
                             color: Colors.yellow,
                           ),
                           title: Text(
-                            "Settings",
+                          AppLocalizations.of(context)!.settings,
                             style: TextStyle(
                               fontWeight: FontWeight.bold,
                               fontSize: subheading3,
@@ -230,7 +231,7 @@ class _ProfileViewState extends State<ProfileView> {
                             color: Colors.yellow,
                           ),
                           title: Text(
-                            "Download Your Record",
+                            AppLocalizations.of(context)!.download,
                             style: TextStyle(
                                 fontWeight: FontWeight.bold,
                                 fontSize: subheading3,
@@ -267,7 +268,7 @@ class _ProfileViewState extends State<ProfileView> {
                         color: Colors.yellow,
                       ),
                       title: Text(
-                        "LogOut Your Account",
+                        AppLocalizations.of(context)!.logout,
                         style: TextStyle(
                             fontWeight: FontWeight.bold,
                             fontSize: subheading3,

@@ -10,6 +10,7 @@ import 'package:uroapplication/view/patient/profile.dart';
 import 'package:uroapplication/view/patient/settings.dart';
 
 import 'package:page_transition/page_transition.dart';
+import 'package:flutter_gen/gen_l10n/app_localization.dart';
 
 class PatientDashboard extends StatefulWidget {
   @override
@@ -81,7 +82,7 @@ class _PatientDashboardState extends State<PatientDashboard> {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Text(
-                        "Hello,",
+                        "hello",
                         style: TextStyle(
                             fontSize: subheading1,
                             color: Colors.white,
@@ -140,7 +141,7 @@ class _PatientDashboardState extends State<PatientDashboard> {
                             image: AssetImage('assets/images/logo.png'),
                           ),
                           Text(
-                            "Mi Control Assessment",
+                            AppLocalizations.of(context)!.miControlAs,
                             textAlign: TextAlign.center,
                             style: TextStyle(
                                 fontSize: heading,
@@ -152,73 +153,120 @@ class _PatientDashboardState extends State<PatientDashboard> {
                     ),
                   ),
                   SizedBox(
-                    height: screenHeight*0.02,
+                    height: screenHeight * 0.02,
                   ),
                   Container(
-                    height: screenHeight*0.15,width: screenWidth,
+                    height: screenHeight * 0.15,
+                    width: screenWidth,
                     decoration: BoxDecoration(
-borderRadius: BorderRadius.circular(20),
-                      color: Colors.black.withOpacity(0.1)
-                    ),
+                        borderRadius: BorderRadius.circular(20),
+                        color: Colors.black.withOpacity(0.1)),
                     child: InkWell(
-                      onTap: (){
-                        Navigator.push(context, MaterialPageRoute(builder: (ctx)=>HistoryPage()));
+                      onTap: () {
+                        Navigator.push(context,
+                            MaterialPageRoute(builder: (ctx) => HistoryPage()));
                       },
                       child: Row(
                         children: [
-                          Image.asset('assets/history.png',height:100,width: 100,fit:BoxFit.contain,),
-                          SizedBox(width: screenWidth*0.02,),
-                          Text("View History",style: TextStyle(fontSize: subheading1,color: Colors.white,fontWeight: FontWeight.bold),),
+                          Image.asset(
+                            'assets/history.png',
+                            height: 100,
+                            width: 100,
+                            fit: BoxFit.contain,
+                          ),
+                          SizedBox(
+                            width: screenWidth * 0.02,
+                          ),
+                          Text(
+                            AppLocalizations.of(context)!.viewHis,
+                            style: TextStyle(
+                                fontSize: subheading1,
+                                color: Colors.white,
+                                fontWeight: FontWeight.bold),
+                          ),
                         ],
                       ),
                     ),
                   ),
-
                   SizedBox(
-                    height: screenHeight*0.02,
+                    height: screenHeight * 0.02,
                   ),
-                  Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Container(
-                        height: screenHeight*0.15,width: screenWidth/2.5,
+                        height: screenHeight * 0.15,
+                        width: screenWidth / 2.5,
                         decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(20),
-                            color: Colors.black.withOpacity(0.1)
-                        ),
+                            color: Colors.black.withOpacity(0.1)),
                         child: InkWell(
-                          onTap: (){
-                            Navigator.push(context, MaterialPageRoute(builder: (ctx)=>SettingsScreen()));
+                          onTap: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (ctx) => SettingsScreen()));
                           },
                           child: Padding(
                             padding: const EdgeInsets.all(8.0),
                             child: Column(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
-                                Image.asset('assets/images/setting.png',height:screenHeight*0.05,width: screenWidth*0.2,fit:BoxFit.contain,color: Colors.white,),
-                                SizedBox(width: screenWidth*0.02,),
-                                Text("Settings",style: TextStyle(fontSize: subheading2,color: Colors.white,fontWeight: FontWeight.bold),),
+                                Image.asset(
+                                  'assets/images/setting.png',
+                                  height: screenHeight * 0.05,
+                                  width: screenWidth * 0.2,
+                                  fit: BoxFit.contain,
+                                  color: Colors.white,
+                                ),
+                                SizedBox(
+                                  width: screenWidth * 0.02,
+                                ),
+                                Text(
+                                  AppLocalizations.of(context)!.settings,
+                                  style: TextStyle(
+                                      fontSize: subheading2,
+                                      color: Colors.white,
+                                      fontWeight: FontWeight.bold),
+                                ),
                               ],
                             ),
                           ),
                         ),
                       ),
                       Container(
-                        height: screenHeight*0.15,width: screenWidth/2,
+                        height: screenHeight * 0.15,
+                        width: screenWidth / 2,
                         decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(20),
-                            color: Colors.black.withOpacity(0.1)
-                        ),
+                            color: Colors.black.withOpacity(0.1)),
                         child: InkWell(
-                          onTap: (){
-                            Navigator.push(context, MaterialPageRoute(builder: (ctx)=>ProfileView()));
+                          onTap: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (ctx) => ProfileView()));
                           },
                           child: Padding(
                             padding: const EdgeInsets.all(8.0),
                             child: Row(
                               children: [
-                                Image.asset('assets/images/newuser.png',height:screenHeight*0.08,width: screenWidth*0.2,fit:BoxFit.contain,),
-                                SizedBox(width: screenWidth*0.02,),
-                                Text("Profile",style: TextStyle(fontSize: subheading2,color: Colors.white,fontWeight: FontWeight.bold),),
+                                Image.asset(
+                                  'assets/images/newuser.png',
+                                  height: screenHeight * 0.08,
+                                  width: screenWidth * 0.2,
+                                  fit: BoxFit.contain,
+                                ),
+                                SizedBox(
+                                  width: screenWidth * 0.02,
+                                ),
+                                Text(
+                                  AppLocalizations.of(context)!.profile,
+                                  style: TextStyle(
+                                      fontSize: subheading2,
+                                      color: Colors.white,
+                                      fontWeight: FontWeight.bold),
+                                ),
                               ],
                             ),
                           ),
@@ -226,7 +274,7 @@ borderRadius: BorderRadius.circular(20),
                       ),
                     ],
                   )
-                   ],
+                ],
               ),
             ),
           ),

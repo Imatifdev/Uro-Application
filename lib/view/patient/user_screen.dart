@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:uroapplication/view/calculator/quiz_screen.dart';
 
 import '../calculator/quiz2_screen.dart';
+import 'package:flutter_gen/gen_l10n/app_localization.dart';
 
 class UserScreen extends StatelessWidget {
   const UserScreen({super.key});
