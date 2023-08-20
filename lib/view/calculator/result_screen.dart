@@ -43,7 +43,7 @@ class _ResultScreenState extends State<ResultScreen> {
     }
 
     return Scaffold(
-      backgroundColor: Color(0xff0047ba),
+      backgroundColor: const Color(0xff0047ba),
       body: SafeArea(
         child: SizedBox(
           height: size.height - 100,
@@ -164,31 +164,21 @@ class _ResultScreenState extends State<ResultScreen> {
                   children: [
                     ElevatedButton.icon(
                       onPressed: () async {
-                        await Navigator.push(
-                          context,
-                          PageTransition(
-                            duration: Duration(seconds: 2),
-                            type: PageTransitionType.fade,
-                            child: IPSS(),
-                          ),
-                        );
+                        Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(
+                        builder: (context) => IPSS()), 
+                        (Route route) => false);
                       },
-                      icon: Icon(Icons.restart_alt),
-                      label: Text("Restart"),
+                      icon: const Icon(Icons.restart_alt),
+                      label: const Text("Restart"),
                     ),
                     ElevatedButton.icon(
                       onPressed: () async {
-                        await Navigator.push(
-                          context,
-                          PageTransition(
-                            duration: Duration(seconds: 2),
-                            type: PageTransitionType.bottomToTopPop,
-                            child: PatientDashboard(),
-                          ),
-                        );
+                        await Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(
+                        builder: (context) => PatientDashboard()), 
+                        (Route route) => false);
                       },
-                      icon: Icon(Icons.dashboard),
-                      label: Text("Return to Home"),
+                      icon: const Icon(Icons.dashboard),
+                      label: const Text("Return to Home"),
                     ),
                   ],
                 ),
