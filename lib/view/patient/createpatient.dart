@@ -553,7 +553,8 @@ class _NewSignupScreenState extends State<NewSignupScreen> {
                     Center(
                       child: RichText(
                         text: TextSpan(
-                          text: 'Already have an Account? ',
+                          text:                   AppLocalizations.of(context)!.alreadyHaveanAccount,
+
                           style: TextStyle(color: Colors.black, fontSize: 16),
                           children: <TextSpan>[
                             TextSpan(

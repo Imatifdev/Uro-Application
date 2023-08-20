@@ -101,8 +101,8 @@ class _ProfileViewState extends State<ProfileView> {
           SizedBox(
             height: screenHeight * 0.05,
           ),
-          Text(
-            "Account",
+          Text(                  AppLocalizations.of(context)!.account,
+
             style: TextStyle(
                 fontSize: heading,
                 color: Colors.white,

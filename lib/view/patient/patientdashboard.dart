@@ -82,7 +82,7 @@ class _PatientDashboardState extends State<PatientDashboard> {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Text(
-                        "hello",
+                  AppLocalizations.of(context)!.hello,
                         style: TextStyle(
                             fontSize: subheading1,
                             color: Colors.white,

@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localization.dart';
 
 import '../../main.dart';
+import 'package:flutter_gen/gen_l10n/app_localization.dart';
 
 class LanguageScreen extends StatefulWidget {
   const LanguageScreen({super.key});
@@ -49,8 +50,9 @@ class _LanguageScreenState extends State<LanguageScreen> {
             SizedBox(
               height: height * 0.09,
             ),
-            const Text(
-              "Change Language",
+             Text(
+                              AppLocalizations.of(context)!.changeLan,
+
               style: TextStyle(fontSize: 26, color: Colors.white),
             ),
             SizedBox(
@@ -60,8 +62,9 @@ class _LanguageScreenState extends State<LanguageScreen> {
               fillColor:
                   MaterialStateColor.resolveWith((states) => Colors.yellow),
               activeColor: Colors.yellow,
-              title: const Text(
-                'English',
+              title:  Text(
+                                              AppLocalizations.of(context)!.en,
+
                 style: TextStyle(color: Colors.white),
               ),
               value: 'en',
@@ -77,8 +80,9 @@ class _LanguageScreenState extends State<LanguageScreen> {
               fillColor:
                   MaterialStateColor.resolveWith((states) => Colors.yellow),
               activeColor: Colors.yellow,
-              title: const Text(
-                'Urdu',
+              title:  Text(
+                                             AppLocalizations.of(context)!.ur,
+
                 style: TextStyle(color: Colors.white),
               ),
               value: 'ur',
