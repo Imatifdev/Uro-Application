@@ -1,4 +1,4 @@
-package com.codefren.micontrol
+package com.codefren.micontrolapp
 
 import io.flutter.embedding.android.FlutterActivity
 
