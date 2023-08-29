@@ -273,11 +273,7 @@ class _LoginScreenPatientState extends State<LoginScreenPatient> {
                         borderRadius: BorderRadius.circular(15),
                       ),
                       child: _isLoggingIn
-                          ? Lottie.asset(
-                              'assets/login.json', // Replace with your animation file path
-                              height: 30,
-                              width: 30,
-                            ).centered()
+                          ? CircularProgressIndicator().centered()
                           : Text(
                               AppLocalizations.of(context)!.logIn,
                               style:

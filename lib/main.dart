@@ -28,6 +28,12 @@ class MyApp extends StatefulWidget {
     _MyAppState? state = context.findAncestorStateOfType<_MyAppState>();
     state?.setLocale(locale);
   }
+
+  static Locale returnLocale(BuildContext context) {
+    _MyAppState? state = context.findAncestorStateOfType<_MyAppState>();
+    Locale locale = state!.returnLocle();
+    return locale;
+  }
 }
 
 class _MyAppState extends State<MyApp> {
@@ -38,6 +44,10 @@ class _MyAppState extends State<MyApp> {
     });
   }
 
+  returnLocle() {
+    return _locale;
+  }
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -46,8 +56,7 @@ class _MyAppState extends State<MyApp> {
       title: 'Uro App',
       theme: ThemeData(
         //brightness: Brightness.dark,
-        fontFamily:
-            'MinionVariableConcept-Roman',
+        fontFamily: 'MinionVariableConcept-Roman',
 
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.pink),
         useMaterial3: true,

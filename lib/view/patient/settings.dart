@@ -13,6 +13,7 @@ import 'package:uroapplication/view/patient/forgot.dart';
 import 'package:uroapplication/view/patient/language_screen.dart';
 import 'package:flutter_gen/gen_l10n/app_localization.dart';
 
+import '../../main.dart';
 import '../../widgets/custombutton.dart';
 
 class SettingsScreen extends StatefulWidget {
@@ -78,29 +79,47 @@ class _SettingsScreenState extends State<SettingsScreen> {
                     padding: const EdgeInsets.symmetric(horizontal: 00),
                     child: Column(
                       children: [
-                        ListTile(
-                          onTap: () {
-                            Navigator.push(
+                        Container(
+                          decoration: BoxDecoration(
+                            // You can customize the border style
+                            borderRadius: BorderRadius.circular(
+                                8), // You can adjust the border radius
+                          ),
+                          child: InkWell(
+                            onTap: () {
+                              Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                  builder: (context) => LanguageScreen(),
-                                ));
-                          },
-                          leading: Icon(
-                            Icons.language,
-                            color: Colors.yellow,
-                          ),
-                          title: Text(
-                            AppLocalizations.of(context)!.language,
-                            style: TextStyle(
-                                fontWeight: FontWeight.bold,
-                                fontSize: subheading3,
-                                color: Colors.white),
-                          ),
-                          trailing: Icon(
-                            CupertinoIcons.right_chevron,
-                            color: Colors.yellow,
-                            size: 20,
+                                    builder: (context) => LanguageScreen()),
+                              );
+                            },
+                            child: Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Row(
+                                children: [
+                                  Icon(
+                                    Icons.language,
+                                    color: Colors.yellow,
+                                  ),
+                                  SizedBox(width: 8),
+                                  Expanded(
+                                    child: Text(
+                                      AppLocalizations.of(context)!.language,
+                                      style: TextStyle(
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: subheading3,
+                                        color: Colors.white,
+                                      ),
+                                    ),
+                                  ),
+                                  Icon(
+                                    CupertinoIcons.right_chevron,
+                                    color: Colors.yellow,
+                                    size: 20,
+                                  ),
+                                ],
+                              ),
+                            ),
                           ),
                         ),
                         Padding(
@@ -110,30 +129,57 @@ class _SettingsScreenState extends State<SettingsScreen> {
                             color: Colors.grey,
                           ),
                         ),
-                        ListTile(
-                          onTap: () {
-                            Navigator.push(
+                        Container(
+                          decoration: BoxDecoration(
+                            // You can customize the border style
+                            borderRadius: BorderRadius.circular(
+                                8), // You can adjust the border radius
+                          ),
+                          child: InkWell(
+                            onTap: () {
+                              Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                    builder: (context) => ForgitPassword()));
-                          },
-                          leading: Icon(
-                            CupertinoIcons.lock_shield_fill,
-                            color: Colors.yellow,
+                                    builder: (context) => ForgitPassword()),
+                              );
+                            },
+                            child: Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Row(
+                                children: [
+                                  Icon(
+                                    CupertinoIcons.lock_shield_fill,
+                                    color: Colors.yellow,
+                                  ),
+                                  SizedBox(width: 8),
+                                  Expanded(
+                                    child: Text(
+                                      AppLocalizations.of(context)!
+                                          .resetPassword,
+                                      style: MyApp.returnLocale(context) ==
+                                              Locale("en")
+                                          ? TextStyle(
+                                              fontWeight: FontWeight.bold,
+                                              fontSize: subheading3,
+                                              color: Colors.white,
+                                            )
+                                          : TextStyle(
+                                              fontWeight: FontWeight.bold,
+                                              fontSize: subheading3 - 2,
+                                              color: Colors.white,
+                                            ),
+                                    ),
+                                  ),
+                                  Icon(
+                                    CupertinoIcons.right_chevron,
+                                    color: Colors.yellow,
+                                    size: 20,
+                                  ),
+                                ],
+                              ),
+                            ),
                           ),
-                          title: Text(
-                            AppLocalizations.of(context)!.resetPassword,
-                            style: TextStyle(
-                                fontWeight: FontWeight.bold,
-                                fontSize: subheading3,
-                                color: Colors.white),
-                          ),
-                          trailing: Icon(
-                            CupertinoIcons.right_chevron,
-                            color: Colors.yellow,
-                            size: 20,
-                          ),
-                        ),
+                        )
                       ],
                     ),
                   ),
