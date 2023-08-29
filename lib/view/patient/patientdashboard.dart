@@ -4,6 +4,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:uroapplication/main.dart';
 import 'package:uroapplication/view/patient/historypage.dart';
 import 'package:uroapplication/view/patient/oab.dart';
 import 'package:uroapplication/view/patient/profile.dart';
@@ -19,6 +20,64 @@ class PatientDashboard extends StatefulWidget {
 
 class _PatientDashboardState extends State<PatientDashboard> {
   bool isFinished = false;
+  String selectedLanguage = 'en';
+       void changeLocale(value) {
+    MyApp.setLocale(context, Locale(value));
+  }
+  void initState() {
+     WidgetsBinding.instance.addPostFrameCallback((_) {
+     showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return AlertDialog(
+            title: const Text('Choose a Language'),
+            content:  Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                RadioListTile<String>(
+                  title: const Text('English'),
+                  value: 'en',
+                  groupValue: selectedLanguage,
+                  onChanged: (value) {
+                    setState(() {
+                      changeLocale(value);
+                      selectedLanguage = value!;
+                    });
+                  },
+                ),
+                RadioListTile<String>(
+                  title: const Text('Urdu'),
+                  value: 'ur',
+                  groupValue: selectedLanguage,
+                  onChanged: (value) {
+                    changeLocale(value);
+                    setState(() {
+                      selectedLanguage = value!;
+                    });
+                  },
+                ),
+              ],
+            ),
+            actions: [
+              TextButton(
+                onPressed: () {
+                  changeLocale("en");
+                  Navigator.pop(context);
+                },
+                child: const Text('Cancel', style: TextStyle(color: Colors.red),),
+              ),
+              TextButton(
+                onPressed: () {
+                  Navigator.pop(context);
+                },
+                child: const Text('Confirm', style: TextStyle(color: Colors.green),),
+              ),
+            ],
+          );});
+          
+    });
+    super.initState();
+  }
 
   final userId = FirebaseAuth.instance.currentUser!.uid;
   int check = 0;

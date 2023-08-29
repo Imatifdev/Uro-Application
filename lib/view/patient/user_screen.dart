@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:uroapplication/view/calculator/quiz_screen.dart';
-
 import '../calculator/quiz2_screen.dart';
-import 'package:flutter_gen/gen_l10n/app_localization.dart';
 
 class UserScreen extends StatelessWidget {
   const UserScreen({super.key});
@@ -21,14 +19,14 @@ class UserScreen extends StatelessWidget {
               ElevatedButton(
                   onPressed: () {
                     Navigator.of(context).push(MaterialPageRoute(
-                      builder: (context) => OAB(),
+                      builder: (context) => const OAB(),
                     ));
                   },
                   child: const Text("Quiz 1")),
               ElevatedButton(
                   onPressed: () {
                     Navigator.of(context).push(MaterialPageRoute(
-                      builder: (context) => IPSS(),
+                      builder: (context) => const IPSS(),
                     ));
                   },
                   child: const Text("Quiz 2"))
