@@ -203,7 +203,7 @@ class _IPSSState extends State<IPSS> {
                                         },
                                         child: Container(
                                           width: constraints.maxWidth * 0.8,
-                                          height: constraints.maxHeight * 0.06,
+                                          height: constraints.maxHeight * 0.05,
                                           decoration: BoxDecoration(
                                             color:
                                                 selectedAnswers[currentPage] ==

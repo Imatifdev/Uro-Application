@@ -287,7 +287,7 @@ class _LoginScreenPatientState extends State<LoginScreenPatient> {
                 ),
                 RichText(
                   text: TextSpan(
-                    text: AppLocalizations.of(context)!.dontHaveAnAcountSignup,
+                    text: "${AppLocalizations.of(context)!.dontHaveAnAcountSignup} ",
                     style: TextStyle(color: Colors.black, fontSize: 16),
                     children: <TextSpan>[
                       TextSpan(

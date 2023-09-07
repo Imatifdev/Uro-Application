@@ -553,12 +553,12 @@ class _NewSignupScreenState extends State<NewSignupScreen> {
                     Center(
                       child: RichText(
                         text: TextSpan(
-                          text:                   AppLocalizations.of(context)!.alreadyHaveanAccount,
+                          text: "${AppLocalizations.of(context)!.alreadyHaveanAccount} ",
 
                           style: TextStyle(color: Colors.black, fontSize: 16),
                           children: <TextSpan>[
                             TextSpan(
-                              text: AppLocalizations.of(context)!.dob,
+                              text: AppLocalizations.of(context)!.logIn,
                               recognizer: TapGestureRecognizer()
                                 ..onTap = () {
                                   Navigator.push(

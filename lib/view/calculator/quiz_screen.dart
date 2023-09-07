@@ -223,7 +223,7 @@ class _OABState extends State<OAB> {
                                         },
                                         child: Container(
                                           width: constraints.maxWidth * 0.8,
-                                          height: constraints.maxHeight * 0.06,
+                                          height: constraints.maxHeight * 0.05,
                                           decoration: BoxDecoration(
                                             color:
                                                 selectedAnswers[currentPage] ==
@@ -242,6 +242,7 @@ class _OABState extends State<OAB> {
                                               child: Text(
                                                 answers[index][i],
                                                 style: TextStyle(
+                                                  fontSize: 14,
                                                     color: selectedAnswers[
                                                                 currentPage] ==
                                                             i

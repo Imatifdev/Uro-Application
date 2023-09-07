@@ -12,6 +12,7 @@ import 'package:page_transition/page_transition.dart';
 import 'package:uroapplication/controller/mycolors.dart';
 import 'package:uroapplication/view/patient/historypage.dart';
 import 'package:uroapplication/view/patient/settings.dart';
+import 'package:uroapplication/view/splash.dart';
 import 'package:uroapplication/view/welcome.dart';
 import 'package:flutter_gen/gen_l10n/app_localization.dart';
 
@@ -28,8 +29,8 @@ class _ProfileViewState extends State<ProfileView> {
   signOut() async {
     print('object');
     await auth.signOut();
-    Navigator.pushReplacement(
-        context, MaterialPageRoute(builder: (context) => LoginScreenPatient()));
+    // Navigator.pushReplacement(
+    //     context, MaterialPageRoute(builder: (context) => LoginScreenPatient()));
   }
 
   final userId = FirebaseAuth.instance.currentUser!.uid;
@@ -256,12 +257,11 @@ class _ProfileViewState extends State<ProfileView> {
                     padding: const EdgeInsets.symmetric(horizontal: 00),
                     child: ListTile(
                       onTap: () async {
-                        await Navigator.push(
-                            context,
-                            PageTransition(
-                              type: PageTransitionType.fade,
-                              child: signOut(),
-                            ));
+                        signOut();
+                        await Navigator.of(context).push(
+                           MaterialPageRoute(builder: (context)=> SplashScreen()) 
+                        );
+
                       },
                       leading: Icon(
                         Icons.logout,
